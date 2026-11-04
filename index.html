@@ -1,0 +1,2155 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SORA Property — Where Architecture Meets the Sky</title>
+  <meta name="description" content="Butik kurasi hunian arsitektural kontemporer dan asisten cerdas SORAI. Menemukan rumah berkarakter dengan pencahayaan alami, sirkulasi lapang, dan transparansi finansial.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['Syne', 'sans-serif'],
+          },
+          colors: {
+            obsidian: '#08090C',
+            charcoal: '#111318',
+            surface: '#171A21',
+            surfaceHover: '#20242E',
+            sand: '#F3EFEA',
+            muted: '#8E95A2',
+            gold: {
+              300: '#F4D88D',
+              400: '#E5C378',
+              500: '#D4AF37',
+              600: '#B89325',
+            },
+            accent: '#C5A880',
+          },
+          animation: {
+            'glow-pulse': 'glowPulse 8s ease-in-out infinite alternate',
+            'float-slow': 'floatSlow 6s ease-in-out infinite',
+          },
+          keyframes: {
+            glowPulse: {
+              '0%': { opacity: '0.2', transform: 'scale(0.95)' },
+              '100%': { opacity: '0.45', transform: 'scale(1.05)' },
+            },
+            floatSlow: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-8px)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Custom Scrollbar & Aesthetics */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #08090C;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #20242E;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #D4AF37;
+    }
+    .glass-panel {
+      background: rgba(17, 19, 24, 0.72);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+    }
+    .glass-gold {
+      background: rgba(212, 175, 55, 0.05);
+      border: 1px solid rgba(212, 175, 55, 0.25);
+    }
+    .text-gradient-gold {
+      background: linear-gradient(135deg, #FFF6E5 0%, #E5C378 50%, #B89325 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .text-gradient-silver {
+      background: linear-gradient(135deg, #FFFFFF 0%, #CFD4DC 60%, #8E95A2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Keyframe Animations */
+    @keyframes heroZoom {
+      0% {
+        transform: scale(1.0);
+      }
+      100% {
+        transform: scale(1.08);
+      }
+    }
+    @keyframes marquee {
+      0% {
+        transform: translateX(0%);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+    @keyframes floatBadge {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-6px);
+      }
+    }
+    @keyframes pulseSoft {
+      0%, 100% {
+        opacity: 0.3;
+        transform: scale(0.98);
+      }
+      50% {
+        opacity: 0.6;
+        transform: scale(1.03);
+      }
+    }
+
+    .animate-hero-zoom {
+      animation: heroZoom 24s ease-in-out infinite alternate;
+    }
+    .animate-marquee {
+      display: flex;
+      width: 200%;
+      animation: marquee 32s linear infinite;
+    }
+    .animate-marquee:hover {
+      animation-play-state: paused;
+    }
+    .animate-float-badge {
+      animation: floatBadge 5s ease-in-out infinite;
+    }
+    .animate-pulse-soft {
+      animation: pulseSoft 4s ease-in-out infinite;
+    }
+
+    /* Scroll Reveal Transition */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Stagger delays */
+    .delay-100 { transition-delay: 100ms; }
+    .delay-200 { transition-delay: 200ms; }
+    .delay-300 { transition-delay: 300ms; }
+    .delay-400 { transition-delay: 400ms; }
+
+    /* Interactive Card Lift */
+    .card-lift {
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
+    }
+    .card-lift:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px -15px rgba(212, 175, 55, 0.12);
+    }
+
+    /* Ambient Cursor Glow */
+    #cursorGlow {
+      pointer-events: none;
+      position: fixed;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, rgba(212, 175, 55, 0.02) 40%, transparent 70%);
+      transform: translate(-50%, -50%);
+      transition: opacity 0.3s ease;
+      z-index: 1;
+    }
+
+    /* Luxury Loading Screen (Preloader) */
+    #loadingScreen {
+      transition: transform 1.1s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s ease;
+    }
+    #loadingScreen.loaded {
+      transform: translateY(-100%);
+      pointer-events: none;
+    }
+
+    /* Cinematic Text Shadow for High Readability over Background Photo */
+    .hero-title-shadow {
+      text-shadow: 0 4px 24px rgba(0, 0, 0, 0.9), 0 1px 4px rgba(0, 0, 0, 0.8);
+    }
+    .hero-subtitle-shadow {
+      text-shadow: 0 2px 16px rgba(0, 0, 0, 0.95), 0 1px 2px rgba(0, 0, 0, 0.9);
+    }
+  </style>
+</head>
+<body class="bg-obsidian text-sand selection:bg-gold-500/30 selection:text-gold-300 font-sans antialiased min-h-screen overflow-x-hidden relative">
+
+  <!-- Interactive Ambient Cursor Glow (Moves with mouse) -->
+  <div id="cursorGlow" class="hidden md:block"></div>
+
+  <!-- CONTEMPORARY LUXURY PRELOADER / LOADING SCREEN -->
+  <div id="loadingScreen" class="fixed inset-0 z-[100] bg-obsidian flex flex-col justify-between p-6 sm:p-12 overflow-hidden border-b border-gold-500/30">
+    <!-- Top bar of loader -->
+    <div class="flex items-center justify-between text-xs tracking-widest uppercase font-mono text-muted">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-gold-400 animate-ping"></span>
+        <span class="text-sand font-bold">SORA PROPERTY</span>
+        <span class="text-gold-400 font-semibold">/ ATELIER</span>
+      </div>
+      <div class="hidden sm:block text-muted">JAKARTA • ARCHITECTURE • 2026</div>
+    </div>
+
+    <!-- Center brand mark & animated status -->
+    <div class="text-center my-auto space-y-6">
+      <div class="relative w-24 h-24 mx-auto rounded-3xl bg-surface border border-gold-500/40 flex items-center justify-center text-4xl font-display font-bold text-gold-400 shadow-2xl shadow-gold-500/20">
+        <span class="relative z-10">空</span>
+        <div class="absolute inset-0 rounded-3xl bg-gold-500/10 blur-xl animate-pulse-soft"></div>
+      </div>
+      
+      <div class="space-y-2">
+        <h2 class="text-2xl sm:text-4xl font-display font-extrabold text-sand tracking-wider">
+          SORA <span class="text-gradient-gold">PROPERTY</span>
+        </h2>
+        <p id="loaderSubtext" class="text-xs text-gold-300 font-mono tracking-widest uppercase transition-all duration-300">
+          Spatial Openness &amp; Light
+        </p>
+      </div>
+    </div>
+
+    <!-- Bottom counter & progressive bar -->
+    <div class="space-y-4 max-w-xl mx-auto w-full">
+      <div class="flex items-end justify-between font-mono">
+        <span id="loaderStatusMsg" class="text-xs text-muted">SYNCHRONIZING ARCHITECTURAL VOLUMES...</span>
+        <span id="loadCounter" class="text-3xl sm:text-5xl font-display font-extrabold text-gradient-gold">00%</span>
+      </div>
+      
+      <!-- Progress Bar Track -->
+      <div class="w-full h-1.5 bg-surface rounded-full overflow-hidden border border-white/5">
+        <div id="loadProgressBar" class="h-full bg-gradient-to-r from-gold-600 via-gold-400 to-amber-300 w-0 transition-all duration-75 ease-out shadow-lg shadow-gold-400/50"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ambient Light Background Gradients -->
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <div class="absolute -top-[20%] left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-gradient-to-b from-gold-500/10 via-amber-700/5 to-transparent blur-[140px] rounded-full animate-glow-pulse"></div>
+    <div class="absolute top-[40%] -left-[10%] w-[500px] h-[500px] bg-blue-900/10 blur-[130px] rounded-full"></div>
+    <div class="absolute top-[70%] -right-[10%] w-[600px] h-[600px] bg-gold-600/10 blur-[150px] rounded-full"></div>
+    <!-- Fine Grid Lines -->
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
+  </div>
+
+  <!-- Top Sticky Navigation Bar -->
+  <header class="sticky top-0 z-40 w-full glass-panel border-b border-white/5 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <!-- Brand Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-charcoal to-surface border border-gold-500/30 flex items-center justify-center font-display font-bold text-gold-400 text-lg shadow-lg shadow-gold-500/10 group-hover:border-gold-400 transition-colors">
+          空
+        </div>
+        <div>
+          <div class="flex items-center gap-1.5">
+            <span class="font-display font-bold text-xl tracking-wider text-sand">SORA</span>
+            <span class="text-xs tracking-widest text-gold-400 font-semibold uppercase">Property</span>
+          </div>
+          <p class="text-[10px] tracking-widest uppercase text-muted font-medium">Architectural Atelier</p>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-muted">
+        <a href="#filosofi" class="hover:text-gold-300 transition-colors">Filosofi SORA</a>
+        <a href="#showcase" class="hover:text-gold-300 transition-colors">Kurasi Hunian</a>
+        <a href="#kalkulator" class="hover:text-gold-300 transition-colors">Kalkulator KPR</a>
+        <a href="#standar" class="hover:text-gold-300 transition-colors">Standar Kualitas</a>
+      </nav>
+
+      <!-- Right Header Actions -->
+      <div class="flex items-center gap-3">
+        <!-- SORAI Trigger Button -->
+        <button onclick="openSoraiModal('general')" class="relative group px-4 py-2 rounded-xl bg-gradient-to-r from-gold-500/20 via-surface to-surface border border-gold-500/40 hover:border-gold-400 text-gold-300 text-xs font-semibold flex items-center gap-2 transition-all shadow-md shadow-gold-500/10 hover:shadow-gold-500/20">
+          <span class="w-2 h-2 rounded-full bg-gold-400 animate-ping"></span>
+          <span>Tanya SORAI AI</span>
+          <span class="bg-gold-500/20 text-gold-300 text-[10px] px-1.5 py-0.5 rounded font-mono">v1.1</span>
+        </button>
+
+        <!-- WhatsApp Quick Connect -->
+        <a href="https://wa.me/6281234567890?text=Halo%20SORA%20Property%2C%20saya%20tertarik%20dengan%20kurasi%20hunian%20arsitektural%20dan%20ingin%20jadwalkan%20private%20tour." target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-sand text-obsidian font-semibold text-xs hover:bg-white transition-all shadow-md">
+          <span>Private Viewing</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="relative z-10">
+
+    <!-- HERO SECTION (WITH HIGH-VISIBILITY ARCHITECTURAL BACKDROP & CINEMATIC ANIMATIONS) -->
+    <section class="relative pt-20 pb-28 lg:pt-28 lg:pb-36 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden rounded-[2.5rem] mt-4 border border-white/15 shadow-2xl bg-charcoal">
+      
+      <!-- High-Visibility Architectural Backdrop Image (Clearly Visible Behind Text) -->
+      <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=80" 
+             alt="SORA Architectural Backdrop" 
+             class="w-full h-full object-cover object-center opacity-60 animate-hero-zoom filter brightness-[0.8] contrast-110">
+        
+        <!-- Balanced Cinematic Gradients: Clean view of house while keeping text crisp -->
+        <div class="absolute inset-0 bg-gradient-to-b from-obsidian/75 via-obsidian/45 to-obsidian/95"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,rgba(8,9,12,0.85)_100%)]"></div>
+        <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-96 h-96 bg-gold-500/20 blur-[130px] rounded-full animate-pulse-soft"></div>
+      </div>
+
+      <!-- Hero Content (Relative z-10) with High Contrast Text Shadows -->
+      <div class="relative z-10 text-center max-w-4xl mx-auto">
+        
+        <!-- Brand Philosophy Pill with Floating Animation -->
+        <div class="reveal inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-panel border border-gold-500/40 text-xs text-gold-300 font-medium mb-8 animate-float-badge shadow-xl shadow-black/60 backdrop-blur-md">
+          <span class="text-sm">空</span>
+          <span class="w-1.5 h-1.5 rounded-full bg-gold-400 animate-ping"></span>
+          <span>Spatial Openness &amp; Biophilic Light Architecture</span>
+        </div>
+
+        <!-- Hero Title with Editorial Grandeur & Crisp Shadows -->
+        <h1 class="reveal delay-100 text-4xl sm:text-6xl lg:text-7xl font-display font-extrabold tracking-tight leading-[1.08] mb-6 hero-title-shadow">
+          Where Architecture <br class="hidden sm:inline"/>
+          <span class="text-gradient-gold">Meets the Sky.</span>
+        </h1>
+
+        <!-- Subtitle with Shadow -->
+        <p class="reveal delay-200 text-base sm:text-lg lg:text-xl text-sand/90 font-medium leading-relaxed max-w-2xl mx-auto mb-10 hero-subtitle-shadow">
+          SORA mengurasi hunian berjiwa arsitektur: siling menjulang, limpahan cahaya matahari, dan sirkulasi udara alami. Didampingi <span class="text-gold-300 font-bold underline decoration-gold-400 decoration-2 underline-offset-4">SORAI</span>, asisten cerdas yang menganalisis karakter ruang &amp; kelayakan finansialmu secara transparan.
+        </p>
+
+        <!-- CTA Action Buttons -->
+        <div class="reveal delay-300 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="#showcase" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-gold-500 via-gold-400 to-amber-500 text-obsidian font-bold text-sm tracking-wide shadow-2xl shadow-gold-500/30 hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2 group">
+            <span>Eksplorasi Kurasi Karya</span>
+            <svg class="w-4 h-4 group-hover:translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </a>
+          
+          <button onclick="openSoraiModal('general')" class="w-full sm:w-auto px-8 py-4 rounded-2xl glass-panel hover:bg-surfaceHover border border-white/20 hover:border-gold-500/60 text-sand font-semibold text-sm transition-all duration-300 flex items-center justify-center gap-2.5 group hover:scale-[1.02] shadow-2xl backdrop-blur-md">
+            <span class="p-1 rounded bg-gold-500/20 text-gold-400 group-hover:rotate-12 transition-transform">✨</span>
+            <span>Mulai Analisis dengan SORAI</span>
+          </button>
+        </div>
+
+        <!-- Trust Badges Strip with Subtle Card Lift & Solid Backdrop -->
+        <div class="reveal delay-400 mt-16 pt-8 border-t border-white/15 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 text-left">
+          <div class="glass-panel p-4 rounded-2xl border border-white/10 card-lift backdrop-blur-md bg-charcoal/80">
+            <p class="text-gold-400 font-display font-bold text-2xl">100%</p>
+            <p class="text-xs text-muted mt-1 font-medium">Karya Arsitek Terverifikasi</p>
+          </div>
+          <div class="glass-panel p-4 rounded-2xl border border-white/10 card-lift backdrop-blur-md bg-charcoal/80">
+            <p class="text-sand font-display font-bold text-2xl">SHM</p>
+            <p class="text-xs text-muted mt-1 font-medium">Legalitas &amp; PBG Clean</p>
+          </div>
+          <div class="glass-panel p-4 rounded-2xl border border-white/10 card-lift backdrop-blur-md bg-charcoal/80">
+            <p class="text-gold-400 font-display font-bold text-2xl">Zero</p>
+            <p class="text-xs text-muted mt-1 font-medium">Sales Spam &amp; Telemarketing</p>
+          </div>
+          <div class="glass-panel p-4 rounded-2xl border border-white/10 card-lift backdrop-blur-md bg-charcoal/80">
+            <p class="text-sand font-display font-bold text-2xl">SORAI</p>
+            <p class="text-xs text-muted mt-1 font-medium">AI Match &amp; Compare Engine</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ANIMATED CONTINUOUS TICKER / MARQUEE -->
+    <div class="w-full overflow-hidden border-y border-white/5 bg-charcoal/30 py-4 relative z-10 backdrop-blur-md my-8">
+      <div class="animate-marquee flex items-center gap-8 whitespace-nowrap text-xs font-mono uppercase tracking-widest text-muted">
+        <span class="flex items-center gap-2"><span class="text-gold-400">✦</span> 3.8M+ Ceiling Void</span>
+        <span class="flex items-center gap-2"><span class="text-gold-400">✦</span> Natural Biophilic Light</span>
+        <span class="flex items-center gap-2"><span class="text-gold-400">✦</span> 100% SHM Cleared</span>
+        <span class="flex items-center gap-2"><span class="text-gold-400">✦</span> Low-E Double Glazed</span>
+        <span class="flex items-center gap-2"><span class="text-gold-400">✦</span> Japanese Zen &amp; Modern Brutalism</span>
+        <span class="flex items-center gap-2"><span class="text-gold-400">✦</span> SORAI Neural Architecture</span>
+        <span class="flex items-center gap-2"><span class="text-gold-400">✦</span> Cross-Ventilation Engineering</span>
+        <span class="flex items-center gap-2"><span class="text-gold-400">✦</span> Private Atelier Tour</span>
+        <!-- Duplication for seamless infinite marquee loop -->
+        <span class="flex items-center gap-2"><span class="text-gold-400">✦</span> 3.8M+ Ceiling Void</span>
+        <span class="flex items-center gap-2"><span class="text-gold-400">✦</span> Natural Biophilic Light</span>
+        <span class="flex items-center gap-2"><span class="text-gold-400">✦</span> 100% SHM Cleared</span>
+        <span class="flex items-center gap-2"><span class="text-gold-400">✦</span> Low-E Double Glazed</span>
+        <span class="flex items-center gap-2"><span class="text-gold-400">✦</span> Japanese Zen &amp; Modern Brutalism</span>
+        <span class="flex items-center gap-2"><span class="text-gold-400">✦</span> SORAI Neural Architecture</span>
+        <span class="flex items-center gap-2"><span class="text-gold-400">✦</span> Cross-Ventilation Engineering</span>
+        <span class="flex items-center gap-2"><span class="text-gold-400">✦</span> Private Atelier Tour</span>
+      </div>
+    </div>
+
+    <!-- SECTION: FILOSOFI SORA (THE MEANING OF SORA) -->
+    <section id="filosofi" class="py-24 bg-charcoal/40 border-y border-white/5 relative overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <!-- Text Narrative -->
+          <div class="lg:col-span-6 space-y-6 reveal">
+            <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-gold-400">
+              <span class="w-8 h-[1px] bg-gold-400"></span>
+              <span>Filosofi Langit (空)</span>
+            </div>
+            <h2 class="text-3xl sm:text-4xl font-display font-bold leading-tight">
+              Rumah Bukan Sekadar Dinding Beton, <br/>
+              <span class="text-gradient-gold">Ia Adalah Bingkai Bagi Cahaya dan Langit.</span>
+            </h2>
+            <p class="text-muted leading-relaxed text-sm sm:text-base">
+              Di tengah ritme kota yang bising, rumah seharusnya menjadi suaka hening. Mengadopsi makna <strong>Sora (空)</strong> dari filosofi Jepang, kami meyakini bahwa esensi kemewahan masa kini bukan lagi terletak pada ornamen yang ramai, melainkan pada <em>kejernihan spasial</em>: bagaimana cahaya pagi masuk menyinari lantai semen ekspos, dan bagaimana semilir angin mengalir bebas melalui inner courtyard.
+            </p>
+            <div class="grid grid-cols-2 gap-4 pt-2">
+              <div class="border-l-2 border-gold-500/50 pl-4">
+                <h4 class="text-sm font-bold text-sand">Spatial Clarity</h4>
+                <p class="text-xs text-muted mt-1">Plafon tinggi minimal 3.8 meter dan cross-ventilation aktif di setiap sudut.</p>
+              </div>
+              <div class="border-l-2 border-gold-500/50 pl-4">
+                <h4 class="text-sm font-bold text-sand">Material Honesty</h4>
+                <p class="text-xs text-muted mt-1">Batu alam, kayu jati bersertifikasi, dan beton organik tanpa pelapis sintetis palsu.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Visual Showcase Bento Tile -->
+          <div class="lg:col-span-6 relative reveal delay-200">
+            <div class="relative rounded-3xl overflow-hidden glass-panel border border-white/10 shadow-2xl p-2 card-lift">
+              <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80" alt="SORA Architectural Masterpiece" class="w-full h-[400px] object-cover rounded-2xl brightness-90 hover:scale-105 transition-transform duration-700">
+              <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/30 to-transparent"></div>
+              <div class="absolute bottom-6 left-6 right-6 p-4 glass-panel rounded-xl border border-white/10">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <span class="text-[10px] tracking-widest uppercase text-gold-400 font-semibold">Master Reference No. 01</span>
+                    <h3 class="text-sm font-bold text-sand">Bukaan Void Ganda &amp; Refleksi Air</h3>
+                  </div>
+                  <span class="text-xs bg-gold-500/20 text-gold-300 px-2.5 py-1 rounded-full font-mono font-medium">92% Daylit</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: BENTO SHOWCASE (CURATED MASTERPIECES) -->
+    <section id="showcase" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6 reveal">
+        <div>
+          <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-gold-400 mb-3">
+            <span class="w-8 h-[1px] bg-gold-400"></span>
+            <span>Koleksi Terbatas 2026</span>
+          </div>
+          <h2 class="text-3xl sm:text-5xl font-display font-extrabold tracking-tight">
+            Curated Architectural <span class="text-gradient-gold">Showcase.</span>
+          </h2>
+        </div>
+        <p class="text-muted text-sm max-w-md">
+          Setiap unit di bawah ini telah diaudit kelayakan tata ruang, legalitas sertifikat, dan orientasi sirkulasi oleh kurator independen kami.
+        </p>
+      </div>
+
+      <!-- Bento Grid (4 Cards) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8">
+
+        <!-- Card 1 (Large 7 Cols): The Skylight Pavilion -->
+        <div class="lg:col-span-7 glass-panel rounded-3xl p-6 border border-white/10 flex flex-col justify-between group hover:border-gold-500/40 transition-all duration-300 card-lift reveal">
+          <div>
+            <div class="relative h-72 rounded-2xl overflow-hidden mb-6">
+              <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80" alt="The Skylight Pavilion" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+              <div class="absolute top-4 left-4 flex gap-2">
+                <span class="glass-panel text-gold-300 text-xs px-3 py-1 rounded-full border border-gold-500/30 font-medium">Tropical Brutalist</span>
+                <span class="bg-emerald-500/20 text-emerald-300 text-xs px-3 py-1 rounded-full border border-emerald-500/30 font-medium">Ready Handover</span>
+              </div>
+              <div class="absolute bottom-4 right-4 glass-panel px-3 py-1.5 rounded-xl border border-white/10 text-xs text-sand font-mono">
+                Rp 8.800.000.000
+              </div>
+            </div>
+
+            <div class="flex items-start justify-between gap-4 mb-3">
+              <div>
+                <h3 class="text-2xl font-display font-bold text-sand group-hover:text-gold-300 transition-colors">The Skylight Pavilion</h3>
+                <p class="text-xs text-muted">BSD City • Arsitek: Studio Andramatin Partner</p>
+              </div>
+              <span class="text-right text-xs text-gold-400 font-mono">Cicilan Est. Rp 48 Jt/bln</span>
+            </div>
+
+            <p class="text-muted text-sm mb-6 line-clamp-2">
+              Didesain dengan inner courtyard beratap kaca buka-tutup otomatis, menghadirkan semilir angin sejuk dan void cahaya alami di atas ruang keluarga.
+            </p>
+
+            <!-- Specs Grid -->
+            <div class="grid grid-cols-3 gap-3 py-3 border-y border-white/5 text-xs text-muted mb-6">
+              <div><span class="text-sand font-bold block">420 m²</span> Luas Bangunan</div>
+              <div><span class="text-sand font-bold block">4 BR + 1 Studio</span> Tata Ruang</div>
+              <div><span class="text-sand font-bold block">Utara - Selatan</span> Orientasi Cahaya</div>
+            </div>
+          </div>
+
+          <div>
+            <button onclick="openArchitecturalModal('skylight')" class="w-full mb-3 py-2.5 rounded-xl bg-gold-500/10 hover:bg-gold-500/20 border border-gold-500/30 hover:border-gold-400 text-gold-300 text-xs font-semibold flex items-center justify-center gap-2 transition-all">
+              <span>🏛️ Denah Lantai &amp; Galeri Arsitektur</span>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </button>
+            <div class="flex items-center gap-3">
+              <button onclick="calculateKprFor(8800000000, 'The Skylight Pavilion')" class="flex-1 py-3 rounded-xl bg-surface hover:bg-surfaceHover border border-white/10 text-xs font-semibold text-sand hover:text-gold-300 transition-colors">
+                Simulasi KPR
+              </button>
+              <button onclick="compareWithUnit('skylight')" class="flex-1 py-3 rounded-xl glass-gold text-gold-300 text-xs font-semibold hover:bg-gold-500/20 transition-all">
+                Bandingkan di SORAI
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 (5 Cols): Mori Zen Sanctuary -->
+        <div class="lg:col-span-5 glass-panel rounded-3xl p-6 border border-white/10 flex flex-col justify-between group hover:border-gold-500/40 transition-all duration-300 card-lift reveal delay-100">
+          <div>
+            <div class="relative h-72 rounded-2xl overflow-hidden mb-6">
+              <img src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80" alt="Mori Zen Sanctuary" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+              <div class="absolute top-4 left-4">
+                <span class="glass-panel text-gold-300 text-xs px-3 py-1 rounded-full border border-gold-500/30 font-medium">Japandi Warm</span>
+              </div>
+              <div class="absolute bottom-4 right-4 glass-panel px-3 py-1.5 rounded-xl border border-white/10 text-xs text-sand font-mono">
+                Rp 6.900.000.000
+              </div>
+            </div>
+
+            <div class="flex items-start justify-between gap-4 mb-3">
+              <div>
+                <h3 class="text-xl font-display font-bold text-sand group-hover:text-gold-300 transition-colors">Mori Zen Sanctuary</h3>
+                <p class="text-xs text-muted">Cipete, Jaksel • Arsitek: Atelier SORA</p>
+              </div>
+              <span class="text-right text-xs text-gold-400 font-mono">Cicilan Est. Rp 38 Jt/bln</span>
+            </div>
+
+            <p class="text-muted text-sm mb-6 line-clamp-2">
+              Keseimbangan kayu jati solid, dinding kapur alami, dan taman bebatuan basah yang memicu ketenangan meditasi di tengah kesibukan Jakarta Selatan.
+            </p>
+
+            <div class="grid grid-cols-3 gap-3 py-3 border-y border-white/5 text-xs text-muted mb-6">
+              <div><span class="text-sand font-bold block">310 m²</span> Luas Bangunan</div>
+              <div><span class="text-sand font-bold block">3 BR Ensuite</span> Tata Ruang</div>
+              <div><span class="text-sand font-bold block">Timur (Pagi)</span> Orientasi Cahaya</div>
+            </div>
+          </div>
+
+          <div>
+            <button onclick="openArchitecturalModal('mori')" class="w-full mb-3 py-2.5 rounded-xl bg-gold-500/10 hover:bg-gold-500/20 border border-gold-500/30 hover:border-gold-400 text-gold-300 text-xs font-semibold flex items-center justify-center gap-2 transition-all">
+              <span>🏛️ Denah Lantai &amp; Galeri Arsitektur</span>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </button>
+            <div class="flex items-center gap-3">
+              <button onclick="calculateKprFor(6900000000, 'Mori Zen Sanctuary')" class="flex-1 py-3 rounded-xl bg-surface hover:bg-surfaceHover border border-white/10 text-xs font-semibold text-sand hover:text-gold-300 transition-colors">
+                Simulasi KPR
+              </button>
+              <button onclick="compareWithUnit('mori')" class="flex-1 py-3 rounded-xl glass-gold text-gold-300 text-xs font-semibold hover:bg-gold-500/20 transition-all">
+                Bandingkan di SORAI
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 (5 Cols): Komorebi Courtyard -->
+        <div class="lg:col-span-5 glass-panel rounded-3xl p-6 border border-white/10 flex flex-col justify-between group hover:border-gold-500/40 transition-all duration-300 card-lift reveal">
+          <div>
+            <div class="relative h-72 rounded-2xl overflow-hidden mb-6">
+              <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=800&q=80" alt="Komorebi Courtyard" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+              <div class="absolute top-4 left-4">
+                <span class="glass-panel text-gold-300 text-xs px-3 py-1 rounded-full border border-gold-500/30 font-medium">Organic Modern</span>
+              </div>
+              <div class="absolute bottom-4 right-4 glass-panel px-3 py-1.5 rounded-xl border border-white/10 text-xs text-sand font-mono">
+                Rp 5.200.000.000
+              </div>
+            </div>
+
+            <div class="flex items-start justify-between gap-4 mb-3">
+              <div>
+                <h3 class="text-xl font-display font-bold text-sand group-hover:text-gold-300 transition-colors">Komorebi Courtyard</h3>
+                <p class="text-xs text-muted">Bintaro Sektor 9 • Arsitek: Kalandra Studio</p>
+              </div>
+              <span class="text-right text-xs text-gold-400 font-mono">Cicilan Est. Rp 29 Jt/bln</span>
+            </div>
+
+            <p class="text-muted text-sm mb-6 line-clamp-2">
+              Kisi-kisi kayu vertikal yang menyaring sinar matahari sore menghasilkan pola bayangan puitis di seluruh ruang makan dan area kerja.
+            </p>
+
+            <div class="grid grid-cols-3 gap-3 py-3 border-y border-white/5 text-xs text-muted mb-6">
+              <div><span class="text-sand font-bold block">280 m²</span> Luas Bangunan</div>
+              <div><span class="text-sand font-bold block">3 BR + Studio</span> Tata Ruang</div>
+              <div><span class="text-sand font-bold block">Barat Daya</span> Orientasi Cahaya</div>
+            </div>
+          </div>
+
+          <div>
+            <button onclick="openArchitecturalModal('komorebi')" class="w-full mb-3 py-2.5 rounded-xl bg-gold-500/10 hover:bg-gold-500/20 border border-gold-500/30 hover:border-gold-400 text-gold-300 text-xs font-semibold flex items-center justify-center gap-2 transition-all">
+              <span>🏛️ Denah Lantai &amp; Galeri Arsitektur</span>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </button>
+            <div class="flex items-center gap-3">
+              <button onclick="calculateKprFor(5200000000, 'Komorebi Courtyard')" class="flex-1 py-3 rounded-xl bg-surface hover:bg-surfaceHover border border-white/10 text-xs font-semibold text-sand hover:text-gold-300 transition-colors">
+                Simulasi KPR
+              </button>
+              <button onclick="compareWithUnit('komorebi')" class="flex-1 py-3 rounded-xl glass-gold text-gold-300 text-xs font-semibold hover:bg-gold-500/20 transition-all">
+                Bandingkan di SORAI
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 (Large 7 Cols): The Aether Glass Villa -->
+        <div class="lg:col-span-7 glass-panel rounded-3xl p-6 border border-white/10 flex flex-col justify-between group hover:border-gold-500/40 transition-all duration-300 card-lift reveal delay-100">
+          <div>
+            <div class="relative h-72 rounded-2xl overflow-hidden mb-6">
+              <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80" alt="The Aether Glass Villa" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+              <div class="absolute top-4 left-4 flex gap-2">
+                <span class="glass-panel text-gold-300 text-xs px-3 py-1 rounded-full border border-gold-500/30 font-medium">Cantilever Luxury</span>
+                <span class="bg-purple-500/20 text-purple-300 text-xs px-3 py-1 rounded-full border border-purple-500/30 font-medium">Flagship</span>
+              </div>
+              <div class="absolute bottom-4 right-4 glass-panel px-3 py-1.5 rounded-xl border border-white/10 text-xs text-sand font-mono">
+                Rp 14.500.000.000
+              </div>
+            </div>
+
+            <div class="flex items-start justify-between gap-4 mb-3">
+              <div>
+                <h3 class="text-2xl font-display font-bold text-sand group-hover:text-gold-300 transition-colors">The Aether Glass Villa</h3>
+                <p class="text-xs text-muted">Sentul Highlands • Arsitek: Linier Atelier</p>
+              </div>
+              <span class="text-right text-xs text-gold-400 font-mono">Cicilan Est. Rp 79 Jt/bln</span>
+            </div>
+
+            <p class="text-muted text-sm mb-6 line-clamp-2">
+              Berada di puncak kontur dengan panorama perbukitan tanpa batas. Struktur kantilever baja hitam dan kaca double-glazed rendah emisi termal.
+            </p>
+
+            <div class="grid grid-cols-3 gap-3 py-3 border-y border-white/5 text-xs text-muted mb-6">
+              <div><span class="text-sand font-bold block">580 m²</span> Luas Bangunan</div>
+              <div><span class="text-sand font-bold block">5 BR + Infinity Pool</span> Fasilitas</div>
+              <div><span class="text-sand font-bold block">360° Hill &amp; Sky</span> Panorama</div>
+            </div>
+          </div>
+
+          <div>
+            <button onclick="openArchitecturalModal('aether')" class="w-full mb-3 py-2.5 rounded-xl bg-gold-500/10 hover:bg-gold-500/20 border border-gold-500/30 hover:border-gold-400 text-gold-300 text-xs font-semibold flex items-center justify-center gap-2 transition-all">
+              <span>🏛️ Denah Lantai &amp; Galeri Arsitektur</span>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </button>
+            <div class="flex items-center gap-3">
+              <button onclick="calculateKprFor(14500000000, 'The Aether Glass Villa')" class="flex-1 py-3 rounded-xl bg-surface hover:bg-surfaceHover border border-white/10 text-xs font-semibold text-sand hover:text-gold-300 transition-colors">
+                Simulasi KPR
+              </button>
+              <button onclick="compareWithUnit('aether')" class="flex-1 py-3 rounded-xl glass-gold text-gold-300 text-xs font-semibold hover:bg-gold-500/20 transition-all">
+                Bandingkan di SORAI
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION: LIFESTYLE & MORTGAGE MATCHER (INTERACTIVE CALCULATOR) -->
+    <section id="kalkulator" class="py-24 bg-surface/30 border-y border-white/5 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-gold-400 mb-3">
+            <span class="w-8 h-[1px] bg-gold-400"></span>
+            <span>Perencanaan Cerdas &amp; Transparan</span>
+            <span class="w-8 h-[1px] bg-gold-400"></span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-display font-extrabold tracking-tight">
+            Lifestyle &amp; Mortgage <span class="text-gradient-gold">Matcher.</span>
+          </h2>
+          <p class="text-muted text-sm mt-3">
+            Simulasikan kepemilikan hunian impianmu. Geser budget, tentukan skema tenor, dan langsung konsultasikan kelayakannya secara privat.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          
+          <!-- Left Sliders Box (7 Cols) -->
+          <div class="lg:col-span-7 glass-panel rounded-3xl p-6 sm:p-8 border border-white/10 space-y-6">
+            
+            <!-- Unit / Budget Target Slider -->
+            <div>
+              <div class="flex justify-between items-center mb-2">
+                <label class="text-xs font-semibold text-sand uppercase tracking-wider">Harga Properti Target</label>
+                <span id="priceDisplay" class="text-gold-400 font-mono font-bold text-lg">Rp 8.800.000.000</span>
+              </div>
+              <input type="range" id="priceRange" min="3000000000" max="20000000000" step="100000000" value="8800000000" class="w-full h-2 bg-charcoal rounded-lg appearance-none cursor-pointer accent-gold-500">
+              <div class="flex justify-between text-[11px] text-muted mt-1 font-mono">
+                <span>Rp 3 Miliar</span>
+                <span>Rp 11.5 M</span>
+                <span>Rp 20 Miliar</span>
+              </div>
+            </div>
+
+            <!-- Down Payment (DP) Slider -->
+            <div>
+              <div class="flex justify-between items-center mb-2">
+                <label class="text-xs font-semibold text-sand uppercase tracking-wider">Uang Muka (DP %)</label>
+                <div class="text-right">
+                  <span id="dpPercentDisplay" class="text-sand font-mono font-bold text-sm">20%</span>
+                  <span id="dpNominalDisplay" class="text-muted text-xs font-mono ml-2">(Rp 1.760.000.000)</span>
+                </div>
+              </div>
+              <input type="range" id="dpRange" min="10" max="50" step="5" value="20" class="w-full h-2 bg-charcoal rounded-lg appearance-none cursor-pointer accent-gold-500">
+              <div class="flex justify-between text-[11px] text-muted mt-1 font-mono">
+                <span>10% (Min)</span>
+                <span>30%</span>
+                <span>50%</span>
+              </div>
+            </div>
+
+            <!-- Loan Period (Tenor) Slider -->
+            <div>
+              <div class="flex justify-between items-center mb-2">
+                <label class="text-xs font-semibold text-sand uppercase tracking-wider">Jangka Waktu (Tenor)</label>
+                <span id="tenorDisplay" class="text-sand font-mono font-bold text-sm">15 Tahun</span>
+              </div>
+              <input type="range" id="tenorRange" min="5" max="25" step="1" value="15" class="w-full h-2 bg-charcoal rounded-lg appearance-none cursor-pointer accent-gold-500">
+              <div class="flex justify-between text-[11px] text-muted mt-1 font-mono">
+                <span>5 Tahun</span>
+                <span>15 Tahun</span>
+                <span>25 Tahun</span>
+              </div>
+            </div>
+
+            <!-- Interest Rate (Bunga KPR) -->
+            <div>
+              <div class="flex justify-between items-center mb-2">
+                <label class="text-xs font-semibold text-sand uppercase tracking-wider">Indikatif Suku Bunga (Fixed p.a)</label>
+                <span id="rateDisplay" class="text-sand font-mono font-bold text-sm">5.5%</span>
+              </div>
+              <input type="range" id="rateRange" min="4.0" max="9.0" step="0.1" value="5.5" class="w-full h-2 bg-charcoal rounded-lg appearance-none cursor-pointer accent-gold-500">
+              <div class="flex justify-between text-[11px] text-muted mt-1 font-mono">
+                <span>4.0%</span>
+                <span>6.5%</span>
+                <span>9.0%</span>
+              </div>
+            </div>
+
+            <!-- Lifestyle Vibe Quick Selector -->
+            <div class="pt-2">
+              <label class="text-xs font-semibold text-sand uppercase tracking-wider block mb-3">Pilih Vibe Suasana Utama</label>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                <button type="button" onclick="selectVibe('Tropical Brutalist')" class="vibe-btn active p-2.5 rounded-xl border border-gold-500 bg-gold-500/10 text-gold-300 text-xs font-medium text-center transition-all">
+                  🌿 Brutalist
+                </button>
+                <button type="button" onclick="selectVibe('Japandi Zen')" class="vibe-btn p-2.5 rounded-xl border border-white/10 bg-surface text-muted hover:text-sand text-xs font-medium text-center transition-all">
+                  🪵 Japandi
+                </button>
+                <button type="button" onclick="selectVibe('Highland Villa')" class="vibe-btn p-2.5 rounded-xl border border-white/10 bg-surface text-muted hover:text-sand text-xs font-medium text-center transition-all">
+                  ⛰️ Cantilever
+                </button>
+                <button type="button" onclick="selectVibe('Modern Courtyard')" class="vibe-btn p-2.5 rounded-xl border border-white/10 bg-surface text-muted hover:text-sand text-xs font-medium text-center transition-all">
+                  ☀️ Courtyard
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Right Calculation Summary Card (5 Cols) -->
+          <div class="lg:col-span-5 glass-panel rounded-3xl p-6 sm:p-8 border border-gold-500/30 bg-gradient-to-br from-charcoal via-surface to-obsidian shadow-2xl relative overflow-hidden">
+            <div class="absolute -right-8 -top-8 w-40 h-40 bg-gold-500/10 rounded-full blur-2xl pointer-events-none"></div>
+            
+            <div class="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
+              <span class="text-xs font-mono uppercase tracking-widest text-gold-400">Ringkasan Struktur Finansial</span>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-white/5 text-muted">Indikatif</span>
+            </div>
+
+            <div class="space-y-4 mb-6">
+              <div>
+                <p class="text-xs text-muted">Estimasi Cicilan per Bulan</p>
+                <h3 id="monthlyInstallmentDisplay" class="text-3xl sm:text-4xl font-display font-extrabold text-gradient-gold tracking-tight mt-1">
+                  Rp 48.240.000
+                </h3>
+                <p class="text-[11px] text-muted mt-1">Perkiraan angsuran pokok &amp; bunga bulanan</p>
+              </div>
+
+              <div class="p-4 rounded-2xl bg-surface/80 border border-white/5 space-y-2 text-xs">
+                <div class="flex justify-between">
+                  <span class="text-muted">Total Plafon Pinjaman:</span>
+                  <span id="loanAmountDisplay" class="font-mono font-bold text-sand">Rp 7.040.000.000</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-muted">Rekomendasi Penghasilan:</span>
+                  <span id="incomeDisplay" class="font-mono font-bold text-emerald-400">Min. Rp 140 Jt / bln</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-muted">Gaya Hidup Terpilih:</span>
+                  <span id="selectedVibeDisplay" class="font-bold text-gold-300">Tropical Brutalist</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="space-y-3">
+              <button onclick="askSoraiFromMatcher()" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-gold-500 to-amber-500 text-obsidian font-bold text-xs tracking-wider uppercase flex items-center justify-center gap-2 shadow-lg shadow-gold-500/20 hover:scale-[1.01] transition-all">
+                <span>🤖 Analisis Kelayakan di SORAI</span>
+              </button>
+
+              <button onclick="sendKprToWhatsapp()" class="w-full py-3 rounded-xl bg-surface hover:bg-surfaceHover border border-white/10 text-sand text-xs font-semibold flex items-center justify-center gap-2 transition-colors">
+                <svg class="w-4 h-4 text-emerald-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.97.545 1.769.813 2.796.813h.005c3.179 0 5.767-2.587 5.767-5.766.001-3.18-2.585-5.766-5.766-5.766zm9.969 5.768c0 5.518-4.482 10-10 10-1.748 0-3.388-.453-4.821-1.246l-5.179 1.356 1.38-5.045c-.878-1.493-1.38-3.238-1.38-5.065 0-5.518 4.482-10 10-10 5.518 0 10 4.482 10 10z"/></svg>
+                <span>Konsultasi Skema via WhatsApp</span>
+              </button>
+            </div>
+
+            <p class="text-[10px] text-muted/60 text-center mt-4">
+              *Kalkulasi bersifat indikatif suku bunga rata-rata perbankan rekanan SORA Property.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: THE SORA ARCHITECTURAL STANDARDS (TRUST & PRINCIPLES) -->
+    <section id="standar" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-gold-400 mb-3">
+          <span class="w-8 h-[1px] bg-gold-400"></span>
+          <span>Protokol Kepercayaan &amp; Kurasi</span>
+          <span class="w-8 h-[1px] bg-gold-400"></span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-display font-extrabold tracking-tight">
+          The SORA <span class="text-gradient-gold">Architectural Integrity.</span>
+        </h2>
+        <p class="text-muted text-sm mt-3">
+          Kami menolak 85% properti yang ditawarkan kepada kami demi menjaga standar arsitektur dan kenyamanan penghuni.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="glass-panel p-6 rounded-2xl border border-white/5 hover:border-gold-500/30 transition-all">
+          <div class="w-12 h-12 rounded-xl bg-gold-500/10 border border-gold-500/20 flex items-center justify-center text-gold-400 font-bold mb-4 text-xl">
+            01
+          </div>
+          <h3 class="font-display font-bold text-lg text-sand mb-2">Natural Daylighting</h3>
+          <p class="text-xs text-muted leading-relaxed">
+            Minimal 70% area ruang utama wajib teriluminasi cahaya matahari alami tanpa bantuan lampu di siang hari.
+          </p>
+        </div>
+
+        <div class="glass-panel p-6 rounded-2xl border border-white/5 hover:border-gold-500/30 transition-all">
+          <div class="w-12 h-12 rounded-xl bg-gold-500/10 border border-gold-500/20 flex items-center justify-center text-gold-400 font-bold mb-4 text-xl">
+            02
+          </div>
+          <h3 class="font-display font-bold text-lg text-sand mb-2">Material Honesty</h3>
+          <p class="text-xs text-muted leading-relaxed">
+            Struktur tanpa kamuflase murahan; beton ekspos rapi, kusen aluminium thermal-break, dan lantai batu asli.
+          </p>
+        </div>
+
+        <div class="glass-panel p-6 rounded-2xl border border-white/5 hover:border-gold-500/30 transition-all">
+          <div class="w-12 h-12 rounded-xl bg-gold-500/10 border border-gold-500/20 flex items-center justify-center text-gold-400 font-bold mb-4 text-xl">
+            03
+          </div>
+          <h3 class="font-display font-bold text-lg text-sand mb-2">Legal Cleared SHM</h3>
+          <p class="text-xs text-muted leading-relaxed">
+            Pengecekan sertifikat BPN dan izin bangunan (PBG) menyeluruh oleh notaris independen sebelum listing dipublikasikan.
+          </p>
+        </div>
+
+        <div class="glass-panel p-6 rounded-2xl border border-white/5 hover:border-gold-500/30 transition-all">
+          <div class="w-12 h-12 rounded-xl bg-gold-500/10 border border-gold-500/20 flex items-center justify-center text-gold-400 font-bold mb-4 text-xl">
+            04
+          </div>
+          <h3 class="font-display font-bold text-lg text-sand mb-2">Private Escort</h3>
+          <p class="text-xs text-muted leading-relaxed">
+            Tur properti dipandu langsung oleh architectural advisor yang memahami detail teknis, bukan sales yang mengejar komisi cepat.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: BANNER CTA KE SORAI & WHATSAPP -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div class="glass-panel rounded-3xl p-8 sm:p-12 border border-gold-500/30 bg-gradient-to-r from-surface via-charcoal to-obsidian relative overflow-hidden">
+        <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-gold-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        
+        <div class="max-w-2xl">
+          <span class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-gold-400 mb-4">
+            <span>✨ Asisten Cerdas Arsitektural</span>
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-display font-bold text-sand tracking-tight mb-4">
+            Belum Menemukan yang Cocok? <br/>
+            <span class="text-gradient-gold">Biar SORAI Menganalisis Kebutuhanmu.</span>
+          </h2>
+          <p class="text-sm text-muted mb-8 leading-relaxed">
+            Ceritakan preferensi lokasimu, komposisi anggota keluarga, dan estetika yang kamu sukai. SORAI akan mencarikan atau membandingkan unit dengan pertimbangan arsitektural objektif.
+          </p>
+          <div class="flex flex-wrap items-center gap-4">
+            <button onclick="openSoraiModal('general')" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-gold-500 to-amber-500 text-obsidian font-bold text-xs tracking-wider uppercase hover:scale-[1.02] transition-all">
+              Buka Asisten SORAI Sekarang
+            </button>
+            <a href="https://wa.me/6281234567890?text=Halo%20SORA%20Property%2C%20saya%20ingin%20berkonsultasi%20dengan%20Private%20Architectural%20Advisor." target="_blank" rel="noopener noreferrer" class="px-6 py-3.5 rounded-xl glass-panel text-sand hover:text-gold-300 text-xs font-semibold border border-white/10 transition-colors">
+              Chat Langsung dengan Konsultan
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-charcoal border-t border-white/5 py-12 relative z-10 text-xs text-muted">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-surface border border-gold-500/30 flex items-center justify-center font-display font-bold text-gold-400 text-sm">
+          空
+        </div>
+        <div>
+          <span class="font-display font-bold text-sand tracking-wider">SORA PROPERTY</span>
+          <p class="text-[10px] text-muted">Curated Architectural Living &amp; Spatial Openness</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-6">
+        <a href="#filosofi" class="hover:text-gold-300 transition-colors">Filosofi</a>
+        <a href="#showcase" class="hover:text-gold-300 transition-colors">Showcase</a>
+        <a href="#kalkulator" class="hover:text-gold-300 transition-colors">Kalkulator KPR</a>
+        <a href="javascript:void(0)" onclick="openSoraiModal('general')" class="text-gold-400 hover:underline">SORAI Concierge</a>
+      </div>
+
+      <p class="text-[11px] font-mono text-muted/70">
+        &copy; 2026 SORA Property. Crafted for Faari.
+      </p>
+    </div>
+  </footer>
+
+  <!-- ======================================================== -->
+  <!-- MODAL: ARCHITECTURAL SPOTLIGHT & FLOOR PLAN BLUEPRINT    -->
+  <!-- ======================================================== -->
+  <div id="architecturalModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-obsidian/85 backdrop-blur-md transition-opacity">
+    <div class="glass-panel w-full max-w-4xl rounded-3xl border border-gold-500/40 bg-charcoal/95 shadow-2xl flex flex-col max-h-[92vh] overflow-hidden">
+      
+      <!-- Modal Header -->
+      <div class="px-6 py-4 border-b border-white/10 flex items-center justify-between bg-surface/80">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-lg text-gold-400">
+            🏛️
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h3 id="archModalTitle" class="font-display font-bold text-sand text-lg">The Skylight Pavilion</h3>
+              <span id="archModalVibeBadge" class="text-[10px] bg-gold-500/20 text-gold-300 font-medium px-2 py-0.5 rounded-full border border-gold-500/30">Tropical Brutalist</span>
+            </div>
+            <p id="archModalSubtitle" class="text-xs text-muted">BSD City • Arsitek: Studio Andramatin Partner • Rp 8.800.000.000</p>
+          </div>
+        </div>
+        
+        <button onclick="closeArchitecturalModal()" class="w-8 h-8 rounded-full bg-surface hover:bg-surfaceHover border border-white/10 flex items-center justify-center text-muted hover:text-sand transition-colors">
+          ✕
+        </button>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <div class="flex border-b border-white/5 bg-obsidian/40 text-xs">
+        <button id="archTabGalleryBtn" onclick="switchArchTab('gallery')" class="flex-1 py-3 font-semibold text-center text-gold-300 border-b-2 border-gold-500 bg-gold-500/5 transition-colors">
+          🖼️ Galeri Sudut Ruang
+        </button>
+        <button id="archTabBlueprintBtn" onclick="switchArchTab('blueprint')" class="flex-1 py-3 font-semibold text-center text-muted hover:text-sand border-b-2 border-transparent transition-colors">
+          📐 Denah &amp; Vektor Tata Ruang
+        </button>
+        <button id="archTabMaterialsBtn" onclick="switchArchTab('materials')" class="flex-1 py-3 font-semibold text-center text-muted hover:text-sand border-b-2 border-transparent transition-colors">
+          🌿 Materialitas &amp; Biophilic Specs
+        </button>
+      </div>
+
+      <!-- Modal Body (Scrollable) -->
+      <div class="p-6 overflow-y-auto space-y-6 text-sm flex-1">
+        
+        <!-- TAB 1: GALERI SUDUT RUANG -->
+        <div id="archTabGalleryContent" class="space-y-4">
+          <!-- Featured Photo Display -->
+          <div class="relative rounded-2xl overflow-hidden h-72 sm:h-96 border border-white/10 bg-obsidian group">
+            <img id="archFeaturedImg" src="" alt="Room Angle Preview" class="w-full h-full object-cover transition-all duration-700">
+            <div class="absolute inset-0 bg-gradient-to-t from-obsidian/90 via-transparent to-transparent"></div>
+            <div class="absolute bottom-4 left-4 right-4 p-4 glass-panel rounded-xl border border-white/10">
+              <span id="archPhotoTag" class="text-[10px] font-mono uppercase tracking-widest text-gold-400 font-semibold block mb-1">Sudut 01 • Inner Courtyard</span>
+              <p id="archPhotoDesc" class="text-xs text-sand font-medium">Bukaan void ganda menghadirkan ventilasi silang aktif dan pencahayaan alami optimal di ruang keluarga.</p>
+            </div>
+          </div>
+
+          <!-- Thumbnail Row Selector -->
+          <div>
+            <label class="text-[11px] font-semibold text-muted uppercase tracking-wider block mb-2">Pilih Sudut Eksplorasi:</label>
+            <div id="archThumbnailsRow" class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              <!-- Dynamically rendered via JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 2: DENAH LANTAI & BLUEPRINT SKETSA -->
+        <div id="archTabBlueprintContent" class="hidden space-y-5">
+          <div class="flex items-center justify-between">
+            <p class="text-xs text-muted">
+              Sketsa arsitektural menunjukkan distribusi zonasi ruang, orientasi matahari, dan aliran sirkulasi udara alami.
+            </p>
+            <!-- Floor Level Toggle -->
+            <div class="inline-flex rounded-xl bg-surface p-1 border border-white/10 text-xs">
+              <button id="btnLevel1" onclick="switchBlueprintLevel(1)" class="px-3 py-1 rounded-lg bg-gold-500 text-obsidian font-bold transition-all">Lantai 1</button>
+              <button id="btnLevel2" onclick="switchBlueprintLevel(2)" class="px-3 py-1 rounded-lg text-muted hover:text-sand font-semibold transition-all">Lantai 2</button>
+            </div>
+          </div>
+
+          <!-- Blueprint Graphic Canvas Container -->
+          <div class="rounded-2xl border border-gold-500/30 bg-[#0D1017] p-6 relative overflow-hidden font-mono text-xs shadow-inner">
+            <!-- Blueprint grid pattern background -->
+            <div class="absolute inset-0 bg-[linear-gradient(to_right,rgba(212,175,55,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(212,175,55,0.05)_1px,transparent_1px)] bg-[size:2rem_2rem]"></div>
+
+            <div class="relative z-10 space-y-4">
+              <!-- Blueprint Header Indicators -->
+              <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-3 text-[11px]">
+                <div class="flex items-center gap-3">
+                  <span class="flex items-center gap-1 text-gold-300">☀️ <span id="bpOrientation">Orientasi: Utara - Selatan</span></span>
+                  <span class="flex items-center gap-1 text-emerald-400">💨 <span id="bpWind">Ventilasi Silang: Aktif</span></span>
+                </div>
+                <div class="text-muted">
+                  Siling: <span id="bpCeiling" class="text-sand font-bold">3.8 Meter</span> • Daylight: <span id="bpDaylight" class="text-sand font-bold">92%</span>
+                </div>
+              </div>
+
+              <!-- Blueprint Room Layout Visual Mockup -->
+              <div id="blueprintLayoutContainer" class="grid grid-cols-1 md:grid-cols-3 gap-3 min-h-[220px]">
+                <!-- Injected via JS based on Level 1 / Level 2 -->
+              </div>
+
+              <!-- Vector Legend -->
+              <div class="pt-3 border-t border-white/10 flex flex-wrap gap-4 text-[10px] text-muted">
+                <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded bg-gold-500/20 border border-gold-500/40"></span> Ruang Publik / Semi-Outdoor</span>
+                <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded bg-blue-500/20 border border-blue-500/40"></span> Ruang Privat / Suites</span>
+                <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded bg-emerald-500/20 border border-emerald-500/40"></span> Courtyard &amp; Water Feature</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 3: MATERIALITAS & BIOPHILIC SPECS -->
+        <div id="archTabMaterialsContent" class="hidden space-y-4">
+          <p class="text-xs text-muted">
+            Setiap material dipilih berdasarkan prinsip <em>material honesty</em>—bebas pelapis sintetis yang memudar dalam 3 tahun.
+          </p>
+
+          <div id="archMaterialsGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <!-- Injected via JS -->
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="px-6 py-4 border-t border-white/10 bg-obsidian flex flex-col sm:flex-row items-center justify-between gap-3">
+        <button onclick="compareCurrentModalInSorai()" class="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-surface hover:bg-surfaceHover border border-white/10 text-gold-300 text-xs font-semibold flex items-center justify-center gap-2 transition-colors">
+          <span>⚖️ Bandingkan Unit Ini di SORAI</span>
+        </button>
+
+        <div class="flex items-center gap-3 w-full sm:w-auto">
+          <button onclick="closeArchitecturalModal()" class="flex-1 sm:flex-none px-4 py-2.5 rounded-xl bg-surface hover:bg-surfaceHover text-muted hover:text-sand text-xs font-semibold transition-colors">
+            Tutup
+          </button>
+          <button onclick="sendPrivateTourForCurrentModal()" class="flex-1 sm:flex-none px-5 py-2.5 rounded-xl bg-gradient-to-r from-gold-500 to-amber-500 text-obsidian font-bold text-xs tracking-wide shadow-lg shadow-gold-500/20 hover:scale-[1.02] transition-all flex items-center justify-center gap-2">
+            <span>Jadwalkan Private Tour</span>
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- MODAL: SORAI (SORA ARCHITECTURAL INTELLIGENCE) CONCIERGE -->
+  <!-- ======================================================== -->
+  <div id="soraiModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-obsidian/80 backdrop-blur-md transition-opacity">
+    <div class="glass-panel w-full max-w-3xl rounded-3xl border border-gold-500/40 bg-charcoal/95 shadow-2xl flex flex-col max-h-[90vh] overflow-hidden">
+      
+      <!-- Modal Header -->
+      <div class="px-6 py-4 border-b border-white/10 flex items-center justify-between bg-surface/80">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-gold-500/20 to-surface border border-gold-500/40 flex items-center justify-center text-lg">
+            ✨
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h3 class="font-display font-bold text-sand text-base">SORAI Concierge</h3>
+              <span class="text-[10px] bg-gold-500/20 text-gold-300 font-mono px-2 py-0.5 rounded-full border border-gold-500/30">AI Active</span>
+            </div>
+            <p class="text-[11px] text-muted">Architectural Matcher, Deep Comparison &amp; Financial Analyzer</p>
+          </div>
+        </div>
+        
+        <button onclick="closeSoraiModal()" class="w-8 h-8 rounded-full bg-surface hover:bg-surfaceHover border border-white/10 flex items-center justify-center text-muted hover:text-sand transition-colors">
+          ✕
+        </button>
+      </div>
+
+      <!-- Modal Tabs Navigation -->
+      <div class="flex border-b border-white/5 bg-obsidian/40 text-xs">
+        <button id="tabMatchBtn" onclick="switchSoraiTab('match')" class="flex-1 py-3 font-semibold text-center text-gold-300 border-b-2 border-gold-500 bg-gold-500/5 transition-colors">
+          🔍 Cari Hunian Sesuai Kriteria
+        </button>
+        <button id="tabCompareBtn" onclick="switchSoraiTab('compare')" class="flex-1 py-3 font-semibold text-center text-muted hover:text-sand border-b-2 border-transparent transition-colors">
+          ⚖️ Bandingkan 2 Hunian
+        </button>
+        <button id="tabAskBtn" onclick="switchSoraiTab('ask')" class="flex-1 py-3 font-semibold text-center text-muted hover:text-sand border-b-2 border-transparent transition-colors">
+          💬 Tanya Karakter Arsitektur
+        </button>
+      </div>
+
+      <!-- Modal Scrollable Body -->
+      <div class="p-6 overflow-y-auto space-y-6 text-sm flex-1">
+        
+        <!-- TAB 1: SMART MATCH -->
+        <div id="tabMatchContent" class="space-y-5">
+          <p class="text-xs text-muted leading-relaxed">
+            Beritahu SORAI kisaran anggaranmu dan prioritas tata ruang yang diinginkan. SORAI akan merekomendasikan unit paling pas secara arsitektural.
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="text-[11px] font-semibold text-sand uppercase block mb-1.5">Maksimal Anggaran</label>
+              <select id="soraiBudgetSelect" class="w-full bg-surface border border-white/10 rounded-xl px-3 py-2.5 text-xs text-sand focus:border-gold-500 outline-none">
+                <option value="6000000000">Hingga Rp 6 Miliar</option>
+                <option value="9000000000" selected>Rp 6 M - Rp 10 Miliar</option>
+                <option value="15000000000">Di atas Rp 10 Miliar (Luxury Villa)</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="text-[11px] font-semibold text-sand uppercase block mb-1.5">Prioritas Utama Ruang</label>
+              <select id="soraiPrioritySelect" class="w-full bg-surface border border-white/10 rounded-xl px-3 py-2.5 text-xs text-sand focus:border-gold-500 outline-none">
+                <option value="wfh">Dedicated Studio Kerja / WFH Space</option>
+                <option value="zen">Inner Garden &amp; Sirkulasi Tenang</option>
+                <option value="family">Kamar Tidur Luas untuk Keluarga Besar</option>
+                <option value="view">Pemandangan Langit &amp; Kolam Renang Privat</option>
+              </select>
+            </div>
+          </div>
+
+          <button onclick="runSoraiMatching()" class="w-full py-3 rounded-xl bg-gradient-to-r from-gold-500 to-amber-500 text-obsidian font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 hover:scale-[1.01] transition-all">
+            <span>Proses Rekomendasi SORAI</span>
+          </button>
+
+          <!-- Result Card for Smart Match -->
+          <div id="soraiMatchResult" class="hidden p-5 rounded-2xl bg-surface border border-gold-500/30 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-gold-500/20 text-gold-300 font-semibold" id="soraiMatchScore">98% Match Score</span>
+              <span class="text-xs text-muted" id="soraiMatchPrice">Rp 8.800.000.000</span>
+            </div>
+            <h4 class="text-lg font-display font-bold text-sand" id="soraiMatchTitle">The Skylight Pavilion</h4>
+            <p class="text-xs text-muted leading-relaxed" id="soraiMatchDesc">
+              Unit ini memiliki keselarasan tertinggi dengan preferensi ruang kerjamu. Void kaca ganda di area tengah memberikan pencahayaan alami tanpa silau di siang hari, menghemat energi hingga 35%.
+            </p>
+            <div class="pt-3 border-t border-white/5 flex gap-2">
+              <button onclick="exportSoraiResultToWa()" class="flex-1 py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs flex items-center justify-center gap-2 transition-colors">
+                <span>Kirim Analisis Ini ke WhatsApp Agen</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 2: DEEP COMPARISON -->
+        <div id="tabCompareContent" class="hidden space-y-5">
+          <p class="text-xs text-muted">
+            Pilih dua karya hunian untuk dibedah secara komprehensif oleh SORAI (cahaya, material, efisiensi ruang, dan finansial).
+          </p>
+
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="text-[11px] font-semibold text-sand block mb-1">Hunian A</label>
+              <select id="compareUnitA" class="w-full bg-surface border border-white/10 rounded-xl px-3 py-2 text-xs text-sand outline-none">
+                <option value="skylight" selected>The Skylight Pavilion</option>
+                <option value="mori">Mori Zen Sanctuary</option>
+                <option value="komorebi">Komorebi Courtyard</option>
+                <option value="aether">The Aether Glass Villa</option>
+              </select>
+            </div>
+            <div>
+              <label class="text-[11px] font-semibold text-sand block mb-1">Hunian B</label>
+              <select id="compareUnitB" class="w-full bg-surface border border-white/10 rounded-xl px-3 py-2 text-xs text-sand outline-none">
+                <option value="skylight">The Skylight Pavilion</option>
+                <option value="mori" selected>Mori Zen Sanctuary</option>
+                <option value="komorebi">Komorebi Courtyard</option>
+                <option value="aether">The Aether Glass Villa</option>
+              </select>
+            </div>
+          </div>
+
+          <button onclick="runSoraiComparison()" class="w-full py-2.5 rounded-xl bg-surface hover:bg-surfaceHover border border-gold-500/40 text-gold-300 font-semibold text-xs transition-colors">
+            Analisis Komparasi Sekarang
+          </button>
+
+          <!-- Compare Result Table -->
+          <div id="compareResultBox" class="p-4 rounded-2xl bg-surface border border-white/10 space-y-4">
+            <h4 class="font-display font-bold text-sand text-sm flex items-center gap-2">
+              <span>📋 Hasil Analisis Arsitektural SORAI</span>
+            </h4>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-xs border-collapse">
+                <thead>
+                  <tr class="border-b border-white/10 text-muted">
+                    <th class="py-2">Parameter</th>
+                    <th id="colTitleA" class="py-2 text-gold-300 font-semibold">Skylight Pavilion</th>
+                    <th id="colTitleB" class="py-2 text-gold-300 font-semibold">Mori Zen</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-white/5 text-muted">
+                  <tr>
+                    <td class="py-2 text-sand font-medium">Harga &amp; Cicilan</td>
+                    <td id="compPriceA" class="py-2 font-mono text-sand">Rp 8.8 M (~48 Jt/bln)</td>
+                    <td id="compPriceB" class="py-2 font-mono text-sand">Rp 6.9 M (~38 Jt/bln)</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2 text-sand font-medium">Orientasi Cahaya</td>
+                    <td id="compLightA" class="py-2">Utara-Selatan (Optimal sepanjang hari)</td>
+                    <td id="compLightB" class="py-2">Timur (Hangat &amp; sehat di pagi hari)</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2 text-sand font-medium">Material Utama</td>
+                    <td id="compMatA" class="py-2">Beton ekspos &amp; baja hitam</td>
+                    <td id="compMatB" class="py-2">Kayu jati solid &amp; batu alam</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2 text-sand font-medium">Maintenance Effort</td>
+                    <td id="compMaintA" class="py-2">Rendah (material tahan cuaca)</td>
+                    <td id="compMaintB" class="py-2">Sedang (perawatan kayu berkala)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="p-3 rounded-xl bg-obsidian/60 border border-gold-500/20 text-xs text-muted">
+              <strong class="text-sand block mb-1">Kesimpulan Objektif SORAI:</strong>
+              <p id="compVerdict" class="leading-relaxed">
+                Jika kamu mengutamakan efisiensi perawatan dan ruang studio kerja terbuka, <strong>The Skylight Pavilion</strong> lebih unggul. Namun untuk ketenangan batin, privasi kamar tidur, dan nuansa alami kayu, <strong>Mori Zen Sanctuary</strong> memberikan value emosional yang lebih tinggi dengan selisih harga Rp 1.9 Miliar lebih hemat.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 3: ASK SORAI (ARCHITECTURAL INSIGHTS) -->
+        <div id="tabAskContent" class="hidden space-y-4">
+          <p class="text-xs text-muted">
+            Tanyakan langsung aspek teknis maupun estetika properti kami. SORAI menjawab dengan basis data arsitektur SORA.
+          </p>
+
+          <div class="space-y-2">
+            <label class="text-[11px] font-semibold text-sand block">Pilih Pertanyaan Cepat:</label>
+            <div class="flex flex-wrap gap-2">
+              <button onclick="askPresetQuestion(1)" class="text-xs px-3 py-1.5 rounded-lg bg-surface hover:bg-surfaceHover border border-white/10 text-muted hover:text-sand text-left">
+                ❓ Apakah unit dengan void kaca panas di siang hari?
+              </button>
+              <button onclick="askPresetQuestion(2)" class="text-xs px-3 py-1.5 rounded-lg bg-surface hover:bg-surfaceHover border border-white/10 text-muted hover:text-sand text-left">
+                ❓ Bagaimana kepastian legalitas SHM dan sertifikat?
+              </button>
+              <button onclick="askPresetQuestion(3)" class="text-xs px-3 py-1.5 rounded-lg bg-surface hover:bg-surfaceHover border border-white/10 text-muted hover:text-sand text-left">
+                ❓ Mana hunian yang paling ramah untuk keluarga dengan balita?
+              </button>
+            </div>
+          </div>
+
+          <div class="relative">
+            <input type="text" id="customAskInput" placeholder="Atau ketik pertanyaan arsitekturmu di sini..." class="w-full bg-surface border border-white/10 rounded-xl px-4 py-3 text-xs text-sand pr-20 focus:border-gold-500 outline-none">
+            <button onclick="handleCustomAsk()" class="absolute right-2 top-2 px-3 py-1.5 rounded-lg bg-gold-500 hover:bg-gold-400 text-obsidian text-xs font-bold transition-all">
+              Tanya
+            </button>
+          </div>
+
+          <!-- Answer Box -->
+          <div id="askAnswerBox" class="p-4 rounded-2xl bg-surface border border-gold-500/20 space-y-2">
+            <div class="flex items-center gap-2 text-gold-300 text-xs font-bold">
+              <span>🤖 Respon SORAI:</span>
+            </div>
+            <p id="askAnswerText" class="text-xs text-muted leading-relaxed">
+              Semua unit SORA dengan bukaan kaca lebar (seperti The Skylight Pavilion &amp; Aether Villa) menggunakan kaca jenis Low-E (Low Emissivity) dengan insulasi ganda (double-glazed) serta sistem ventilasi silang aktif. Cahaya alami masuk 100%, tetapi radiasi panas tereduksi hingga 68%, sehingga ruangan tetap sejuk dan hemat daya AC.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="px-6 py-4 border-t border-white/10 bg-obsidian flex items-center justify-between">
+        <span class="text-[11px] text-muted font-mono">SORAI Neural Architecture v1.1</span>
+        <button onclick="closeSoraiModal()" class="px-4 py-2 rounded-xl bg-surface hover:bg-surfaceHover text-sand text-xs font-semibold border border-white/10 transition-colors">
+          Tutup Asisten
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toastNotification" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+    <div class="glass-panel border border-gold-500/40 text-sand px-4 py-3 rounded-2xl shadow-xl flex items-center gap-3">
+      <span class="text-gold-400 text-lg">✨</span>
+      <span id="toastMessage" class="text-xs font-medium">Berhasil memperbarui kalkulasi!</span>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC ENGINE -->
+  <script>
+    // Database Lengkap Katalog & Arsitektur Hunian SORA
+    const SORA_CATALOG = {
+      skylight: {
+        id: 'skylight',
+        title: 'The Skylight Pavilion',
+        vibe: 'Tropical Brutalist',
+        price: 8800000000,
+        monthlyEst: 48240000,
+        area: '420 m²',
+        specs: '4 BR + 1 Studio',
+        location: 'BSD City, Tangerang Selatan',
+        architect: 'Studio Andramatin Partner',
+        light: 'Utara - Selatan (Merata sepanjang hari)',
+        materials: 'Beton ekspos, void kaca double-glazed, batu andesit',
+        maintenance: 'Rendah (Material tahan cuaca ekstrem)',
+        bestFor: 'wfh',
+        blueprint: {
+          orientation: 'Utara - Selatan (Bebas panas sore)',
+          wind: 'Ventilasi Silang Aktif 24 Jam',
+          ceiling: '3.8 - 6.5 Meter (Double Void)',
+          daylight: '94% Teriluminasi Alami',
+          level1: [
+            { name: 'Inner Courtyard & Water Reflection', dims: '6.2m x 4.8m', type: 'garden' },
+            { name: 'Double-Height Living & Dining Room', dims: '9.0m x 6.5m', type: 'public' },
+            { name: 'Open Island Kitchen & Pantry', dims: '4.5m x 4.0m', type: 'public' },
+            { name: 'Guest Bedroom Suite 1', dims: '4.8m x 4.2m', type: 'private' },
+            { name: 'Covered Carport (2 EV Ready)', dims: '6.0m x 5.8m', type: 'public' }
+          ],
+          level2: [
+            { name: 'Master Penthouse Suite & Dressing Room', dims: '7.8m x 5.6m', type: 'private' },
+            { name: 'Ensuite Spa Bathroom with Skylight', dims: '4.2m x 3.5m', type: 'private' },
+            { name: 'Mezzanine Architectural Studio (WFH)', dims: '5.5m x 4.2m', type: 'public' },
+            { name: 'Junior Bedroom Suite 2 & 3', dims: '5.0m x 4.0m', type: 'private' },
+            { name: 'Rooftop Stargazing Deck', dims: '5.2m x 3.8m', type: 'garden' }
+          ]
+        },
+        gallery: [
+          {
+            url: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80',
+            tag: 'Sudut 01 • Inner Courtyard & Reflection Pool',
+            desc: 'Void kaca ganda di tengah bangunan menghadirkan semilir angin sejuk dan refleksi riak air yang menenangkan ke dalam ruang keluarga.'
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
+            tag: 'Sudut 02 • High-Ceiling Living Void (6.5m)',
+            desc: 'Ketinggian siling 6.5 meter dengan dinding semen ekspos mulus menyerap cahaya matahari pagi tanpa pantulan panas silau.'
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=80',
+            tag: 'Sudut 03 • Master Bedroom Suite & Private Garden',
+            desc: 'Kamar tidur utama dengan pemandangan langsung ke taman privat bambu Jepang, dirancang kedap suara hingga 42dB.'
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=1200&q=80',
+            tag: 'Sudut 04 • Mezzanine Architectural Studio',
+            desc: 'Area kerja kreatif WFH di lantai mezzanine dengan sudut pandang terbuka ke seluruh ruang bawah dan langit.'
+          }
+        ],
+        materialsSpecs: [
+          {
+            title: 'Struktur Beton Ekspos Non-Porous',
+            desc: 'Dikerjakan dengan formwork kayu pinus berserat halus. Permukaan beton dilapisi sealer nano-silane tahan jamur dan lumut hingga 15 tahun.'
+          },
+          {
+            title: 'Kaca Double-Glazed Low-E 16mm',
+            desc: 'Menolak 68% panas radiasi infra-merah matahari dan meredam kebisingan luar hingga 38dB untuk kenyamanan akustik suci.'
+          },
+          {
+            title: 'Kayu Ulin Kalimantan Grade A',
+            desc: 'Digunakan pada dek kolam dan kisi-kisi luar. Kuat terhadap air hujan tropis dan rayap secara alami tanpa bahan kimia beracun.'
+          },
+          {
+            title: 'Rainwater Harvesting 2.500L',
+            desc: 'Sistem penampungan dan filtrasi air hujan terintegrasi untuk menyiram tanaman courtyard dan flushing otomatis ramah lingkungan.'
+          }
+        ]
+      },
+      mori: {
+        id: 'mori',
+        title: 'Mori Zen Sanctuary',
+        vibe: 'Japandi Warm',
+        price: 6900000000,
+        monthlyEst: 37800000,
+        area: '310 m²',
+        specs: '3 BR Ensuite',
+        location: 'Cipete, Jakarta Selatan',
+        architect: 'Atelier SORA',
+        light: 'Timur (Limpahan cahaya lembut di pagi hari)',
+        materials: 'Kayu jati bersertifikat, plester kapur alami, taman koral',
+        maintenance: 'Sedang (Perawatan berkala lapisan kayu jati)',
+        bestFor: 'zen',
+        blueprint: {
+          orientation: 'Menghadap Timur (Cahaya Sehat Pagi Hari)',
+          wind: 'Ventilasi Silang Mengalir Lewat Shoji Vents',
+          ceiling: '3.6 Meter (Plafon Balok Kayu Ekspos)',
+          daylight: '89% Teriluminasi Lembut',
+          level1: [
+            { name: 'Karesansui Dry Zen Garden', dims: '5.2m x 3.8m', type: 'garden' },
+            { name: 'Tatami Living Space & Tea Nook', dims: '7.5m x 5.8m', type: 'public' },
+            { name: 'Minimalist Dining & Teppan Island', dims: '4.8m x 4.0m', type: 'public' },
+            { name: 'Powder Room & Foot Bath', dims: '2.8m x 2.2m', type: 'public' },
+            { name: 'Private Zen Garage (2 Mobil)', dims: '5.8m x 5.5m', type: 'public' }
+          ],
+          level2: [
+            { name: 'Primary Bedroom with Onsen Tub', dims: '6.8m x 5.2m', type: 'private' },
+            { name: 'Guest Sanctuary Suite 1', dims: '4.5m x 4.0m', type: 'private' },
+            { name: 'Meditation & Yoga Loft', dims: '4.8m x 3.6m', type: 'public' },
+            { name: 'Outdoor Bonsai Balcony', dims: '3.8m x 2.5m', type: 'garden' }
+          ]
+        },
+        gallery: [
+          {
+            url: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80',
+            tag: 'Sudut 01 • Living Room & Kayu Jati Solid',
+            desc: 'Pintu geser kayu jati dengan kisi-kisi shoji modern membingkai pemandangan taman zen basah di samping ruang keluarga.'
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80',
+            tag: 'Sudut 02 • Ruang Meditasi & Yoga Minimalis',
+            desc: 'Lantai kayu jati hangat dengan pencahayaan skylight lembut yang menciptakan keheningan spiritual untuk rehat mental.'
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1200&q=80',
+            tag: 'Sudut 03 • Onsen-Inspired Master Ensuite',
+            desc: 'Bak mandi teraso batu hitam alami yang terhubung langsung dengan taman lumut tertutup, menjamin privasi absolut.'
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80',
+            tag: 'Sudut 04 • Dapur Terbuka & Meja Kayu Utuh',
+            desc: 'Konsep dapur minim sekat dengan meja makan kayu trembesi solid sepanjang 3 meter sebagai pusat berkumpul keluarga.'
+          }
+        ],
+        materialsSpecs: [
+          {
+            title: 'Kayu Jati Solid FSC Certified',
+            desc: 'Seluruh elemen kayu interior berasal dari perkebunan legal lestari dengan perlakuan natural beeswax tanpa racun VOC.'
+          },
+          {
+            title: 'Dinding Plester Kapur Alami (Lime Plaster)',
+            desc: 'Material dinding bernafas yang secara alami menyerap kelembapan udara tropis dan mencegah jamur tanpa pewarna buatan.'
+          },
+          {
+            title: 'Batu Teraso Hitam Custom Cast',
+            desc: 'Dipadukan dengan kerikil sungai hitam dari Gunung Merapi untuk bak mandi dan lantai area basah anti-slip.'
+          },
+          {
+            title: 'Insulasi Akustik Dinding Ganda',
+            desc: 'Dinding pembatas ruang tidur dilapisi peredam wool mineral untuk ketenangan tidur setara hotel bintang lima.'
+          }
+        ]
+      },
+      komorebi: {
+        id: 'komorebi',
+        title: 'Komorebi Courtyard',
+        vibe: 'Modern Courtyard',
+        price: 5200000000,
+        monthlyEst: 28500000,
+        area: '280 m²',
+        specs: '3 BR + Creative Studio',
+        location: 'Bintaro Sektor 9, Tangerang Selatan',
+        architect: 'Kalandra Studio',
+        light: 'Barat Daya (Disaring kisi-kisi kayu vertikal)',
+        materials: 'Batu bata terakota terkurasi, kisi kayu ulin, kaca bening',
+        maintenance: 'Rendah (Material lokal berdaya tahan tinggi)',
+        bestFor: 'family',
+        blueprint: {
+          orientation: 'Barat Daya (Filter Kisi-Kisi Terakota)',
+          wind: 'Ventilasi Cerobong Udara Vertikal (Stack Effect)',
+          ceiling: '3.4 - 4.2 Meter',
+          daylight: '91% Tersebar Rata',
+          level1: [
+            { name: 'Central Terracotta Courtyard', dims: '5.0m x 4.0m', type: 'garden' },
+            { name: 'Family Lounge & Open Dining', dims: '7.8m x 5.2m', type: 'public' },
+            { name: 'Kids Playroom / Creative Studio', dims: '4.5m x 3.8m', type: 'public' },
+            { name: 'Clean Modern Pantry', dims: '4.0m x 3.2m', type: 'public' },
+            { name: 'Carport & Bicycle Shed', dims: '5.5m x 5.2m', type: 'public' }
+          ],
+          level2: [
+            { name: 'Master Suite & Walk-in Wardrobe', dims: '6.5m x 4.8m', type: 'private' },
+            { name: 'Ensuite Bathroom with Courtyard View', dims: '3.8m x 3.0m', type: 'private' },
+            { name: 'Children Bedrooms (2 Kamar)', dims: '4.2m x 3.8m', type: 'private' },
+            { name: 'Study Corner & Shaded Balcony', dims: '4.0m x 2.8m', type: 'public' }
+          ]
+        },
+        gallery: [
+          {
+            url: 'https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=1200&q=80',
+            tag: 'Sudut 01 • Pola Bayangan Komorebi di Sore Hari',
+            desc: 'Kisi-kisi kayu vertikal menyaring sinar matahari sore menjadi bayangan artistik dinamis yang bergerak seiring waktu.'
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=80',
+            tag: 'Sudut 02 • Courtyard Tengah Ramah Anak',
+            desc: 'Halaman berumput bebas kendaraan di dalam rumah tempat anak-anak dapat bermain aman di bawah pengawasan langsung dari dapur.'
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1200&q=80',
+            tag: 'Sudut 03 • Studio Kreatif & Ruang Baca',
+            desc: 'Ruang kerja serbaguna dengan rak buku built-in setinggi dinding dan sirkulasi udara bebas debu perkotaan.'
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80',
+            tag: 'Sudut 04 • Ruang Makan Terhubung Taman',
+            desc: 'Pintu lipat kaca tanpa bingkai yang dapat dibuka selebar 5 meter untuk menyatukan area indoor dan outdoor.'
+          }
+        ],
+        materialsSpecs: [
+          {
+            title: 'Bata Terakota Lokal Presisi Tinggi',
+            desc: 'Bata merah terkurasi dengan pori alami yang membuang panas lebih cepat dibandingkan dinding plester konvensional.'
+          },
+          {
+            title: 'Lantai Semen Poles Terazzo Kustom',
+            desc: 'Permukaan dingin yang ramah untuk anak-anak bertelanjang kaki di rumah, sangat mudah dibersihkan dan awet puluhan tahun.'
+          },
+          {
+            title: 'Kisi-Kisi Kayu Kamper Samarinda',
+            desc: 'Finishing natural oil berpigmen anti-UV untuk melindungi interior rumah dari panas langsung tanpa menghalangi sirkulasi angin.'
+          },
+          {
+            title: 'Ventilasi Cerobong Stack Effect',
+            desc: 'Desain lubang udara di puncak atap menarik udara panas ke atas dan menggantikannya dengan udara segar dari halaman bawah.'
+          }
+        ]
+      },
+      aether: {
+        id: 'aether',
+        title: 'The Aether Glass Villa',
+        vibe: 'Highland Villa',
+        price: 14500000000,
+        monthlyEst: 79400000,
+        area: '580 m²',
+        specs: '5 BR + Infinity Pool',
+        location: 'Sentul Highlands, Bogor',
+        architect: 'Linier Atelier',
+        light: '360° Panorama Bukit & Langit Terbuka',
+        materials: 'Baja struktural I-beam hitam, cantilever glass, marmer travertine',
+        maintenance: 'Tinggi (Perawatan kolam dan facade kaca luas)',
+        bestFor: 'view',
+        blueprint: {
+          orientation: 'Menghadap Lembah Perbukitan (Panorama 360°)',
+          wind: 'Angin Pegunungan Alami (Suhu 21°C - 26°C)',
+          ceiling: '4.2 - 7.0 Meter (Kubah Langit)',
+          daylight: '98% Teriluminasi Penuh',
+          level1: [
+            { name: 'Cantilever Infinity Pool & Deck', dims: '14.0m x 4.5m', type: 'garden' },
+            { name: 'Grand Sky Living & Entertaining Lounge', dims: '12.0m x 8.0m', type: 'public' },
+            { name: 'Chef Kitchen & Wine Cellar', dims: '6.5m x 4.8m', type: 'public' },
+            { name: 'Executive Guest Suite 1', dims: '5.8m x 4.8m', type: 'private' },
+            { name: 'Covered Glass Garage (4 Supercars)', dims: '10.0m x 6.5m', type: 'public' }
+          ],
+          level2: [
+            { name: 'Presidential Master Suite with Jacuzzi', dims: '9.5m x 6.8m', type: 'private' },
+            { name: 'Ensuite Marble Bathroom & Steam Room', dims: '5.2m x 4.2m', type: 'private' },
+            { name: 'Family Cinema & Games Room', dims: '7.0m x 5.5m', type: 'public' },
+            { name: 'Bedrooms 2, 3, & 4 All Ensuite', dims: '5.5m x 4.8m', type: 'private' },
+            { name: 'Observation Telescope Sky Platform', dims: '6.0m x 4.5m', type: 'garden' }
+          ]
+        },
+        gallery: [
+          {
+            url: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80',
+            tag: 'Sudut 01 • Cantilever Infinity Pool & Panorama',
+            desc: 'Kolam renang air hangat melayang di atas tebing dengan pemandangan lembah hijau dan matahari terbit di atas awan.'
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80',
+            tag: 'Sudut 02 • Grand Sky Living Room',
+            desc: 'Dinding kaca struktural selebar 12 meter tanpa tiang tengah memberi sensasi tinggal melayang di tengah langit.'
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=80',
+            tag: 'Sudut 03 • Presidential Master Suite',
+            desc: 'Kamar tidur utama dengan perapian bioetanol modern, lantai marmer travertine berpemanas, dan balkon kaca gantung.'
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
+            tag: 'Sudut 04 • Outdoor Sunset Firepit Lounge',
+            desc: 'Area duduk melingkar di dek bawah bintang untuk menikmati udara dingin pegunungan di malam hari.'
+          }
+        ],
+        materialsSpecs: [
+          {
+            title: 'Baja Struktural I-Beam Standar Heavy Industry',
+            desc: 'Rangka struktural berani dengan coating anti-korosi matte hitam yang memungkinkan bentang kantilever 6 meter tanpa pilar.'
+          },
+          {
+            title: 'Marmer Travertine Roman Asli',
+            desc: 'Diimpor langsung dari Italia, berpori alami indah yang tetap sejuk di siang hari dan hangat saat suhu pegunungan turun di malam hari.'
+          },
+          {
+            title: 'Kaca Akustik Smart-Tinted Low-E 24mm',
+            desc: 'Kaca tiga lapis (triple-pane) tahan terpaan angin badai pegunungan dengan filter UV 99.5% dan perlindungan termal superior.'
+          },
+          {
+            title: 'Sistem Energi Surya Hybrid 10 kWp',
+            desc: 'Panel surya monokristalin terintegrasi atap dengan baterai lithium cadangan untuk kemandirian energi ramah lingkungan.'
+          }
+        ]
+      }
+    };
+
+    // State Unit yang Sedang Dilihat di Modal Arsitektur
+    let currentArchUnitKey = 'skylight';
+    let currentBlueprintLevel = 1;
+
+    // Buka Modal Arsitektur & Denah
+    function openArchitecturalModal(unitKey) {
+      currentArchUnitKey = unitKey;
+      const unit = SORA_CATALOG[unitKey];
+      if (!unit) return;
+
+      document.getElementById('archModalTitle').innerText = unit.title;
+      document.getElementById('archModalVibeBadge').innerText = unit.vibe;
+      document.getElementById('archModalSubtitle').innerText = `${unit.location} • Arsitek: ${unit.architect} • ${formatRupiah(unit.price)}`;
+
+      // Buka Tab Galeri Secara Default
+      switchArchTab('gallery');
+      renderArchGalleryThumbnails(unit);
+      setArchFeaturedPhoto(0);
+
+      // Siapkan Tab Denah & Material
+      renderBlueprintLayout(unit, 1);
+      renderArchMaterials(unit);
+
+      document.getElementById('architecturalModal').classList.remove('hidden');
+    }
+
+    function closeArchitecturalModal() {
+      document.getElementById('architecturalModal').classList.add('hidden');
+    }
+
+    function switchArchTab(tab) {
+      document.getElementById('archTabGalleryBtn').className = "flex-1 py-3 font-semibold text-center border-b-2 " + 
+        (tab === 'gallery' ? 'text-gold-300 border-gold-500 bg-gold-500/5' : 'text-muted hover:text-sand border-transparent');
+      document.getElementById('archTabBlueprintBtn').className = "flex-1 py-3 font-semibold text-center border-b-2 " + 
+        (tab === 'blueprint' ? 'text-gold-300 border-gold-500 bg-gold-500/5' : 'text-muted hover:text-sand border-transparent');
+      document.getElementById('archTabMaterialsBtn').className = "flex-1 py-3 font-semibold text-center border-b-2 " + 
+        (tab === 'materials' ? 'text-gold-300 border-gold-500 bg-gold-500/5' : 'text-muted hover:text-sand border-transparent');
+
+      document.getElementById('archTabGalleryContent').classList.toggle('hidden', tab !== 'gallery');
+      document.getElementById('archTabBlueprintContent').classList.toggle('hidden', tab !== 'blueprint');
+      document.getElementById('archTabMaterialsContent').classList.toggle('hidden', tab !== 'materials');
+    }
+
+    function renderArchGalleryThumbnails(unit) {
+      const row = document.getElementById('archThumbnailsRow');
+      row.innerHTML = '';
+
+      unit.gallery.forEach((item, index) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = `p-1.5 rounded-xl border ${index === 0 ? 'border-gold-500 bg-gold-500/10' : 'border-white/10 bg-surface'} text-left hover:border-gold-400 transition-all group flex items-center gap-2.5`;
+        btn.onclick = () => {
+          document.querySelectorAll('#archThumbnailsRow button').forEach(b => {
+            b.classList.remove('border-gold-500', 'bg-gold-500/10');
+            b.classList.add('border-white/10', 'bg-surface');
+          });
+          btn.classList.add('border-gold-500', 'bg-gold-500/10');
+          btn.classList.remove('border-white/10', 'bg-surface');
+          setArchFeaturedPhoto(index);
+        };
+
+        btn.innerHTML = `
+          <img src="${item.url}" class="w-12 h-12 object-cover rounded-lg flex-shrink-0">
+          <div class="overflow-hidden">
+            <span class="text-[10px] font-mono text-gold-300 block font-semibold truncate">Sudut 0${index + 1}</span>
+            <p class="text-[11px] text-muted truncate group-hover:text-sand transition-colors">${item.tag.split('•')[1] || item.tag}</p>
+          </div>
+        `;
+        row.appendChild(btn);
+      });
+    }
+
+    function setArchFeaturedPhoto(index) {
+      const unit = SORA_CATALOG[currentArchUnitKey];
+      if (!unit || !unit.gallery[index]) return;
+
+      const photo = unit.gallery[index];
+      const img = document.getElementById('archFeaturedImg');
+      img.style.opacity = '0.3';
+      setTimeout(() => {
+        img.src = photo.url;
+        img.style.opacity = '1';
+      }, 150);
+
+      document.getElementById('archPhotoTag').innerText = photo.tag;
+      document.getElementById('archPhotoDesc').innerText = photo.desc;
+    }
+
+    function switchBlueprintLevel(level) {
+      currentBlueprintLevel = level;
+      const btn1 = document.getElementById('btnLevel1');
+      const btn2 = document.getElementById('btnLevel2');
+
+      if (level === 1) {
+        btn1.className = "px-3 py-1 rounded-lg bg-gold-500 text-obsidian font-bold transition-all";
+        btn2.className = "px-3 py-1 rounded-lg text-muted hover:text-sand font-semibold transition-all";
+      } else {
+        btn2.className = "px-3 py-1 rounded-lg bg-gold-500 text-obsidian font-bold transition-all";
+        btn1.className = "px-3 py-1 rounded-lg text-muted hover:text-sand font-semibold transition-all";
+      }
+
+      const unit = SORA_CATALOG[currentArchUnitKey];
+      if (unit) renderBlueprintLayout(unit, level);
+    }
+
+    function renderBlueprintLayout(unit, level) {
+      document.getElementById('bpOrientation').innerText = `Orientasi: ${unit.blueprint.orientation}`;
+      document.getElementById('bpWind').innerText = `Sirkulasi: ${unit.blueprint.wind}`;
+      document.getElementById('bpCeiling').innerText = unit.blueprint.ceiling;
+      document.getElementById('bpDaylight').innerText = unit.blueprint.daylight;
+
+      const container = document.getElementById('blueprintLayoutContainer');
+      container.innerHTML = '';
+
+      const rooms = level === 1 ? unit.blueprint.level1 : unit.blueprint.level2;
+
+      rooms.forEach((room) => {
+        const div = document.createElement('div');
+        let bgStyle = 'bg-surface/90 border-white/10';
+        let badgeColor = 'text-gold-300 bg-gold-500/10 border-gold-500/20';
+
+        if (room.type === 'garden') {
+          bgStyle = 'bg-emerald-950/20 border-emerald-500/30';
+          badgeColor = 'text-emerald-300 bg-emerald-500/20 border-emerald-500/30';
+        } else if (room.type === 'private') {
+          bgStyle = 'bg-blue-950/20 border-blue-500/30';
+          badgeColor = 'text-blue-300 bg-blue-500/20 border-blue-500/30';
+        }
+
+        div.className = `p-4 rounded-xl border ${bgStyle} flex flex-col justify-between hover:border-gold-400 transition-colors`;
+        div.innerHTML = `
+          <div>
+            <div class="flex items-center justify-between mb-1.5">
+              <span class="text-[9px] uppercase tracking-widest px-2 py-0.5 rounded-full border ${badgeColor}">${room.type}</span>
+              <span class="text-[10px] text-muted font-mono">${room.dims}</span>
+            </div>
+            <h5 class="text-xs font-bold text-sand">${room.name}</h5>
+          </div>
+          <p class="text-[10px] text-muted mt-2 font-mono flex items-center gap-1">
+            <span>✨ Sirkulasi Cahaya Optimal</span>
+          </p>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function renderArchMaterials(unit) {
+      const grid = document.getElementById('archMaterialsGrid');
+      grid.innerHTML = '';
+
+      unit.materialsSpecs.forEach((item, idx) => {
+        const card = document.createElement('div');
+        card.className = "p-4 rounded-2xl glass-panel border border-white/10 space-y-1.5";
+        card.innerHTML = `
+          <div class="flex items-center gap-2">
+            <span class="text-gold-400 text-xs font-mono font-bold">0${idx + 1}</span>
+            <h5 class="text-xs font-bold text-sand">${item.title}</h5>
+          </div>
+          <p class="text-xs text-muted leading-relaxed">${item.desc}</p>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function compareCurrentModalInSorai() {
+      closeArchitecturalModal();
+      document.getElementById('compareUnitA').value = currentArchUnitKey;
+      openSoraiModal('compare');
+      runSoraiComparison();
+    }
+
+    function sendPrivateTourForCurrentModal() {
+      const unit = SORA_CATALOG[currentArchUnitKey];
+      if (!unit) return;
+
+      const msg = `Halo SORA Property, saya telah mempelajari denah lantai dan galeri arsitektur untuk *${unit.title}* (${unit.location} • ${formatRupiah(unit.price)}). Saya ingin menjadwalkan private walkthrough tour dengan arsitek kurator SORA.`;
+      window.open(`https://wa.me/6281234567890?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+
+    // State Kalkulator KPR
+    let currentPrice = 8800000000;
+    let currentDpPercent = 20;
+    let currentTenorYears = 15;
+    let currentRate = 5.5;
+    let currentVibe = 'Tropical Brutalist';
+    let currentTargetUnitName = 'The Skylight Pavilion';
+
+    // Format Rupiah Helper
+    function formatRupiah(num) {
+      return new Intl.NumberFormat('id-ID', {
+        style: 'currency',
+        currency: 'IDR',
+        maximumFractionDigits: 0
+      }).format(num);
+    }
+
+    // Kalkulasi KPR Matematis
+    function updateKprCalculations() {
+      const dpNominal = (currentPrice * currentDpPercent) / 100;
+      const loanAmount = currentPrice - dpNominal;
+      const totalMonths = currentTenorYears * 12;
+      const monthlyRate = (currentRate / 100) / 12;
+
+      // Rumus Cicilan Anuitas KPR: P * (r / (1 - (1+r)^-n))
+      const monthlyInstallment = Math.round(loanAmount * (monthlyRate / (1 - Math.pow(1 + monthlyRate, -totalMonths))));
+      const minIncome = Math.round(monthlyInstallment * 2.8);
+
+      // Render ke DOM
+      document.getElementById('priceDisplay').innerText = formatRupiah(currentPrice);
+      document.getElementById('dpPercentDisplay').innerText = currentDpPercent + '%';
+      document.getElementById('dpNominalDisplay').innerText = '(' + formatRupiah(dpNominal) + ')';
+      document.getElementById('tenorDisplay').innerText = currentTenorYears + ' Tahun';
+      document.getElementById('rateDisplay').innerText = currentRate.toFixed(1) + '%';
+      
+      document.getElementById('monthlyInstallmentDisplay').innerText = formatRupiah(monthlyInstallment);
+      document.getElementById('loanAmountDisplay').innerText = formatRupiah(loanAmount);
+      document.getElementById('incomeDisplay').innerText = 'Min. ' + formatRupiah(minIncome) + ' / bln';
+      document.getElementById('selectedVibeDisplay').innerText = currentVibe;
+    }
+
+    // Event Listeners Sliders
+    document.getElementById('priceRange').addEventListener('input', function(e) {
+      currentPrice = parseInt(e.target.value);
+      updateKprCalculations();
+    });
+
+    document.getElementById('dpRange').addEventListener('input', function(e) {
+      currentDpPercent = parseInt(e.target.value);
+      updateKprCalculations();
+    });
+
+    document.getElementById('tenorRange').addEventListener('input', function(e) {
+      currentTenorYears = parseInt(e.target.value);
+      updateKprCalculations();
+    });
+
+    document.getElementById('rateRange').addEventListener('input', function(e) {
+      currentRate = parseFloat(e.target.value);
+      updateKprCalculations();
+    });
+
+    function selectVibe(vibeName) {
+      currentVibe = vibeName;
+      document.querySelectorAll('.vibe-btn').forEach(btn => {
+        btn.classList.remove('active', 'border-gold-500', 'bg-gold-500/10', 'text-gold-300');
+        btn.classList.add('border-white/10', 'bg-surface', 'text-muted');
+      });
+      event.target.classList.add('active', 'border-gold-500', 'bg-gold-500/10', 'text-gold-300');
+      event.target.classList.remove('border-white/10', 'bg-surface', 'text-muted');
+      updateKprCalculations();
+      showToast('Vibe hunian diubah ke: ' + vibeName);
+    }
+
+    // Set Kalkulator dari Kartu Showcase
+    function calculateKprFor(price, unitTitle) {
+      currentPrice = price;
+      currentTargetUnitName = unitTitle;
+      document.getElementById('priceRange').value = price;
+      updateKprCalculations();
+      
+      // Scroll halus ke kalkulator
+      document.getElementById('kalkulator').scrollIntoView({ behavior: 'smooth' });
+      showToast('Kalkulator disinkronkan untuk ' + unitTitle);
+    }
+
+    // Kirim Hasil Simulasi ke WhatsApp
+    function sendKprToWhatsapp() {
+      const dpNominal = (currentPrice * currentDpPercent) / 100;
+      const loanAmount = currentPrice - dpNominal;
+      const totalMonths = currentTenorYears * 12;
+      const monthlyRate = (currentRate / 100) / 12;
+      const monthlyInstallment = Math.round(loanAmount * (monthlyRate / (1 - Math.pow(1 + monthlyRate, -totalMonths))));
+
+      const message = `Halo SORA Property, saya ingin berkonsultasi mengenai rencana kepemilikan hunian:%0A%0A` +
+        `• Target Unit: ${currentTargetUnitName}%0A` +
+        `• Harga Properti: ${formatRupiah(currentPrice)}%0A` +
+        `• Uang Muka (DP ${currentDpPercent}%): ${formatRupiah(dpNominal)}%0A` +
+        `• Tenor: ${currentTenorYears} Tahun%0A` +
+        `• Estimasi Cicilan: ${formatRupiah(monthlyInstallment)}/bulan%0A` +
+        `• Vibe Suasana: ${currentVibe}%0A%0A` +
+        `Mohon info ketersediaan unit dan jadwal sesi private tour. Terima kasih.`;
+
+      window.open(`https://wa.me/6281234567890?text=${message}`, '_blank');
+    }
+
+    // ===================================================
+    // LOGIKA MODAL & ASISTEN SORAI
+    // ===================================================
+    function openSoraiModal(mode) {
+      document.getElementById('soraiModal').classList.remove('hidden');
+      if (mode === 'compare') {
+        switchSoraiTab('compare');
+      } else {
+        switchSoraiTab('match');
+      }
+    }
+
+    function closeSoraiModal() {
+      document.getElementById('soraiModal').classList.add('hidden');
+    }
+
+    function switchSoraiTab(tab) {
+      // Tombol Tab
+      document.getElementById('tabMatchBtn').className = "flex-1 py-3 font-semibold text-center border-b-2 " + 
+        (tab === 'match' ? 'text-gold-300 border-gold-500 bg-gold-500/5' : 'text-muted hover:text-sand border-transparent');
+      document.getElementById('tabCompareBtn').className = "flex-1 py-3 font-semibold text-center border-b-2 " + 
+        (tab === 'compare' ? 'text-gold-300 border-gold-500 bg-gold-500/5' : 'text-muted hover:text-sand border-transparent');
+      document.getElementById('tabAskBtn').className = "flex-1 py-3 font-semibold text-center border-b-2 " + 
+        (tab === 'ask' ? 'text-gold-300 border-gold-500 bg-gold-500/5' : 'text-muted hover:text-sand border-transparent');
+
+      // Konten Tab
+      document.getElementById('tabMatchContent').classList.toggle('hidden', tab !== 'match');
+      document.getElementById('tabCompareContent').classList.toggle('hidden', tab !== 'compare');
+      document.getElementById('tabAskContent').classList.toggle('hidden', tab !== 'ask');
+    }
+
+    // Trigger Bandingkan dari Card
+    function compareWithUnit(unitKey) {
+      document.getElementById('compareUnitA').value = unitKey;
+      openSoraiModal('compare');
+      runSoraiComparison();
+    }
+
+    // Jalankan Smart Matching SORAI
+    function runSoraiMatching() {
+      const budget = parseInt(document.getElementById('soraiBudgetSelect').value);
+      const priority = document.getElementById('soraiPrioritySelect').value;
+
+      let matched = SORA_CATALOG.skylight;
+
+      if (budget <= 6000000000) {
+        matched = SORA_CATALOG.komorebi;
+      } else if (budget > 10000000000 || priority === 'view') {
+        matched = SORA_CATALOG.aether;
+      } else if (priority === 'zen') {
+        matched = SORA_CATALOG.mori;
+      } else {
+        matched = SORA_CATALOG.skylight;
+      }
+
+      const matchBox = document.getElementById('soraiMatchResult');
+      document.getElementById('soraiMatchTitle').innerText = matched.title;
+      document.getElementById('soraiMatchPrice').innerText = formatRupiah(matched.price);
+      document.getElementById('soraiMatchScore').innerText = '98% Match Score';
+      
+      let reason = `Berdasarkan alokasi anggaran dan fokus ruangmu, ${matched.title} memberikan rasio pencahayaan langit dan efisiensi ruang tertinggi (${matched.area}, ${matched.specs}). Tata letak arsitekturnya mengedepankan sirkulasi alami ${matched.light}.`;
+      document.getElementById('soraiMatchDesc').innerText = reason;
+
+      matchBox.classList.remove('hidden');
+      showToast('SORAI menemukan hunian yang paling cocok!');
+    }
+
+    function exportSoraiResultToWa() {
+      const title = document.getElementById('soraiMatchTitle').innerText;
+      const price = document.getElementById('soraiMatchPrice').innerText;
+      const msg = `Halo SORA Property, asisten SORAI merekomendasikan unit *${title}* (${price}) sesuai dengan profil kebutuhan ruang saya. Saya ingin menindaklanjuti untuk sesi diskusi privat.`;
+      window.open(`https://wa.me/6281234567890?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+
+    function askSoraiFromMatcher() {
+      openSoraiModal('match');
+      if (currentPrice <= 6000000000) {
+        document.getElementById('soraiBudgetSelect').value = "6000000000";
+      } else if (currentPrice <= 10000000000) {
+        document.getElementById('soraiBudgetSelect').value = "9000000000";
+      } else {
+        document.getElementById('soraiBudgetSelect').value = "15000000000";
+      }
+      runSoraiMatching();
+    }
+
+    // Jalankan Komparasi SORAI
+    function runSoraiComparison() {
+      const keyA = document.getElementById('compareUnitA').value;
+      const keyB = document.getElementById('compareUnitB').value;
+
+      const unitA = SORA_CATALOG[keyA];
+      const unitB = SORA_CATALOG[keyB];
+
+      document.getElementById('colTitleA').innerText = unitA.title;
+      document.getElementById('colTitleB').innerText = unitB.title;
+
+      document.getElementById('compPriceA').innerText = `${formatRupiah(unitA.price)} (~${formatRupiah(unitA.monthlyEst)}/bln)`;
+      document.getElementById('compPriceB').innerText = `${formatRupiah(unitB.price)} (~${formatRupiah(unitB.monthlyEst)}/bln)`;
+
+      document.getElementById('compLightA').innerText = unitA.light;
+      document.getElementById('compLightB').innerText = unitB.light;
+
+      document.getElementById('compMatA').innerText = unitA.materials;
+      document.getElementById('compMatB').innerText = unitB.materials;
+
+      document.getElementById('compMaintA').innerText = unitA.maintenance;
+      document.getElementById('compMaintB').innerText = unitB.maintenance;
+
+      let verdict = '';
+      if (unitA.price > unitB.price) {
+        verdict = `<strong>${unitA.title}</strong> menawarkan skala spasial yang lebih masif (${unitA.area}) dan kemewahan material premium. Namun jika kamu mencari efisiensi budget dan kenyamanan perawatan jangka panjang, <strong>${unitB.title}</strong> memiliki efisiensi nilai investasi yang sangat seimbang.`;
+      } else if (unitA.price < unitB.price) {
+        verdict = `<strong>${unitB.title}</strong> memiliki spesifikasi lebih tinggi dan ruang lebih lapang. Sebaliknya, <strong>${unitA.title}</strong> adalah pilihan cerdas untuk hunian fungsional berkarakter arsitektural kuat dengan komitmen finansial yang lebih terjangkau.`;
+      } else {
+        verdict = `Kedua hunian berada pada level investasi yang setara. Pilihan terbaik bergantung pada orientasi gaya hidupmu: ${unitA.vibe} vs ${unitB.vibe}.`;
+      }
+
+      document.getElementById('compVerdict').innerHTML = verdict;
+      showToast('Analisis komparasi selesai diperbarui.');
+    }
+
+    // Tanya Pertanyaan Arsitektur Cepat
+    function askPresetQuestion(index) {
+      const answerBox = document.getElementById('askAnswerText');
+      if (index === 1) {
+        answerBox.innerText = "Semua unit SORA dengan bukaan kaca lebar (seperti The Skylight Pavilion & Aether Villa) menggunakan kaca jenis Low-E (Low Emissivity) dengan insulasi ganda (double-glazed) serta sistem ventilasi silang aktif. Cahaya alami masuk 100%, tetapi radiasi panas tereduksi hingga 68%, sehingga ruangan tetap sejuk dan hemat daya AC.";
+      } else if (index === 2) {
+        answerBox.innerText = "Seluruh properti dalam portofolio SORA diwajibkan lolos verifikasi legalitas 100%: Sertifikat Hak Milik (SHM) murni perorangan (bukan HGB bermasalah), PBG/IMB aktif, dan bebas sengketa waris atau jaminan bank. Pengecekan dilakukan oleh kantor notaris rekanan independen kami.";
+      } else if (index === 3) {
+        answerBox.innerText = "Untuk keluarga dengan balita, Komorebi Courtyard dan Mori Zen Sanctuary adalah rekomendasi tertinggi. Keduanya memiliki tata ruang satu level utama yang minim tangga curam, tepian dinding membulat (soft-corner plaster), serta inner courtyard bebas kendaraan untuk area bermain anak yang aman dan terpantau.";
+      }
+    }
+
+    function handleCustomAsk() {
+      const input = document.getElementById('customAskInput').value.trim();
+      if (!input) return;
+
+      const answerBox = document.getElementById('askAnswerText');
+      answerBox.innerHTML = `Menganalisis pertanyaan: <em>"${input}"</em>...<br><br>Dari tinjauan arsitektur SORA, pertimbangan utama hunian ini bertumpu pada keselarasan orientasi angin lokal, materialitas jujur yang minim biaya perawatan jangka panjang, serta privasi akustik dari kebisingan jalanan luar. Kamu dapat mendiskusikan penyesuaian tata ruang ini langsung dengan arsitek kurator kami.`;
+      document.getElementById('customAskInput').value = '';
+      showToast('SORAI telah menganalisis pertanyaanmu.');
+    }
+
+    // Helper Toast
+    function showToast(msg) {
+      const toast = document.getElementById('toastNotification');
+      document.getElementById('toastMessage').innerText = msg;
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 2800);
+    }
+
+    // Ambient Cursor Glow Spotlight Follower
+    function initCursorGlow() {
+      const glow = document.getElementById('cursorGlow');
+      if (!glow) return;
+
+      let mouseX = window.innerWidth / 2;
+      let mouseY = window.innerHeight / 2;
+      let currentX = mouseX;
+      let currentY = mouseY;
+
+      window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+      });
+
+      function animateGlow() {
+        currentX += (mouseX - currentX) * 0.15;
+        currentY += (mouseY - currentY) * 0.15;
+        glow.style.left = currentX + 'px';
+        glow.style.top = currentY + 'px';
+        requestAnimationFrame(animateGlow);
+      }
+      animateGlow();
+    }
+
+    // Contemporary Luxury Preloader / Loading Screen Engine
+    function initLuxuryLoader() {
+      const screen = document.getElementById('loadingScreen');
+      const counter = document.getElementById('loadCounter');
+      const progressBar = document.getElementById('loadProgressBar');
+      const statusMsg = document.getElementById('loaderStatusMsg');
+      const subtext = document.getElementById('loaderSubtext');
+
+      if (!screen || !counter || !progressBar) return;
+
+      let count = 0;
+      const targetTime = 1600; // Total duration ~1.6 seconds
+      const intervalTime = 20;
+      const step = 100 / (targetTime / intervalTime);
+
+      const interval = setInterval(() => {
+        count += step;
+        if (count >= 100) {
+          count = 100;
+          clearInterval(interval);
+
+          counter.innerText = '100%';
+          progressBar.style.width = '100%';
+          if (statusMsg) statusMsg.innerText = 'WELCOME TO SORA ATELIER';
+          if (subtext) subtext.innerText = 'Where Architecture Meets the Sky';
+
+          // Slide curtain up after a smooth micro-pause
+          setTimeout(() => {
+            screen.classList.add('loaded');
+            // Trigger all reveal animations in viewport
+            initScrollReveal();
+          }, 300);
+        } else {
+          const currentVal = Math.floor(count);
+          counter.innerText = (currentVal < 10 ? '0' : '') + currentVal + '%';
+          progressBar.style.width = currentVal + '%';
+
+          if (currentVal > 25 && currentVal < 60 && statusMsg) {
+            statusMsg.innerText = 'FILTERING BIOPHILIC DAYLIGHT PARAMETERS...';
+          } else if (currentVal >= 60 && currentVal < 90 && statusMsg) {
+            statusMsg.innerText = 'CALIBRATING SORAI INTELLIGENCE ENGINE...';
+          }
+        }
+      }, intervalTime);
+    }
+
+    // Scroll Reveal Observer (Intersection Observer)
+    function initScrollReveal() {
+      const reveals = document.querySelectorAll('.reveal');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      reveals.forEach(el => observer.observe(el));
+    }
+
+    // Inisialisasi awal saat DOM siap
+    document.addEventListener('DOMContentLoaded', () => {
+      initCursorGlow();
+      initLuxuryLoader();
+      initScrollReveal();
+    });
+
+    // Fallback trigger jika DOM sudah loaded
+    initCursorGlow();
+    initLuxuryLoader();
+    initScrollReveal();
+    updateKprCalculations();
+  </script>
+</body>
+</html>
