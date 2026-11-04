@@ -1,0 +1,18 @@
+{
+  "name": "sora-property-trailer",
+  "version": "1.0.0",
+  "description": "Programmatic Architectural Video Trailer for SORA Property using Remotion",
+  "scripts": {
+    "start": "remotion preview",
+    "build": "remotion render SoraTrailer out/sora-trailer.mp4"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "remotion": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "typescript": "^5.0.0"
+  }
+}
