@@ -897,7 +897,7 @@
   <!-- MODAL: TRAILER VIDEO SORA (CINEMATIC FILM SPOTLIGHT)     -->
   <!-- ======================================================== -->
   <div id="trailerModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-[#0A0B0E]/95 backdrop-blur-xl transition-opacity">
-    <div class="glass-panel w-full max-w-4xl rounded-3xl border border-[#CBB38B]/40 bg-[#121418] shadow-2xl flex flex-col overflow-hidden relative">
+    <div class="glass-panel w-full max-w-5xl rounded-3xl border border-[#CBB38B]/40 bg-[#121418] shadow-2xl flex flex-col overflow-hidden relative">
       
       <!-- Trailer Top Bar -->
       <div class="px-6 py-4 border-b border-white/10 flex items-center justify-between bg-[#181B22]/80">
@@ -906,34 +906,23 @@
           <span class="text-[#F5F2EB] font-bold">SORA CINEMATIC TRAILER</span>
           <span class="text-[#CBB38B]">/ REMOTION COMPOSITION</span>
         </div>
-        <button onclick="closeTrailerModal()" class="w-8 h-8 rounded-full bg-[#181B22] hover:bg-[#1F232C] border border-white/10 flex items-center justify-center text-[#8E929B] hover:text-[#F5F2EB] transition-colors">
-          ✕
-        </button>
-      </div>
-
-      <!-- Trailer Screen Canvas -->
-      <div class="relative h-80 sm:h-[450px] w-full overflow-hidden bg-black flex items-center justify-center">
-        <!-- Cinematic Background Scene Photo -->
-        <img id="trailerBgImg" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80" alt="Trailer Scene" class="w-full h-full object-cover transition-opacity duration-700 filter brightness-90">
-        
-        <!-- Dark Vignette Overlay -->
-        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/60 pointer-events-none"></div>
-
-        <!-- Overlaid Scene Captions & Kinetic Typography -->
-        <div class="absolute bottom-8 left-6 right-6 sm:bottom-12 sm:left-12 sm:right-12 space-y-2 pointer-events-none">
-          <span id="trailerSceneSubtitle" class="text-xs font-mono uppercase tracking-widest text-[#CBB38B] block">WHERE ARCHITECTURE MEETS THE SKY</span>
-          <h3 id="trailerSceneTitle" class="text-2xl sm:text-4xl font-editorial font-bold text-white tracking-wide">SPATIAL OPENNESS</h3>
-          <p id="trailerSceneDesc" class="text-xs sm:text-sm text-[#F5F2EB]/90 max-w-xl font-sans-body">Bukaan langit vertikal dan siling 6.5 meter menghadirkan nafas ketenangan di tengah kota.</p>
+        <div class="flex items-center gap-3">
+          <a href="trailer/trailer.html" target="_blank" class="text-xs text-[#CBB38B] hover:underline font-mono">
+            Buka Tab Penuh ↗
+          </a>
+          <button onclick="closeTrailerModal()" class="w-8 h-8 rounded-full bg-[#181B22] hover:bg-[#1F232C] border border-white/10 flex items-center justify-center text-[#8E929B] hover:text-[#F5F2EB] transition-colors">
+            ✕
+          </button>
         </div>
       </div>
 
-      <!-- Progress Timeline -->
-      <div class="w-full bg-[#181B22] h-1.5 overflow-hidden">
-        <div id="trailerTimelineProgress" class="h-full bg-gradient-to-r from-[#CBB38B] to-[#F5F2EB] w-0"></div>
+      <!-- Live Interactive Video Trailer Player Canvas (Embedded from trailer.html) -->
+      <div class="relative h-[480px] w-full overflow-hidden bg-black">
+        <iframe id="trailerIframe" src="" class="w-full h-full border-0" allow="autoplay; fullscreen"></iframe>
       </div>
 
       <!-- Trailer Footer Controls -->
-      <div class="px-6 py-4 bg-[#0A0B0E] flex items-center justify-between text-xs text-[#8E929B]">
+      <div class="px-6 py-3.5 bg-[#0A0B0E] flex items-center justify-between text-xs text-[#8E929B]">
         <div class="flex items-center gap-2 font-mono">
           <span>FRAME SEQUENCE: 30 FPS</span>
           <span>•</span>

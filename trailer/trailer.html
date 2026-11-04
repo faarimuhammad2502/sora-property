@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SORA Property — Official Architectural Trailer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;800&family=Plus+Jakarta+Sans:wght@300;400;600&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background-color: #07080A;
+      color: #F5F2EB;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .font-cinzel { font-family: 'Cinzel', serif; }
+    .font-numeral { font-family: 'Space Grotesk', sans-serif; }
+    
+    /* Cinematic Video Frame */
+    .video-viewport {
+      aspect-ratio: 16 / 9;
+      box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.9), 0 0 40px rgba(203, 179, 139, 0.1);
+    }
+    
+    .ken-burns-1 {
+      animation: kenBurns1 4.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+    .ken-burns-2 {
+      animation: kenBurns2 4.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+    @keyframes kenBurns1 {
+      0% { transform: scale(1.0) translate(0, 0); }
+      100% { transform: scale(1.12) translate(-1%, -1.5%); }
+    }
+    @keyframes kenBurns2 {
+      0% { transform: scale(1.1) translate(1%, 1%); }
+      100% { transform: scale(1.0) translate(0, 0); }
+    }
+    
+    .glow-kanji {
+      text-shadow: 0 0 30px rgba(203, 179, 139, 0.6);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between items-center p-4 sm:p-8 select-none">
+
+  <!-- Top Trailer Header -->
+  <header class="w-full max-w-5xl flex items-center justify-between py-2 border-b border-white/10 text-xs">
+    <div class="flex items-center gap-3">
+      <a href="../index.html" class="px-3 py-1.5 rounded-lg bg-[#181B22] hover:bg-[#20242E] border border-white/10 text-[#CBB38B] font-semibold flex items-center gap-1.5 transition-colors">
+        <span>← Kembali ke Web</span>
+      </a>
+      <span class="text-[#8E929B] font-numeral">SORA PROPERTY • OFFICIAL TRAILER</span>
+    </div>
+    <div class="flex items-center gap-3 font-mono text-[11px] text-[#8E929B]">
+      <span>1080P CINEMA MASTER</span>
+      <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-ping"></span>
+    </div>
+  </header>
+
+  <!-- Cinema Player Container -->
+  <main class="w-full max-w-5xl my-auto py-6">
+    <div class="video-viewport relative w-full rounded-3xl overflow-hidden bg-black border border-[#CBB38B]/30 flex items-center justify-center">
+      
+      <!-- Video Screen Canvas (Renders Scenes) -->
+      <div id="videoCanvas" class="absolute inset-0 overflow-hidden">
+        <!-- Background Layer Image with Ken Burns Zoom -->
+        <img id="sceneBgImg" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=85" alt="Scene" class="w-full h-full object-cover filter brightness-[0.7] contrast-110">
+        
+        <!-- Letterbox Cinematic Bars -->
+        <div class="absolute top-0 left-0 right-0 h-10 sm:h-14 bg-black/90 pointer-events-none z-10"></div>
+        <div class="absolute bottom-0 left-0 right-0 h-10 sm:h-14 bg-black/90 pointer-events-none z-10"></div>
+        
+        <!-- Vignette Mask -->
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/70 pointer-events-none z-10"></div>
+      </div>
+
+      <!-- Overlaid Kinetic Typography & Scene Content -->
+      <div id="sceneOverlay" class="absolute inset-0 z-20 flex flex-col justify-center items-center text-center p-8 sm:p-16 transition-opacity duration-500">
+        <!-- Content injected dynamically by JS -->
+      </div>
+
+      <!-- Play Overlay Button (When Paused) -->
+      <button id="playPauseBigBtn" onclick="togglePlay()" class="absolute z-30 w-20 h-20 rounded-full bg-[#181B22]/80 hover:bg-[#CBB38B] text-[#CBB38B] hover:text-[#0A0B0E] border border-[#CBB38B]/50 flex items-center justify-center text-3xl shadow-2xl backdrop-blur-md transition-all hover:scale-110">
+        <span id="playIconText">▶</span>
+      </button>
+
+      <!-- Bottom In-Video Control Bar -->
+      <div class="absolute bottom-0 left-0 right-0 z-30 p-4 sm:p-6 bg-gradient-to-t from-black via-black/80 to-transparent flex flex-col gap-2">
+        <!-- Scrubber Progress Bar -->
+        <div class="w-full h-1.5 bg-white/20 hover:h-2.5 rounded-full overflow-hidden cursor-pointer transition-all" onclick="seekVideo(event)">
+          <div id="timelineProgress" class="h-full bg-gradient-to-r from-[#A88F65] via-[#CBB38B] to-[#F5F2EB] w-0 transition-all duration-100 ease-out"></div>
+        </div>
+
+        <div class="flex items-center justify-between text-xs pt-1">
+          <div class="flex items-center gap-4">
+            <button onclick="togglePlay()" class="hover:text-[#CBB38B] transition-colors font-semibold flex items-center gap-1.5">
+              <span id="controlPlayIcon">▶ Putar</span>
+            </button>
+            <button onclick="toggleAudio()" class="hover:text-[#CBB38B] transition-colors flex items-center gap-1">
+              <span id="audioIcon">🔊 Audio: Aktif</span>
+            </button>
+            <span id="timecodeDisplay" class="font-numeral text-[#8E929B]">00:00 / 00:16</span>
+          </div>
+
+          <div class="flex items-center gap-3 font-mono text-[11px] text-[#8E929B]">
+            <span id="sceneTracker">ADEGAN 1/4 • MANIFESTO</span>
+            <button onclick="toggleFullscreen()" class="hover:text-[#F5F2EB] transition-colors">⛶ Fullscreen</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Bottom Info Footer -->
+  <footer class="w-full max-w-5xl py-3 text-center text-xs text-[#8E929B] font-mono">
+    SORA PROPERTY ATELIER • CODE-BASED TRAILER COMPOSITION • REMOTION ENGINE
+  </footer>
+
+  <script>
+    // Audio Synthesizer (Web Audio API: Cinematic Ambient Drone & Chime)
+    let audioCtx = null;
+    let audioEnabled = true;
+
+    function initAudio() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+    }
+
+    function playCinematicChime(freq = 280) {
+      if (!audioEnabled || !audioCtx) return;
+      try {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(freq * 1.5, audioCtx.currentTime + 1.2);
+
+        gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 2.5);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 2.6);
+      } catch (e) {}
+    }
+
+    function toggleAudio() {
+      audioEnabled = !audioEnabled;
+      document.getElementById('audioIcon').innerText = audioEnabled ? '🔊 Audio: Aktif' : '🔇 Audio: Bisu';
+      if (audioEnabled && !audioCtx) initAudio();
+    }
+
+    // Video Scenes Definition (16 Seconds Total = 4 Scenes x 4 Seconds)
+    const TRAILER_TIMELINE = [
+      {
+        id: 1,
+        title: 'SORA PROPERTY',
+        subtitle: 'ARCHITECTURAL ATELIER',
+        tag: 'FILOSOFI LANGIT (空)',
+        desc: 'Kemewahan sejati hunian kontemporer yang dirancang bersama cahaya alami dan sirkulasi lapang.',
+        img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=85',
+        freq: 220,
+        layout: 'center'
+      },
+      {
+        id: 2,
+        title: 'THE SKYLIGHT PAVILION',
+        subtitle: 'BSD CITY • 420 M²',
+        tag: '6.5M DOUBLE HEIGHT CEILING',
+        desc: 'Studio Andramatin Partner • Inner courtyard dengan refleksi air alami dan kaca insulasi Low-E.',
+        img: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2000&q=85',
+        freq: 330,
+        layout: 'left'
+      },
+      {
+        id: 3,
+        title: 'MORI ZEN SANCTUARY',
+        subtitle: 'CIPETE, JAKARTA SELATAN • 310 M²',
+        tag: 'MATERIAL HONESTY & JAPANDI',
+        desc: 'Kayu jati solid bersertifikat FSC dan taman bebatuan Karesansui yang mengalirkan ketenangan batin.',
+        img: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=2000&q=85',
+        freq: 280,
+        layout: 'center'
+      },
+      {
+        id: 4,
+        title: 'GUIDED BY SORAI',
+        subtitle: 'SORA-PROPERTY.COM • JAKARTA, 2026',
+        tag: 'PRIVATE ATELIER WALKTHROUGH',
+        desc: 'Asisten cerdas arsitektur untuk membedah tata ruang dan skema cicilan transparan.',
+        img: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=2000&q=85',
+        freq: 440,
+        layout: 'center'
+      }
+    ];
+
+    let isPlaying = false;
+    let currentTime = 0; // 0 to 16 seconds
+    const totalDuration = 16;
+    let playbackInterval = null;
+    let lastRenderedSceneId = -1;
+
+    function renderCurrentTime() {
+      // Hitung adegan aktif (setiap adegan 4 detik)
+      const sceneIndex = Math.min(Math.floor(currentTime / 4), TRAILER_TIMELINE.length - 1);
+      const scene = TRAILER_TIMELINE[sceneIndex];
+
+      // Update Timecode
+      const mins = Math.floor(currentTime / 60);
+      const secs = Math.floor(currentTime % 60);
+      document.getElementById('timecodeDisplay').innerText = 
+        `00:${secs < 10 ? '0' : ''}${secs} / 00:16`;
+
+      // Update Progress Bar
+      const progressPercent = (currentTime / totalDuration) * 100;
+      document.getElementById('timelineProgress').style.width = progressPercent + '%';
+
+      // Update Scene Tracker
+      document.getElementById('sceneTracker').innerText = `ADEGAN ${sceneIndex + 1}/4 • ${scene.title.split(' ')[0]}`;
+
+      // Render Scene jika berganti
+      if (scene.id !== lastRenderedSceneId) {
+        lastRenderedSceneId = scene.id;
+        playCinematicChime(scene.freq);
+
+        const imgEl = document.getElementById('sceneBgImg');
+        imgEl.className = 'w-full h-full object-cover filter brightness-[0.72] contrast-110 ' + (sceneIndex % 2 === 0 ? 'ken-burns-1' : 'ken-burns-2');
+        imgEl.src = scene.img;
+
+        const overlay = document.getElementById('sceneOverlay');
+        overlay.style.opacity = '0';
+        
+        setTimeout(() => {
+          if (scene.layout === 'center') {
+            overlay.className = "absolute inset-0 z-20 flex flex-col justify-center items-center text-center p-8 sm:p-16 transition-opacity duration-500";
+            overlay.innerHTML = `
+              <div class="w-16 h-16 rounded-2xl bg-[#181B22]/90 border border-[#CBB38B]/40 flex items-center justify-center font-cinzel text-3xl text-[#CBB38B] mb-4 glow-kanji shadow-2xl">
+                ${scene.id === 1 ? '空' : (scene.id === 4 ? '✦' : '木')}
+              </div>
+              <span class="text-xs font-numeral tracking-widest uppercase text-[#CBB38B] block mb-2 font-bold">${scene.tag}</span>
+              <h2 class="text-3xl sm:text-5xl font-cinzel font-bold text-[#F5F2EB] tracking-wide mb-3">${scene.title}</h2>
+              <p class="text-xs sm:text-sm text-[#F5F2EB]/90 max-w-lg leading-relaxed">${scene.desc}</p>
+              <span class="text-[11px] font-mono text-[#8E929B] tracking-wider uppercase mt-4">${scene.subtitle}</span>
+            `;
+          } else {
+            overlay.className = "absolute inset-0 z-20 flex flex-col justify-end items-start text-left p-8 sm:p-16 transition-opacity duration-500 pb-16 sm:pb-24";
+            overlay.innerHTML = `
+              <span class="px-3.5 py-1 rounded-full bg-[#CBB38B]/20 border border-[#CBB38B]/40 text-[#CBB38B] font-numeral text-xs font-bold uppercase tracking-wider mb-3">${scene.tag}</span>
+              <h2 class="text-3xl sm:text-5xl font-cinzel font-bold text-[#F5F2EB] tracking-wide mb-2">${scene.title}</h2>
+              <p class="text-xs sm:text-sm text-[#F5F2EB]/90 max-w-lg leading-relaxed mb-1">${scene.desc}</p>
+              <span class="text-xs font-mono text-[#CBB38B]">${scene.subtitle}</span>
+            `;
+          }
+          overlay.style.opacity = '1';
+        }, 120);
+      }
+    }
+
+    function togglePlay() {
+      initAudio();
+      isPlaying = !isPlaying;
+
+      const playBigBtn = document.getElementById('playPauseBigBtn');
+      const controlPlayIcon = document.getElementById('controlPlayIcon');
+      const playIconText = document.getElementById('playIconText');
+
+      if (isPlaying) {
+        playBigBtn.classList.add('opacity-0', 'pointer-events-none');
+        controlPlayIcon.innerText = '⏸ Jeda';
+        playIconText.innerText = '⏸';
+
+        if (currentTime >= totalDuration) currentTime = 0;
+
+        playbackInterval = setInterval(() => {
+          currentTime += 0.1;
+          if (currentTime >= totalDuration) {
+            currentTime = totalDuration;
+            togglePlay();
+          }
+          renderCurrentTime();
+        }, 100);
+      } else {
+        playBigBtn.classList.remove('opacity-0', 'pointer-events-none');
+        controlPlayIcon.innerText = '▶ Putar';
+        playIconText.innerText = '▶';
+        if (playbackInterval) clearInterval(playbackInterval);
+      }
+    }
+
+    function seekVideo(event) {
+      const rect = event.currentTarget.getBoundingClientRect();
+      const clickX = event.clientX - rect.left;
+      const ratio = Math.max(0, Math.min(1, clickX / rect.width));
+      currentTime = ratio * totalDuration;
+      lastRenderedSceneId = -1;
+      renderCurrentTime();
+    }
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        document.exitFullscreen().catch(() => {});
+      }
+    }
+
+    // Inisialisasi awal scene 1
+    renderCurrentTime();
+  </script>
+</body>
+</html>
