@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="brassGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EADBBE"/>
+      <stop offset="45%" stop-color="#CBB38B"/>
+      <stop offset="100%" stop-color="#987D50"/>
+    </linearGradient>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#16181F"/>
+      <stop offset="100%" stop-color="#08090C"/>
+    </linearGradient>
+    <filter id="subtleGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="1.5" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+  
+  <!-- Base Squircle with Architectural Depth -->
+  <rect x="2" y="2" width="60" height="60" rx="16" fill="url(#bgGrad)" stroke="url(#brassGrad)" stroke-width="1.8"/>
+  
+  <!-- Architectural Corner Crosshairs -->
+  <path d="M 8 13 L 13 13 L 13 8 M 56 13 L 51 13 L 51 8 M 8 51 L 13 51 L 13 56 M 56 51 L 51 51 L 51 56" stroke="#CBB38B" stroke-width="1" stroke-linecap="square" opacity="0.5"/>
+  
+  <!-- Inner Ring Line (Subtle Luxury) -->
+  <rect x="7" y="7" width="50" height="50" rx="12" fill="none" stroke="#CBB38B" stroke-width="0.5" stroke-dasharray="2 3" opacity="0.3"/>
+  
+  <!-- SORA Kanji Symbol '空' -->
+  <text x="32" y="42.5" font-family="'Cinzel', 'Noto Serif JP', 'Source Han Serif SC', 'Yu Mincho', serif" font-size="28" font-weight="700" fill="url(#brassGrad)" text-anchor="middle" filter="url(#subtleGlow)">空</text>
+</svg>

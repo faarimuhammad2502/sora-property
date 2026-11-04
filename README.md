@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/banner.png" alt="SORA Property — Where Architecture Meets the Sky" width="100%">
+</p>
+
 # SORA PROPERTY
 ### Contemporary Architectural Living & Spatial Intelligence
 
@@ -73,10 +77,17 @@ Repositori ini disusun secara modular, bersih, dan tanpa dependensi rumit:
 ```
 sora-property/
 │
-├── index.html            # Dokumen semantik utama (SEO ready, accessible, clean markup)
+├── index.html            # Dokumen semantik utama (SEO & OpenGraph ready, clean markup)
 ├── style.css             # Desain sistem SORA (Dark mode, tipografi, utility classes)
 ├── app.js                # Engine logika katalog, kalkulator KPR, SORAI, dan modal
+├── favicon.svg           # Vector brand favicon (Kanji 空 + brass squircle)
+├── favicon.png           # High-resolution 64x64 PNG favicon
+├── favicon.ico           # Multi-resolution ICO favicon (16/32/48/64)
 ├── README.md             # Dokumentasi resmi repositori
+│
+├── assets/               # Brand & social identity assets
+│   ├── banner.png        # Master OpenGraph social preview banner (1376x768)
+│   └── banner.jpg        # Architectural twilight pavilion photograph
 │
 └── trailer/              # Studio video sinematik
     ├── trailer.html      # Standalone browser cinema player (zero-dependency)
