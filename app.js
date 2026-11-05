@@ -472,33 +472,47 @@ function closeArchitecturalModal() {
     modal.classList.add('hidden');
     document.body.style.overflow = '';
   }
+  stopArch3DAnimation();
 }
 
 function switchArchTab(tab) {
   const btnGallery = document.getElementById('archTabGalleryBtn');
   const btnBp = document.getElementById('archTabBlueprintBtn');
   const btnMat = document.getElementById('archTabMaterialsBtn');
+  const btn3D = document.getElementById('archTab3DBtn');
 
   const contentGallery = document.getElementById('archTabGalleryContent');
   const contentBp = document.getElementById('archTabBlueprintContent');
   const contentMat = document.getElementById('archTabMaterialsContent');
+  const content3D = document.getElementById('archTab3DContent');
 
   if (btnGallery) {
-    btnGallery.className = "flex-1 py-3 font-semibold text-center border-b-2 " + 
-      (tab === 'gallery' ? 'text-amber-200 border-amber-400 bg-amber-400/5' : 'text-muted hover:text-sand border-transparent');
+    btnGallery.className = "flex-1 min-w-[120px] py-3 font-semibold text-center border-b-2 transition-colors " + 
+      (tab === 'gallery' ? 'text-[#CBB38B] border-[#CBB38B] bg-[#CBB38B]/5' : 'text-[#8E929B] hover:text-[#F5F2EB] border-transparent');
   }
   if (btnBp) {
-    btnBp.className = "flex-1 py-3 font-semibold text-center border-b-2 " + 
-      (tab === 'blueprint' ? 'text-amber-200 border-amber-400 bg-amber-400/5' : 'text-muted hover:text-sand border-transparent');
+    btnBp.className = "flex-1 min-w-[120px] py-3 font-semibold text-center border-b-2 transition-colors " + 
+      (tab === 'blueprint' ? 'text-[#CBB38B] border-[#CBB38B] bg-[#CBB38B]/5' : 'text-[#8E929B] hover:text-[#F5F2EB] border-transparent');
   }
   if (btnMat) {
-    btnMat.className = "flex-1 py-3 font-semibold text-center border-b-2 " + 
-      (tab === 'materials' ? 'text-amber-200 border-amber-400 bg-amber-400/5' : 'text-muted hover:text-sand border-transparent');
+    btnMat.className = "flex-1 min-w-[120px] py-3 font-semibold text-center border-b-2 transition-colors " + 
+      (tab === 'materials' ? 'text-[#CBB38B] border-[#CBB38B] bg-[#CBB38B]/5' : 'text-[#8E929B] hover:text-[#F5F2EB] border-transparent');
+  }
+  if (btn3D) {
+    btn3D.className = "flex-1 min-w-[140px] py-3 font-semibold text-center border-b-2 transition-colors flex items-center justify-center gap-1.5 " + 
+      (tab === '3d' ? 'text-[#CBB38B] border-[#CBB38B] bg-[#CBB38B]/5' : 'text-[#8E929B] hover:text-[#F5F2EB] border-transparent');
   }
 
   if (contentGallery) contentGallery.classList.toggle('hidden', tab !== 'gallery');
   if (contentBp) contentBp.classList.toggle('hidden', tab !== 'blueprint');
   if (contentMat) contentMat.classList.toggle('hidden', tab !== 'materials');
+  if (content3D) content3D.classList.toggle('hidden', tab !== '3d');
+
+  if (tab === '3d') {
+    initOrUpdateArch3D();
+  } else {
+    stopArch3DAnimation();
+  }
 }
 
 function renderArchGalleryThumbnails(unit) {
@@ -633,6 +647,372 @@ function renderArchMaterials(unit) {
     `;
     grid.appendChild(card);
   });
+}
+
+// ========================================================
+// 3D ARCHITECTURAL MASSING & SOLAR SIMULATOR (THREE.JS)
+// Procedural Volumetric Engine Optimized for High Performance
+// ========================================================
+let arch3DScene = null;
+let arch3DCamera = null;
+let arch3DRenderer = null;
+let arch3DControls = null;
+let arch3DBuildingGroup = null;
+let arch3DSunLight = null;
+let arch3DSunSphere = null;
+let arch3DAmbientLight = null;
+let arch3DAnimId = null;
+let arch3DInitialized = false;
+let arch3DAutoRotate = true;
+let arch3DCurrentStyle = 'solid'; // 'solid' | 'wireframe' | 'glass'
+let arch3DCurrentHour = 12.0;
+
+function initArch3DScene() {
+  if (typeof THREE === 'undefined') {
+    console.warn('Three.js belum termuat dari CDN.');
+    return;
+  }
+  const container = document.getElementById('arch3DCanvasContainer');
+  if (!container) return;
+
+  const width = container.clientWidth || 600;
+  const height = container.clientHeight || 380;
+
+  // 1. Scene
+  arch3DScene = new THREE.Scene();
+  arch3DScene.background = new THREE.Color(0x07080B);
+  arch3DScene.fog = new THREE.FogExp2(0x07080B, 0.022);
+
+  // 2. Camera
+  arch3DCamera = new THREE.PerspectiveCamera(40, width / height, 0.1, 100);
+  arch3DCamera.position.set(13, 9, 15);
+
+  // 3. Renderer (Optimized for Lenovo IdeaPad Slim 3)
+  arch3DRenderer = new THREE.WebGLRenderer({ antialias: true, alpha: false, powerPreference: "high-performance" });
+  arch3DRenderer.setSize(width, height);
+  arch3DRenderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
+  arch3DRenderer.shadowMap.enabled = true;
+  arch3DRenderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+  container.innerHTML = '';
+  container.appendChild(arch3DRenderer.domElement);
+
+  // 4. OrbitControls
+  if (typeof THREE.OrbitControls !== 'undefined') {
+    arch3DControls = new THREE.OrbitControls(arch3DCamera, arch3DRenderer.domElement);
+    arch3DControls.enableDamping = true;
+    arch3DControls.dampingFactor = 0.06;
+    arch3DControls.maxPolarAngle = Math.PI / 2 - 0.05; // Prevent camera clipping through ground
+    arch3DControls.minDistance = 6;
+    arch3DControls.maxDistance = 30;
+    arch3DControls.target.set(0, 1.8, 0);
+    arch3DControls.autoRotate = arch3DAutoRotate;
+    arch3DControls.autoRotateSpeed = 0.8;
+  }
+
+  // 5. Architectural Ground Grid
+  const gridHelper = new THREE.GridHelper(26, 26, 0xCBB38B, 0x1A1E29);
+  gridHelper.position.y = -0.01;
+  arch3DScene.add(gridHelper);
+
+  // 6. Ground Shadow Receiver
+  const groundGeo = new THREE.PlaneGeometry(40, 40);
+  const groundMat = new THREE.MeshStandardMaterial({
+    color: 0x0A0B0E,
+    roughness: 0.9,
+    metalness: 0.1
+  });
+  const groundMesh = new THREE.Mesh(groundGeo, groundMat);
+  groundMesh.rotation.x = -Math.PI / 2;
+  groundMesh.position.y = -0.02;
+  groundMesh.receiveShadow = true;
+  arch3DScene.add(groundMesh);
+
+  // 7. Lighting
+  arch3DAmbientLight = new THREE.AmbientLight(0x404552, 1.2);
+  arch3DScene.add(arch3DAmbientLight);
+
+  arch3DSunLight = new THREE.DirectionalLight(0xFFF0D6, 2.2);
+  arch3DSunLight.castShadow = true;
+  arch3DSunLight.shadow.mapSize.width = 1024;
+  arch3DSunLight.shadow.mapSize.height = 1024;
+  arch3DSunLight.shadow.camera.near = 0.5;
+  arch3DSunLight.shadow.camera.far = 45;
+  arch3DSunLight.shadow.camera.left = -12;
+  arch3DSunLight.shadow.camera.right = 12;
+  arch3DSunLight.shadow.camera.top = 12;
+  arch3DSunLight.shadow.camera.bottom = -12;
+  arch3DSunLight.shadow.bias = -0.001;
+  arch3DScene.add(arch3DSunLight);
+
+  // Sun Orb Visualizer
+  const sunSphereGeo = new THREE.SphereGeometry(0.5, 16, 16);
+  const sunSphereMat = new THREE.MeshBasicMaterial({ color: 0xFFE396 });
+  arch3DSunSphere = new THREE.Mesh(sunSphereGeo, sunSphereMat);
+  arch3DScene.add(arch3DSunSphere);
+
+  arch3DBuildingGroup = new THREE.Group();
+  arch3DScene.add(arch3DBuildingGroup);
+
+  arch3DInitialized = true;
+  window.addEventListener('resize', resizeArch3D);
+  updateSunlightPosition(arch3DCurrentHour);
+}
+
+function initOrUpdateArch3D() {
+  if (!arch3DInitialized) {
+    initArch3DScene();
+  }
+  const unit = SORA_CATALOG[currentArchUnitKey];
+  const hudName = document.getElementById('hud3DUnitName');
+  if (hudName && unit) {
+    hudName.innerText = unit.title.toUpperCase();
+  }
+
+  renderArch3DUnit(currentArchUnitKey);
+  setTimeout(resizeArch3D, 60);
+  startArch3DAnimation();
+}
+
+function resizeArch3D() {
+  if (!arch3DRenderer || !arch3DCamera) return;
+  const container = document.getElementById('arch3DCanvasContainer');
+  if (!container || container.clientWidth === 0) return;
+  const w = container.clientWidth;
+  const h = container.clientHeight || 380;
+  arch3DCamera.aspect = w / h;
+  arch3DCamera.updateProjectionMatrix();
+  arch3DRenderer.setSize(w, h);
+}
+
+function startArch3DAnimation() {
+  if (arch3DAnimId) cancelAnimationFrame(arch3DAnimId);
+  function loop() {
+    arch3DAnimId = requestAnimationFrame(loop);
+    if (arch3DControls) arch3DControls.update();
+    if (arch3DRenderer && arch3DScene && arch3DCamera) {
+      arch3DRenderer.render(arch3DScene, arch3DCamera);
+    }
+  }
+  loop();
+}
+
+function stopArch3DAnimation() {
+  if (arch3DAnimId) {
+    cancelAnimationFrame(arch3DAnimId);
+    arch3DAnimId = null;
+  }
+}
+
+function toggleArch3DAutoRotate() {
+  arch3DAutoRotate = !arch3DAutoRotate;
+  if (arch3DControls) {
+    arch3DControls.autoRotate = arch3DAutoRotate;
+  }
+  const label = document.getElementById('labelAutoRotate');
+  if (label) label.innerText = arch3DAutoRotate ? 'ON' : 'OFF';
+}
+
+function resetArch3DCamera() {
+  if (!arch3DCamera) return;
+  arch3DCamera.position.set(13, 9, 15);
+  if (arch3DControls) {
+    arch3DControls.target.set(0, 1.8, 0);
+  }
+}
+
+function setArch3DStyle(style) {
+  arch3DCurrentStyle = style;
+  ['btnStyleSolid', 'btnStyleWireframe', 'btnStyleGlass'].forEach(id => {
+    const btn = document.getElementById(id);
+    if (!btn) return;
+    const isTarget = (id === 'btnStyleSolid' && style === 'solid') ||
+                     (id === 'btnStyleWireframe' && style === 'wireframe') ||
+                     (id === 'btnStyleGlass' && style === 'glass');
+    if (isTarget) {
+      btn.className = "py-1.5 px-2 rounded-lg bg-[#CBB38B]/20 text-[#CBB38B] border border-[#CBB38B]/40 font-semibold transition-all";
+    } else {
+      btn.className = "py-1.5 px-2 rounded-lg bg-[#181B22] text-[#8E929B] border border-white/5 hover:text-[#F5F2EB] font-semibold transition-all";
+    }
+  });
+
+  renderArch3DUnit(currentArchUnitKey);
+}
+
+function handleSunSliderChange(val) {
+  arch3DCurrentHour = parseFloat(val);
+  const timeStr = formatSunHour(arch3DCurrentHour);
+  const sliderText = document.getElementById('sliderTimeVal');
+  if (sliderText) sliderText.innerText = `${timeStr} WIB`;
+  updateSunlightPosition(arch3DCurrentHour);
+}
+
+function formatSunHour(hour) {
+  const h = Math.floor(hour);
+  const m = Math.round((hour - h) * 60);
+  return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
+}
+
+function updateSunlightPosition(hour) {
+  if (!arch3DSunLight) return;
+  const progress = (hour - 7) / (17.5 - 7); // 0 (morning) -> 1 (evening)
+  const angle = progress * Math.PI;
+  const radius = 17;
+
+  // Sun path arc across the sky
+  const x = Math.cos(angle) * radius;
+  const y = Math.max(1.8, Math.sin(angle) * radius * 0.95);
+  const z = Math.sin(angle * 0.5) * 6 + 3;
+
+  arch3DSunLight.position.set(x, y, z);
+  if (arch3DSunSphere) arch3DSunSphere.position.set(x, y, z);
+
+  const hudTime = document.getElementById('hud3DTime');
+  let desc = 'Zenith Puncak';
+  if (hour < 9.5) desc = 'Sinar Pagi Timur';
+  else if (hour > 15) desc = 'Golden Hour Senja';
+
+  if (hudTime) {
+    hudTime.innerText = `${formatSunHour(hour)} WIB (${desc})`;
+  }
+
+  // Realistic color temperature
+  if (hour < 9.5) {
+    arch3DSunLight.color.setHex(0xFFD39B);
+    arch3DSunLight.intensity = 1.9;
+    if (arch3DSunSphere && arch3DSunSphere.material) arch3DSunSphere.material.color.setHex(0xFFD39B);
+  } else if (hour > 15) {
+    arch3DSunLight.color.setHex(0xFFA142);
+    arch3DSunLight.intensity = 1.8;
+    if (arch3DSunSphere && arch3DSunSphere.material) arch3DSunSphere.material.color.setHex(0xFFA142);
+  } else {
+    arch3DSunLight.color.setHex(0xFFF3E0);
+    arch3DSunLight.intensity = 2.4;
+    if (arch3DSunSphere && arch3DSunSphere.material) arch3DSunSphere.material.color.setHex(0xFFF3E0);
+  }
+}
+
+function renderArch3DUnit(unitKey) {
+  if (!arch3DBuildingGroup || typeof THREE === 'undefined') return;
+
+  // Clear existing geometries
+  while (arch3DBuildingGroup.children.length > 0) {
+    const obj = arch3DBuildingGroup.children[0];
+    if (obj.geometry) obj.geometry.dispose();
+    if (obj.material) {
+      if (Array.isArray(obj.material)) obj.material.forEach(m => m.dispose());
+      else obj.material.dispose();
+    }
+    arch3DBuildingGroup.remove(obj);
+  }
+
+  const isWireframe = arch3DCurrentStyle === 'wireframe';
+  const isGlass = arch3DCurrentStyle === 'glass';
+
+  function createArchMaterial(colorHex, roughness = 0.7, metalness = 0.2, isTransparent = false, opacity = 1.0) {
+    if (isWireframe) {
+      return new THREE.MeshBasicMaterial({ color: 0xCBB38B, wireframe: true });
+    }
+    if (isGlass) {
+      return new THREE.MeshStandardMaterial({
+        color: 0x4B7B99,
+        transparent: true,
+        opacity: 0.38,
+        roughness: 0.1,
+        metalness: 0.3
+      });
+    }
+    return new THREE.MeshStandardMaterial({
+      color: colorHex,
+      roughness: roughness,
+      metalness: metalness,
+      transparent: isTransparent,
+      opacity: opacity
+    });
+  }
+
+  const matConcrete = createArchMaterial(0x1E212A, 0.85, 0.15);
+  const matBrass = createArchMaterial(0xCBB38B, 0.35, 0.75);
+  const matTeak = createArchMaterial(0x523C27, 0.75, 0.05);
+  const matGlass = isWireframe ? matConcrete : (isGlass ? matConcrete : createArchMaterial(0x7399B0, 0.15, 0.2, true, 0.42));
+  const matWater = createArchMaterial(0x1B4B63, 0.1, 0.6, true, 0.75);
+  const matFoliage = createArchMaterial(0x274332, 0.85, 0.05);
+  const matTrunk = createArchMaterial(0x3B2D21, 0.9, 0.05);
+
+  function addMesh(geo, mat, x = 0, y = 0, z = 0, rx = 0, ry = 0, rz = 0) {
+    const mesh = new THREE.Mesh(geo, mat);
+    mesh.position.set(x, y, z);
+    mesh.rotation.set(rx, ry, rz);
+    mesh.castShadow = !isWireframe;
+    mesh.receiveShadow = !isWireframe;
+    arch3DBuildingGroup.add(mesh);
+    return mesh;
+  }
+
+  function addBiophilicTree(x, y, z, scale = 1.0) {
+    const trunkGeo = new THREE.CylinderGeometry(0.08 * scale, 0.12 * scale, 1.8 * scale, 8);
+    addMesh(trunkGeo, matTrunk, x, y + 0.9 * scale, z);
+    const foliageGeo = new THREE.DodecahedronGeometry(0.9 * scale, 1);
+    addMesh(foliageGeo, matFoliage, x, y + 2.0 * scale, z);
+  }
+
+  // PROCEDURAL MODELS PER UNIT ARCHITECTURE
+  if (unitKey === 'skylight') {
+    // UNIT 1: THE SKYLIGHT PAVILION (BSD City, Andramatin Partner)
+    addMesh(new THREE.BoxGeometry(9.0, 0.35, 7.0), matConcrete, 0, 0.175, 0);
+    addMesh(new THREE.BoxGeometry(7.5, 2.2, 5.5), matGlass, 0, 1.45, 0);
+
+    const colGeo = new THREE.CylinderGeometry(0.08, 0.08, 2.2, 12);
+    addMesh(colGeo, matBrass, -3.6, 1.45, -2.6);
+    addMesh(colGeo, matBrass, 3.6, 1.45, -2.6);
+    addMesh(colGeo, matBrass, -3.6, 1.45, 2.6);
+    addMesh(colGeo, matBrass, 3.6, 1.45, 2.6);
+
+    addMesh(new THREE.BoxGeometry(9.4, 2.5, 5.8), matConcrete, 0.8, 3.8, 0.3);
+    addMesh(new THREE.BoxGeometry(2.6, 0.4, 2.2), matBrass, -0.6, 5.15, 0);
+    addMesh(new THREE.BoxGeometry(2.4, 0.1, 2.0), matGlass, -0.6, 5.25, 0);
+
+    addBiophilicTree(-0.6, 0.35, 0, 1.4);
+    addMesh(new THREE.BoxGeometry(3.0, 0.1, 1.2), matWater, -2.5, 0.36, 2.2);
+
+  } else if (unitKey === 'mori') {
+    // UNIT 2: MORI ZEN SANCTUARY (Cipete, Atelier SORA)
+    addMesh(new THREE.BoxGeometry(8.5, 0.3, 7.5), matTeak, 0, 0.15, 0);
+    addMesh(new THREE.BoxGeometry(5.8, 1.9, 4.8), matConcrete, -0.8, 1.25, -0.6);
+    addMesh(new THREE.BoxGeometry(9.6, 0.2, 8.2), matConcrete, 0, 2.3, 0);
+    addMesh(new THREE.BoxGeometry(4.2, 1.8, 3.6), matConcrete, -0.6, 3.2, -0.4);
+    addMesh(new THREE.BoxGeometry(5.6, 0.18, 4.8), matBrass, -0.6, 4.15, -0.4);
+
+    for (let i = -1.6; i <= 1.6; i += 0.4) {
+      addMesh(new THREE.BoxGeometry(0.06, 1.8, 0.1), matTeak, 2.2, 1.25, i - 0.6);
+    }
+
+    addMesh(new THREE.BoxGeometry(2.6, 0.08, 2.6), matConcrete, 2.2, 0.32, 1.4);
+    addBiophilicTree(2.2, 0.35, 1.4, 1.0);
+
+  } else if (unitKey === 'komorebi') {
+    // UNIT 3: KOMOREBI COURTYARD (Bintaro Sektor 9, Kalandra Studio)
+    addMesh(new THREE.BoxGeometry(7.6, 0.3, 6.6), matConcrete, 0, 0.15, 0);
+    addMesh(new THREE.BoxGeometry(4.2, 2.2, 5.6), matConcrete, -1.2, 1.4, 0);
+    addMesh(new THREE.BoxGeometry(3.0, 2.2, 2.6), matGlass, 1.8, 1.4, -1.5);
+    addMesh(new THREE.BoxGeometry(0.12, 4.4, 3.2), matBrass, 3.2, 2.5, 0.8);
+    addMesh(new THREE.BoxGeometry(5.6, 2.1, 4.0), matConcrete, 0.4, 3.55, 0.2);
+
+    addBiophilicTree(1.6, 0.3, 1.2, 1.3);
+
+  } else if (unitKey === 'aether') {
+    // UNIT 4: THE AETHER GLASS VILLA (Sentul Highlands, Linier Atelier)
+    addMesh(new THREE.BoxGeometry(10.5, 0.6, 8.0), matConcrete, 0, 0.3, 0);
+    addMesh(new THREE.BoxGeometry(8.5, 0.8, 6.0), matConcrete, 0.8, 0.9, -0.6);
+    addMesh(new THREE.BoxGeometry(7.8, 2.4, 4.8), matGlass, 0.6, 2.4, 0.2);
+    addMesh(new THREE.BoxGeometry(8.6, 0.25, 5.4), matBrass, 0.6, 3.65, 0.2);
+    addMesh(new THREE.BoxGeometry(5.2, 2.2, 3.6), matConcrete, -0.8, 4.8, -0.2);
+    addMesh(new THREE.BoxGeometry(4.6, 0.45, 2.0), matConcrete, 1.8, 1.3, 3.2);
+    addMesh(new THREE.BoxGeometry(4.2, 0.1, 1.6), matWater, 1.8, 1.45, 3.2);
+
+    addBiophilicTree(-3.6, 0.6, -2.4, 1.6);
+    addBiophilicTree(-4.2, 0.6, 1.8, 1.2);
+  }
 }
 
 function compareCurrentModalInSorai() {
@@ -1055,8 +1435,9 @@ function initScrollReveal() {
   reveals.forEach(el => observer.observe(el));
 }
 
-// Interactive Dynamic Card Cursor Reflection
+// Interactive Dynamic Card Cursor Reflection & CSS 3D Depth Tilt
 function initCardSpotlight() {
+  const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const cards = document.querySelectorAll('.card-lift, .glass-panel');
   cards.forEach(card => {
     card.addEventListener('mousemove', (e) => {
@@ -1065,7 +1446,22 @@ function initCardSpotlight() {
       const y = e.clientY - rect.top;
       card.style.setProperty('--mouse-x', `${x}px`);
       card.style.setProperty('--mouse-y', `${y}px`);
+
+      // 3D Perspective Tilt on .card-lift for desktop
+      if (!isReducedMotion && card.classList.contains('card-lift') && window.innerWidth >= 768) {
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * -5.5;
+        const rotateY = ((x - centerX) / centerX) * 5.5;
+        card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-6px)`;
+      }
     });
+
+    if (card.classList.contains('card-lift')) {
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+      });
+    }
   });
 }
 

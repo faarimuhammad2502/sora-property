@@ -188,11 +188,13 @@ select:focus-visible {
 .delay-300 { transition-delay: 300ms; }
 .delay-400 { transition-delay: 400ms; }
 
-/* Tactile Card Elevation with Dynamic Cursor Light Reflection */
+/* Tactile Card Elevation with Dynamic Cursor Light Reflection & 3D Depth */
 .card-lift {
   position: relative;
-  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.28s ease;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.28s ease;
   will-change: transform, box-shadow;
+  transform-style: preserve-3d;
+  perspective: 1000px;
 }
 .card-lift::after {
   content: '';

@@ -825,15 +825,19 @@
       </div>
 
       <!-- Navigation Tabs -->
-      <div class="flex border-b border-white/5 bg-[#0A0B0E]/40 text-xs">
-        <button id="archTabGalleryBtn" onclick="switchArchTab('gallery')" class="flex-1 py-3 font-semibold text-center text-[#CBB38B] border-b-2 border-[#CBB38B] bg-[#CBB38B]/5 transition-colors">
+      <div class="flex border-b border-white/5 bg-[#0A0B0E]/40 text-xs overflow-x-auto">
+        <button id="archTabGalleryBtn" onclick="switchArchTab('gallery')" class="flex-1 min-w-[120px] py-3 font-semibold text-center text-[#CBB38B] border-b-2 border-[#CBB38B] bg-[#CBB38B]/5 transition-colors">
           Galeri Sudut Ruang
         </button>
-        <button id="archTabBlueprintBtn" onclick="switchArchTab('blueprint')" class="flex-1 py-3 font-semibold text-center text-[#8E929B] hover:text-[#F5F2EB] border-b-2 border-transparent transition-colors">
+        <button id="archTabBlueprintBtn" onclick="switchArchTab('blueprint')" class="flex-1 min-w-[120px] py-3 font-semibold text-center text-[#8E929B] hover:text-[#F5F2EB] border-b-2 border-transparent transition-colors">
           Denah &amp; Vektor Tata Ruang
         </button>
-        <button id="archTabMaterialsBtn" onclick="switchArchTab('materials')" class="flex-1 py-3 font-semibold text-center text-[#8E929B] hover:text-[#F5F2EB] border-b-2 border-transparent transition-colors">
+        <button id="archTabMaterialsBtn" onclick="switchArchTab('materials')" class="flex-1 min-w-[120px] py-3 font-semibold text-center text-[#8E929B] hover:text-[#F5F2EB] border-b-2 border-transparent transition-colors">
           Materialitas &amp; Biophilic Specs
+        </button>
+        <button id="archTab3DBtn" onclick="switchArchTab('3d')" class="flex-1 min-w-[140px] py-3 font-semibold text-center text-[#8E929B] hover:text-[#F5F2EB] border-b-2 border-transparent transition-colors flex items-center justify-center gap-1.5">
+          <span>Simulasi 3D &amp; Surya</span>
+          <span class="text-[9px] bg-[#CBB38B]/20 text-[#CBB38B] px-1.5 py-0.5 rounded border border-[#CBB38B]/30 font-mono">3D</span>
         </button>
       </div>
 
@@ -914,6 +918,88 @@
 
           <div id="archMaterialsGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <!-- Injected via app.js -->
+          </div>
+        </div>
+
+        <!-- TAB 4: SIMULASI 3D MASSING & ORIENTASI SURYA -->
+        <div id="archTab3DContent" class="hidden space-y-4">
+          <div class="flex flex-wrap items-center justify-between gap-2 text-xs">
+            <p class="text-[#8E929B]">
+              Simulasi volumetrik interaktif 3D &amp; analisis lintasan bayangan matahari (<em>solar path</em>) sesuai orientasi arsitektur.
+            </p>
+            <div class="flex items-center gap-2">
+              <button type="button" onclick="toggleArch3DAutoRotate()" id="btn3DAutoRotate" class="px-3 py-1 rounded-lg bg-[#181B22] border border-white/10 text-[11px] text-[#CBB38B] hover:border-[#CBB38B]/40 transition-all font-mono">
+                Putar: <span id="labelAutoRotate">ON</span>
+              </button>
+              <button type="button" onclick="resetArch3DCamera()" class="px-3 py-1 rounded-lg bg-[#181B22] border border-white/10 text-[11px] text-[#8E929B] hover:text-[#F5F2EB] transition-all font-mono">
+                Reset Sudut
+              </button>
+            </div>
+          </div>
+
+          <!-- 3D Canvas Box -->
+          <div class="relative w-full h-[360px] sm:h-[400px] rounded-2xl border border-[#CBB38B]/30 bg-[#07080B] overflow-hidden shadow-2xl">
+            <div id="arch3DCanvasContainer" class="w-full h-full cursor-grab active:cursor-grabbing"></div>
+            
+            <!-- Status Overlay HUD -->
+            <div class="absolute top-3 left-3 pointer-events-none z-10 flex flex-col gap-1.5 text-[10px] font-mono">
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#0A0B0E]/85 backdrop-blur border border-white/10 text-[#CBB38B]">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+                <span id="hud3DUnitName">THE SKYLIGHT PAVILION</span>
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-[#0A0B0E]/70 text-[#8E929B] border border-white/5">
+                <span>WAKTU SURYA:</span> <strong id="hud3DTime" class="text-[#F5F2EB]">12:00 WIB (Zenith)</strong>
+              </span>
+            </div>
+
+            <!-- Compass / Orientation Indicator -->
+            <div class="absolute top-3 right-3 pointer-events-none z-10 flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#0A0B0E]/85 border border-[#CBB38B]/30 text-[10px] font-mono text-[#CBB38B]">
+              <span>🧭 UTARA ↑</span>
+            </div>
+
+            <!-- Interaction Hint -->
+            <div class="absolute bottom-3 right-3 pointer-events-none z-10 hidden sm:block text-[10px] font-mono px-2.5 py-1 rounded-md bg-[#0A0B0E]/70 text-[#8E929B] border border-white/5">
+              🖱️ Drag untuk putar 360° • Scroll zoom
+            </div>
+          </div>
+
+          <!-- 3D Interactive Solar Control & Material Toolbar -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1">
+            
+            <!-- Solar Path Time Controller -->
+            <div class="glass-panel p-3.5 rounded-xl border border-white/10 space-y-2">
+              <div class="flex items-center justify-between text-xs font-mono">
+                <span class="text-[#CBB38B] font-semibold flex items-center gap-1.5">
+                  <span>☀</span> Lintasan Sinar Surya (Bayangan Real-time)
+                </span>
+                <span id="sliderTimeVal" class="text-[#F5F2EB] font-bold">12:00 WIB</span>
+              </div>
+              <input type="range" id="sunlightSlider" min="7" max="17.5" step="0.5" value="12" oninput="handleSunSliderChange(this.value)" class="w-full h-1.5 bg-[#181B22] rounded-lg appearance-none cursor-pointer">
+              <div class="flex justify-between text-[10px] text-[#8E929B] font-mono">
+                <span>07:00 (Pagi)</span>
+                <span>12:00 (Tengah Hari)</span>
+                <span>17:30 (Golden Hour)</span>
+              </div>
+            </div>
+
+            <!-- Render Mode & Architectural Analysis -->
+            <div class="glass-panel p-3.5 rounded-xl border border-white/10 space-y-2">
+              <span class="text-[#CBB38B] font-semibold text-xs font-mono block">
+                ✦ Tampilan Model Geometri
+              </span>
+              <div class="grid grid-cols-3 gap-2 text-xs">
+                <button type="button" id="btnStyleSolid" onclick="setArch3DStyle('solid')" class="py-1.5 px-2 rounded-lg bg-[#CBB38B]/20 text-[#CBB38B] border border-[#CBB38B]/40 font-semibold transition-all">
+                  Solid Beton
+                </button>
+                <button type="button" id="btnStyleWireframe" onclick="setArch3DStyle('wireframe')" class="py-1.5 px-2 rounded-lg bg-[#181B22] text-[#8E929B] border border-white/5 hover:text-[#F5F2EB] font-semibold transition-all">
+                  Wireframe CAD
+                </button>
+                <button type="button" id="btnStyleGlass" onclick="setArch3DStyle('glass')" class="py-1.5 px-2 rounded-lg bg-[#181B22] text-[#8E929B] border border-white/5 hover:text-[#F5F2EB] font-semibold transition-all">
+                  X-Ray Transparan
+                </button>
+              </div>
+            </div>
+
           </div>
         </div>
 
@@ -1213,6 +1299,10 @@
       <span id="toastMessage" class="text-xs font-medium">Berhasil memperbarui kalkulasi!</span>
     </div>
   </div>
+
+  <!-- Three.js & OrbitControls for Procedural 3D Architectural Massing Simulation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 
   <!-- Main Application Script (app.js) -->
   <script src="app.js"></script>
