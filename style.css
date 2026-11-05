@@ -188,10 +188,29 @@ select:focus-visible {
 .delay-300 { transition-delay: 300ms; }
 .delay-400 { transition-delay: 400ms; }
 
-/* Tactile Card Elevation with Zero Layout Shift */
+/* Tactile Card Elevation with Dynamic Cursor Light Reflection */
 .card-lift {
+  position: relative;
   transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.28s ease;
   will-change: transform, box-shadow;
+}
+.card-lift::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    380px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(203, 179, 139, 0.08),
+    transparent 65%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+.card-lift:hover::after {
+  opacity: 1;
 }
 .card-lift:hover {
   transform: translateY(-5px);
@@ -235,6 +254,141 @@ input[type="range"]::-moz-range-thumb {
   border: 2px solid var(--bg-obsidian);
   box-shadow: 0 0 12px rgba(203, 179, 139, 0.6);
   cursor: pointer;
+}
+
+/* Directional Scroll Reveal Variants */
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-28px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal-right {
+  opacity: 0;
+  transform: translateX(28px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.94);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal-left.active, .reveal-right.active, .reveal-scale.active {
+  opacity: 1;
+  transform: translate(0) scale(1);
+}
+
+/* 1. Button Shimmer Light Sweep */
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.btn-shimmer::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -70%;
+  width: 45%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.28) 50%,
+    transparent 100%
+  );
+  transform: rotate(25deg);
+  animation: btnShimmer 5s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes btnShimmer {
+  0%, 75% { left: -70%; opacity: 0; }
+  80% { opacity: 1; }
+  100% { left: 140%; opacity: 0; }
+}
+
+/* 2. Shimmer Border Beam for Feature Cards */
+.border-beam {
+  position: relative;
+}
+.border-beam::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(203, 179, 139, 0.5) 50%,
+    transparent 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  background-size: 200% 100%;
+  animation: borderBeam 6s linear infinite;
+  pointer-events: none;
+}
+@keyframes borderBeam {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* 3. Laser Scanner Animation for Technical Blueprint */
+.blueprint-scan-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #CBB38B, #F5F2EB, #CBB38B, transparent);
+  box-shadow: 0 0 16px #CBB38B, 0 0 8px rgba(245, 242, 235, 0.8);
+  animation: blueprintScan 4.5s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: 15;
+}
+@keyframes blueprintScan {
+  0% { top: 0%; opacity: 0.15; }
+  50% { opacity: 0.85; }
+  100% { top: 100%; opacity: 0.2; }
+}
+
+/* 4. Pulsing Status Beacon */
+@keyframes liveDot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.35); opacity: 0.45; }
+}
+.animate-live-dot {
+  animation: liveDot 2s ease-in-out infinite;
+}
+
+/* 5. Typing Dots for SORAI AI */
+.typing-dot {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: var(--accent-brass);
+  animation: typingBounce 1.4s infinite ease-in-out both;
+}
+.typing-dot:nth-child(1) { animation-delay: -0.32s; }
+.typing-dot:nth-child(2) { animation-delay: -0.16s; }
+.typing-dot:nth-child(3) { animation-delay: 0s; }
+@keyframes typingBounce {
+  0%, 80%, 100% { transform: scale(0); opacity: 0.25; }
+  40% { transform: scale(1); opacity: 1; }
+}
+
+/* 6. Modal Pop-in Transition */
+.modal-enter {
+  animation: modalPopIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes modalPopIn {
+  from { opacity: 0; transform: scale(0.96) translateY(12px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
 }
 
 /* Mobile Nav Dropdown Transition */

@@ -811,13 +811,25 @@ function askPresetQuestion(index) {
   const answerBox = document.getElementById('askAnswerText');
   if (!answerBox) return;
 
-  if (index === 1) {
-    answerBox.innerText = "Semua unit SORA dengan bukaan kaca lebar (seperti The Skylight Pavilion & Aether Villa) menggunakan kaca jenis Low-E (Low Emissivity) dengan insulasi ganda (double-glazed) serta sistem ventilasi silang aktif. Cahaya alami masuk 100%, tetapi radiasi panas tereduksi hingga 68%, sehingga ruangan tetap sejuk dan hemat daya AC.";
-  } else if (index === 2) {
-    answerBox.innerText = "Seluruh properti dalam portofolio SORA diwajibkan lolos verifikasi legalitas 100%: Sertifikat Hak Milik (SHM) murni perorangan (bukan HGB bermasalah), PBG/IMB aktif, dan bebas sengketa waris atau jaminan bank. Pengecekan dilakukan oleh kantor notaris rekanan independen kami.";
-  } else if (index === 3) {
-    answerBox.innerText = "Untuk keluarga dengan balita, Komorebi Courtyard dan Mori Zen Sanctuary adalah rekomendasi tertinggi. Keduanya memiliki tata ruang satu level utama yang minim tangga curam, tepian dinding membulat (soft-corner plaster), serta inner courtyard bebas kendaraan untuk area bermain anak yang aman dan terpantau.";
-  }
+  // Typing animation indicator
+  answerBox.innerHTML = '<span class="inline-flex items-center gap-1.5 py-1 text-[#CBB38B] font-mono text-xs"><span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span> <span class="ml-2">SORAI sedang menganalisis arsip arsitektur...</span></span>';
+
+  setTimeout(() => {
+    let text = '';
+    if (index === 1) {
+      text = "Semua unit SORA dengan bukaan kaca lebar (seperti The Skylight Pavilion & Aether Villa) menggunakan kaca jenis Low-E (Low Emissivity) dengan insulasi ganda (double-glazed) serta sistem ventilasi silang aktif. Cahaya alami masuk 100%, tetapi radiasi panas tereduksi hingga 68%, sehingga ruangan tetap sejuk dan hemat daya AC.";
+    } else if (index === 2) {
+      text = "Seluruh properti dalam portofolio SORA diwajibkan lolos verifikasi legalitas 100%: Sertifikat Hak Milik (SHM) murni perorangan (bukan HGB bermasalah), PBG/IMB aktif, dan bebas sengketa waris atau jaminan bank. Pengecekan dilakukan oleh kantor notaris rekanan independen kami.";
+    } else if (index === 3) {
+      text = "Untuk keluarga dengan balita, Komorebi Courtyard dan Mori Zen Sanctuary adalah rekomendasi tertinggi. Keduanya memiliki tata ruang satu level utama yang minim tangga curam, tepian dinding membulat (soft-corner plaster), serta inner courtyard bebas kendaraan untuk area bermain anak yang aman dan terpantau.";
+    }
+    answerBox.style.opacity = '0';
+    answerBox.innerText = text;
+    answerBox.style.transition = 'opacity 0.4s ease';
+    requestAnimationFrame(() => {
+      answerBox.style.opacity = '1';
+    });
+  }, 420);
 }
 
 function handleCustomAsk() {
@@ -828,10 +840,19 @@ function handleCustomAsk() {
 
   const answerBox = document.getElementById('askAnswerText');
   if (answerBox) {
-    answerBox.innerHTML = `Menganalisis pertanyaan: <em>"${input}"</em>...<br><br>Dari tinjauan arsitektur SORA, pertimbangan utama hunian ini bertumpu pada keselarasan orientasi angin lokal, materialitas jujur yang minim biaya perawatan jangka panjang, serta privasi akustik dari kebisingan jalanan luar. Kamu dapat mendiskusikan penyesuaian tata ruang ini langsung dengan arsitek kurator kami.`;
+    answerBox.innerHTML = `<span class="inline-flex items-center gap-1.5 py-1 text-[#CBB38B] font-mono text-xs"><span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span> <span class="ml-2">SORAI sedang menelaah aspek spasial: "${input}"...</span></span>`;
+    
+    setTimeout(() => {
+      answerBox.style.opacity = '0';
+      answerBox.innerHTML = `Dari tinjauan arsitektur SORA terhadap <em>"${input}"</em>:<br><br>Pertimbangan utama hunian ini bertumpu pada keselarasan orientasi angin lokal, materialitas jujur yang minim biaya perawatan jangka panjang, serta privasi akustik dari kebisingan luar. Kamu dapat mendiskusikan kustomisasi zonasi ini langsung dengan kurator arsitek SORA saat Private Viewing.`;
+      answerBox.style.transition = 'opacity 0.4s ease';
+      requestAnimationFrame(() => {
+        answerBox.style.opacity = '1';
+      });
+      showToast('SORAI selesai menyusun rekomendasi arsitektur.');
+    }, 550);
   }
   inputEl.value = '';
-  showToast('SORAI telah menganalisis pertanyaanmu.');
 }
 
 // ========================================================
@@ -1017,9 +1038,9 @@ function initLuxuryLoader() {
   }, intervalTime);
 }
 
-// Scroll Reveal Observer
+// Scroll Reveal Observer (Supports Directional & Scale Variants)
 function initScrollReveal() {
-  const reveals = document.querySelectorAll('.reveal');
+  const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -1032,6 +1053,20 @@ function initScrollReveal() {
   });
 
   reveals.forEach(el => observer.observe(el));
+}
+
+// Interactive Dynamic Card Cursor Reflection
+function initCardSpotlight() {
+  const cards = document.querySelectorAll('.card-lift, .glass-panel');
+  cards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty('--mouse-x', `${x}px`);
+      card.style.setProperty('--mouse-y', `${y}px`);
+    });
+  });
 }
 
 // Mobile Navigation Toggle
@@ -1082,9 +1117,12 @@ document.addEventListener('DOMContentLoaded', () => {
   initLuxuryLoader();
   initKprListeners();
   updateKprCalculations();
+  initScrollReveal();
+  initCardSpotlight();
 });
 
 // Fallback jika dipanggil langsung
 initCursorGlow();
 initScrollReveal();
+initCardSpotlight();
 updateKprCalculations();
