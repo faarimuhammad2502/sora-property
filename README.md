@@ -3,109 +3,134 @@
 </p>
 
 # SORA PROPERTY
-### Contemporary Architectural Living & Spatial Intelligence
+### Contemporary Architectural Living, Spatial Curation & Interactive 3D Intelligence
 
-> **SORA (空)** — Diambil dari filosofi arsitektur ruang terbuka Jepang. Sebuah kurasi hunian kontemporer di mana volume ruang, bukaan cahaya alami, dan lanskap menyatu dalam kesederhanaan yang berwibawa.
+> **SORA (空)** — Derived from the Japanese architectural concept of open sky and meaningful void (*Ma*). A boutique curation of contemporary residences where volumetric massing, natural daylighting, and landscape harmoniously converge in quiet grandeur.
 
----
-
-## Overview
-
-SORA Property adalah *digital atelier* dan kurasi hunian arsitektural butik yang dirancang untuk mempertemukan penikmat desain dengan karya hunian berkarakter kuat. Menggabungkan estetika editorial kelas tinggi, denah tata ruang interaktif, kalkulator finansial anuitas, dan asisten spasial **SORAI (SORA Architectural Intelligence)**.
-
-Dibangun dengan prinsip *Material Honesty* dan *Anti-Generic Design*: tanpa elemen visual artifisial murahan, tanpa tumpukan gradien generik, dan bebas dari ornamen berlebihan.
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE)
+[![Static Site](https://img.shields.io/badge/stack-HTML5%20%7C%20Tailwind%20%7C%20Vanilla%20JS-amber.svg?style=flat-square)](index.html)
+[![3D Engine](https://img.shields.io/badge/3D%20Engine-Three.js%20WebGL-emerald.svg?style=flat-square)](https://threejs.org/)
+[![Video Studio](https://img.shields.io/badge/trailer-Remotion%20React-purple.svg?style=flat-square)](trailer/)
 
 ---
 
-## Architectural Principles & Design System
+## 🏛️ Overview
 
-* **Palet Materialitas:**
-  * **Belgian Basalt (`#0A0B0E`)** — Fondasi gelap bertekstur arang hitam yang dalam dan teduh.
-  * **Raw Limestone (`#F5F2EB`)** — Tipografi bernuansa batu kapur alami dengan keterbacaan tinggi.
-  * **Aged Brass (`#CBB38B`)** — Aksen metalik tembaga tua yang tenang dan elegan.
-* **Disiplin Tipografi:**
-  * **Headings:** *Cinzel* — Serif klasik modern dengan proporsi monumental.
-  * **Body Copy:** *Plus Jakarta Sans* — Geometris netral, ramah, dan presisi.
-  * **Numerals & Metrics:** *Space Grotesk* dengan format tabular numerals (`font-feature-settings: 'tnum' on, 'zero' on`) untuk memastikan seluruh data harga, luas tanah, dan dimensi denah terbaca tajam tanpa pergeseran lebar angka.
-* **Motion & Interaksi:**
-  * Ambient cursor spotlight glow responsif.
-  * Infinite kinetic ticker kurasi filosofi.
-  * Editorial preloader dengan live percentage counter dan status kalibrasi volume ruang.
+**SORA Property** is a digital architectural atelier and boutique property portfolio engineered to bridge discerning design connoisseurs with architecturally uncompromising residences. It weaves high-contrast editorial aesthetics, interactive 2D blueprint layouts, a real-time procedural **3D Volumetric Massing & Solar Path Simulator**, a transparent financial annuity engine, and **SORAI (SORA Architectural Intelligence)**.
+
+Guided by the principles of **Material Honesty** and **Anti-Generic Design**, SORA eliminates artificial decoration, cheap gradients, and sensory clutter in favor of raw materials, bold cantilevers, and authentic structural expression.
 
 ---
 
-## Core Experiences
+## 🎨 Architectural Principles & Design System
 
-### 1. Curated Masterpiece Portfolio
-Menampilkan 4 karya hunian dengan pendekatan spasial yang berbeda (bersumber konsisten dari katalog resmi `app.js`):
-* **The Skylight Pavilion** — *Tropical Brutalist* (BSD City, Tangerang Selatan | Rp 8,8 Miliar).
-  * **Finansial:** Cicilan est. Rp 48,2 Jt/bln (DP 20%, Tenor 20 Tahun).
-  * **Spesifikasi:** Luas 420 m² | 4 BR + 1 Studio | Arsitek: Studio Andramatin Partner.
-  * **Karakter Arsitektural:** Double-height void 6,5 meter dengan penetrasi cahaya alami utara-selatan, inner courtyard dengan kolam refleksi air alami, struktur beton ekspos *non-porous*, dan kaca insulasi Low-E ganda 16mm.
-* **Mori Zen Sanctuary** — *Japandi Warm* (Cipete, Jakarta Selatan | Rp 6,9 Miliar).
-  * **Finansial:** Cicilan est. Rp 37,8 Jt/bln (DP 20%, Tenor 20 Tahun).
-  * **Spesifikasi:** Luas 310 m² | 3 BR Ensuite | Arsitek: Atelier SORA.
-  * **Karakter Arsitektural:** Keseimbangan kayu jati solid bersertifikat FSC, dinding plester kapur alami (*lime plaster*) bernafas anti-lembab, bak mandi onsen teraso batu hitam alami, dan taman bebatuan kering *Karesansui*.
-* **Komorebi Courtyard** — *Modern Courtyard* (Bintaro Sektor 9, Tangerang Selatan | Rp 5,2 Miliar).
-  * **Finansial:** Cicilan est. Rp 28,5 Jt/bln (DP 20%, Tenor 20 Tahun).
-  * **Spesifikasi:** Luas 280 m² | 3 BR + Creative Studio | Arsitek: Kalandra Studio.
-  * **Karakter Arsitektural:** Bata terakota lokal presisi tinggi, kisi-kisi kayu vertikal penyaring sinar matahari sore, halaman tengah berumput bebas kendaraan ramah anak, dan ventilasi cerobong vertikal (*stack effect*).
-* **The Aether Glass Villa** — *Highland Villa / Cantilever Luxury* (Sentul Highlands, Bogor | Rp 14,5 Miliar).
-  * **Finansial:** Cicilan est. Rp 79,4 Jt/bln (DP 20%, Tenor 20 Tahun).
-  * **Spesifikasi:** Luas 580 m² | 5 BR + Infinity Pool | Arsitek: Linier Atelier.
-  * **Karakter Arsitektural:** Struktur kantilever baja I-beam hitam melayang di atas tebing kontur perbukitan, marmer travertine Roman asli, kolam renang infinity air hangat, dan panorama 360° bukit & cakrawala langit pegunungan.
+* **Material Color Palette:**
+  * **Belgian Basalt (`#0A0B0E`)** — Deep, obsidian foundation evoking textured black slate and quiet shadow.
+  * **Raw Limestone (`#F5F2EB`)** — Natural travertine and limestone white with superior contrast and editorial clarity.
+  * **Aged Brass (`#CBB38B`)** — Muted, brushed architectural brass accents providing warmth without neon excess.
+* **Typographic Hierarchy:**
+  * **Headings:** *Cinzel* — Monumental modern classical serif commanding respect and timeless presence.
+  * **Body Copy:** *Plus Jakarta Sans* — Neutral, ergonomic, and highly legible contemporary grotesque.
+  * **Numerals & Metrics:** *Space Grotesk* configured with tabular numerals (`font-feature-settings: 'tnum' on, 'zero' on`) to ensure zero character-width drift across prices, land areas, and coordinates.
+* **Kinetic & Spatial Depth:**
+  * **Dynamic Cursor Spotlight:** Ambient radial glow tracking pointer coordinates across cards and glass panels.
+  * **CSS 3D Dynamic Perspective Tilt:** Subtle 3D card elevation and tilt (`perspective: 1000px`, $\pm 5.5^\circ$) with specular light reflection on desktop viewports.
+  * **Architectural Blueprint Scanner:** Laser sweep animation across CAD floor plans for technical precision feedback.
+  * **SORAI Response Empathy:** Realistic typing bounce indicators simulating neural architectural deliberations.
 
-### 2. Architectural Spotlight & Floor Plan Modal
-Setiap unit dilengkapi dengan sistem inspeksi mendalam:
-* **Spatial Perspectives:** Galeri 4 sudut ruang beresolusi tinggi (Fasad, Ruang Utama, Master Suite, Courtyard/Bukaan).
-* **Technical Blueprint (Denah Lantai 1 & 2):** Vektor tata ruang interaktif dengan pembagian zonasi publik, semi-privat, dan privat, serta visualisasi sirkulasi ventilasi silang.
-* **Materiality & Biophilic Specs:** Rincian spesifikasi struktur, fasad, insulasi termal kaca Low-E, dan rasio sirkulasi udara alami.
+---
 
-### 3. SORA Film — 16-Second Architectural Cinema Trailer
-Trailer sinematik berbasis kode program (Remotion & Canvas Engine) yang menyajikan narasi visual:
-* 4 adegan transisi sinematik dengan efek pergerakan kamera Ken Burns.
-* Tipografi kinetik terukur dengan soundtrack ambient akustik.
-* Tersedia sebagai pemutar video mandiri di folder `trailer/trailer.html` dan terintegrasi langsung di dalam modal situs.
+## 💎 Curated Masterpiece Portfolio
 
-### 4. Lifestyle & Mortgage Math Engine (KPR)
-Perangkat kalkulasi finansial proporsional:
-* Penyesuaian fleksibel untuk nilai unit, uang muka (DP 10% - 50%), tenor hingga 30 tahun, dan suku bunga tahunan.
-* Kalkulasi formula anuitas standar industri perbankan secara instan.
-* Indikator batas minimum rekomendasi penghasilan bulanan untuk menjaga stabilitas finansial pembeli.
-* Sinkronisasi langsung hasil simulasi ke dalam catatan SORAI atau pesan WhatsApp konsultan.
+Each residence in the SORA collection represents a distinct architectural typology, calibrated to preserve natural daylighting, cross-ventilation, and structural integrity.
+
+| Unit | Typology & Location | Price & Est. Mortgage | Key Specifications | Lead Architect |
+| :--- | :--- | :--- | :--- | :--- |
+| **The Skylight Pavilion** | Tropical Brutalist<br>BSD City, South Tangerang | **Rp 8,800,000,000**<br>(Est. Rp 48,240,000 / mo) | **420 m²** Land / Built-up<br>4 BR + 1 Studio • Atrium Void | Studio Andramatin Partner |
+| **Mori Zen Sanctuary** | Japandi Warm Minimalist<br>Cipete, South Jakarta | **Rp 6,900,000,000**<br>(Est. Rp 37,800,000 / mo) | **310 m²** Land / Built-up<br>3 BR Ensuite • Engawa Deck | Atelier SORA |
+| **Komorebi Courtyard** | Modern Courtyard Living<br>Bintaro Sector 9, South Tangerang | **Rp 5,200,000,000**<br>(Est. Rp 28,500,000 / mo) | **280 m²** Land / Built-up<br>3 BR + Creative Studio • Lightwell | Kalandra Studio |
+| **The Aether Glass Villa** | Cantilevered Cliffside Luxury<br>Sentul Highlands, Bogor | **Rp 14,500,000,000**<br>(Est. Rp 79,400,000 / mo) | **580 m²** Land / Built-up<br>5 BR • Infinity Pool • 360° Panorama | Linier Atelier |
+
+### Architectural Highlights
+
+1. **The Skylight Pavilion:**
+   * Double-height central atrium (6.5m ceiling) channeling north-south daylighting into the living pavilion.
+   * Central inner courtyard featuring a mature specimen tree and reflective water rill.
+   * Non-porous fair-faced architectural exposed concrete coupled with 16mm double-glazed Low-E thermal acoustic glass.
+2. **Mori Zen Sanctuary:**
+   * FSC-certified Indonesian teak woodwork juxtaposed against breathable, moisture-regulating lime plaster walls.
+   * Raised floating *engawa* veranda wrapping around a raked *karesansui* dry rock garden.
+   * Custom black stone terrazzo soaking onsen tub in the private master sanctuary.
+3. **Komorebi Courtyard:**
+   * Locally crafted high-precision terracotta brickwork with vertical timber louvers filtering harsh afternoon glare.
+   * Vehicle-free inner green court designed as a serene central social sanctuary.
+   * Vertical solar chimney stack effect expelling rising heat naturally without reliance on continuous HVAC.
+4. **The Aether Glass Villa:**
+   * Dramatic 6-meter steel I-beam cantilevered living wing floating over the mountain cliff contour.
+   * Imported Roman vein-cut travertine marble slabs maintaining thermal coolness by day and warmth by night.
+   * Heated cantilevered infinity pool blending into the Sentul mountain ridge horizon.
+
+---
+
+## ⚡ Core Feature Modules
+
+### 1. Interactive 3D Architectural Massing & Solar Path Simulator
+Powered by a lightweight procedural Three.js WebGL engine embedded directly within the unit inspection modal:
+* **360° Free Orbit & Smooth Damping:** Intuitive mouse/touch orbit controls, pan, and zoom without downloading heavy multi-megabyte 3D files.
+* **Real-time Solar Path & Shadow Engine:**
+  * Continuous sun-time slider from **07:00 (Morning Light)** $\rightarrow$ **12:00 (Zenith Noon)** $\rightarrow$ **17:30 (Golden Hour Sunset)**.
+  * Real-time calculation of sun trajectory, directional shadow casting, and Kelvin color temperature shifts to verify daylighting performance.
+* **3 Architectural Shading Modes:**
+  * **Solid Concrete:** Matte charcoal brutalist concrete with brushed brass framing and biophilic foliage.
+  * **Wireframe CAD:** Architectural wireframe mesh reminiscent of studio CAD drafts.
+  * **X-Ray Transparent:** Semi-translucent glass volume revealing interior spatial distribution and floor heights.
+* **GPU Resource Guard:** Automatically cancels animation loops upon modal dismiss, keeping device CPU/GPU usage at 0%.
+
+### 2. Deep Floor Plan Blueprint & Materiality Breakdown
+* **Vector Floor Layouts:** Level 1 and Level 2 architectural zoning schematics delineating public, semi-private, and private suites.
+* **Environmental Data:** Real-time orientation vectors, cross-ventilation flow indicators, ceiling heights, and daylight penetration scores.
+* **Material Honesty Dossier:** Detailed material specifications (thermal break aluminum frames, non-toxic stone sealers, hybrid 10 kWp solar systems).
+
+### 3. SORA Film — 16-Second Remotion Cinema Trailer
+* Algorithmic, code-driven video composition built with **Remotion** and HTML5 Canvas.
+* Features subtle Ken Burns camera motions, kinetic typography, and synchronized sound design.
+* Accessible via standalone browser playback (`trailer/trailer.html`) and embedded modal player.
+
+### 4. Transparent Mortgage & Lifestyle Math Engine
+* Interactive mortgage sliders for property valuation, down payment (10% to 50%), loan tenure (up to 30 years), and annual interest rates.
+* Instant banking-standard annuity calculations calculating exact monthly installments and principal-to-interest breakdowns.
+* Recommended minimum gross monthly household income benchmark to protect client financial resilience.
+* One-click direct export to SORAI memory or formatted WhatsApp advisor consultation dispatch.
 
 ### 5. SORAI (SORA Architectural Intelligence) Concierge
-Asisten spasial cerdas yang didesain untuk mendampingi pencari hunian:
-* **Curated Matcher:** Menganalisis preferensi kepribadian, gaya arsitektur yang disukai, dan toleransi budget.
-* **Spatial Contrast (Komparasi Dua Unit):** Membedah perbedaan teknis orientasi cahaya, kompleksitas perawatan fasad, privasi, dan kesimpulan arsitektur objektif.
-* **Direct Architect Consultation Handoff:** Format ringkasan rapi yang siap dikirimkan ke konsultan properti resmi via WhatsApp.
+* **Curated Matcher:** Intelligent heuristic scoring matching family size, design ethos (Brutalist, Japandi, Minimalist), and budget envelope.
+* **Spatial Contrast Engine:** Side-by-side analytical dissection of any two units across daylighting orientation, facade maintenance complexity, privacy grading, and spatial investment recommendations.
+* **Private Tour Handoff:** Pre-populated consultation request directly dispatched to dedicated architectural consultants.
 
 ---
 
-## File Architecture
-
-Repositori ini disusun secara modular, bersih, dan tanpa dependensi rumit:
+## 📂 Repository Structure
 
 ```
 sora-property/
 │
-├── index.html            # Dokumen semantik utama (SEO & OpenGraph ready, clean markup)
-├── style.css             # Desain sistem SORA (Dark mode, tipografi, utility classes)
-├── app.js                # Engine logika katalog, kalkulator KPR, SORAI, dan modal
-├── favicon.svg           # Vector brand favicon (Kanji 空 + brass squircle)
+├── index.html            # Semantic HTML5 document (Tailwind CDN, SEO, OpenGraph metadata)
+├── style.css             # Architectural design system (Obsidian theme, typography, 3D tilt)
+├── app.js                # Application state, 3D Three.js engine, mortgage math, SORAI concierge
+├── favicon.svg           # Vector brand mark (Kanji 空 + aged brass squircle)
 ├── favicon.png           # High-resolution 64x64 PNG favicon
-├── favicon.ico           # Multi-resolution ICO favicon (16/32/48/64)
-├── README.md             # Dokumentasi resmi repositori
+├── favicon.ico           # Multi-resolution ICO suite (16/32/48/64)
+├── README.md             # Repository documentation (English)
 │
 ├── assets/               # Brand & social identity assets
-│   ├── banner.png        # Master OpenGraph social preview banner (1376x768)
+│   ├── banner.png        # Master OpenGraph banner preview (1376x768)
 │   └── banner.jpg        # Architectural twilight pavilion photograph
 │
-└── trailer/              # Studio video sinematik
-    ├── trailer.html      # Standalone browser cinema player (zero-dependency)
-    ├── package.json      # Dependensi Remotion React video engine
-    ├── remotion.config.ts# Konfigurasi video renderer
-    └── src/              # Source code komposisi video Remotion
+└── trailer/              # Programmatic cinema studio
+    ├── trailer.html      # Zero-dependency standalone cinema player
+    ├── package.json      # Remotion React dependencies
+    ├── remotion.config.ts# Video render configuration
+    └── src/              # Remotion React video composition sources
         ├── index.ts
         ├── Root.tsx
         └── SoraTrailer.tsx
@@ -113,19 +138,20 @@ sora-property/
 
 ---
 
-## Getting Started
+## 🚀 Getting Started
 
-### Menjalankan Secara Lokal
-Tidak memerlukan instalasi server atau npm build untuk menjalankan situs utama:
-1. Clone repositori ini:
+### Local Browser Preview
+Running the SORA Property platform requires **zero build steps or local server dependencies**:
+1. Clone the repository:
    ```bash
    git clone https://github.com/faarimuhammad2502/sora-property.git
+   cd sora-property
    ```
-2. Buka file `index.html` langsung di browser modern (Google Chrome, Microsoft Edge, Mozilla Firefox, atau Safari).
-3. Untuk memutar video trailer, buka `trailer/trailer.html` atau klik tombol **Tonton Film SORA** pada landing page.
+2. Open `index.html` directly in any modern web browser (Chrome, Edge, Safari, Firefox).
+3. To view the cinema trailer, open `trailer/trailer.html` or click **"Tonton Film SORA (16 Detik)"** on the landing page.
 
-### Menjalankan Remotion Studio (Opsional untuk Modifikasi Video)
-Jika ingin mengembangkan atau memodifikasi komposisi video Remotion:
+### Remotion Studio Development (Optional Video Customization)
+If you wish to modify or render the video composition via Remotion:
 ```bash
 cd trailer
 npm install
@@ -134,21 +160,24 @@ npm start
 
 ---
 
-## Deployment ke Vercel
+## 🌐 Deployment to Vercel
 
-Situs ini 100% siap dideploy langsung ke Vercel:
-1. Hubungkan akun GitHub di [Vercel Dashboard](https://vercel.com).
-2. Pilih repositori `faarimuhammad2502/sora-property`.
-3. Biarkan pengaturan build default (Framework Preset: Other / Static Site).
-4. Klik **Deploy**. Situs akan langsung aktif dalam beberapa detik.
-
----
-
-## Identity & Philosophy
-
-* **SORA (空):** Melambangkan langit, kekosongan yang bermakna (*Ma*), serta keterbukaan tanpa batas.
-* **SORAI:** SORA Architectural Intelligence — pendamping analitis dan kuratorial dalam menentukan tempat berpulang.
+SORA Property is optimized for seamless deployment on Vercel:
+1. Connect your GitHub account to the [Vercel Dashboard](https://vercel.com).
+2. Import the `faarimuhammad2502/sora-property` repository.
+3. Select **Other / Static Site** as the Framework Preset (no build command required).
+4. Click **Deploy**. Your site will be globally live on edge CDNs within seconds.
 
 ---
 
-Architectural Curation by **Faari** · 2026 SORA Property.
+## 📜 Brand Philosophy
+
+* **SORA (空):** The sky, spaciousness, and the conscious celebration of emptiness (*Ma*).
+* **SORAI:** SORA Architectural Intelligence — an empathetic analytical companion helping people discover spaces that nurture the spirit.
+
+---
+
+<p align="center">
+  Architectural Curation & Creative Direction by <strong>Muhammad Faari Akbar</strong><br>
+  © 2026 SORA Property. All Rights Reserved.
+</p>
