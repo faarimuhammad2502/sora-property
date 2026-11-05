@@ -7,40 +7,35 @@
 
 > **SORA (空)** — Derived from the Japanese architectural concept of open sky and meaningful void (*Ma*). A boutique curation of contemporary residences where volumetric massing, natural daylighting, and landscape harmoniously converge in quiet grandeur.
 
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE)
-[![Static Site](https://img.shields.io/badge/stack-HTML5%20%7C%20Tailwind%20%7C%20Vanilla%20JS-amber.svg?style=flat-square)](index.html)
-[![3D Engine](https://img.shields.io/badge/3D%20Engine-Three.js%20WebGL-emerald.svg?style=flat-square)](https://threejs.org/)
-[![Video Studio](https://img.shields.io/badge/trailer-Remotion%20React-purple.svg?style=flat-square)](trailer/)
-
 ---
 
-## 🏛️ Overview
+## Overview
 
-**SORA Property** is a digital architectural atelier and boutique property portfolio engineered to bridge discerning design connoisseurs with architecturally uncompromising residences. It weaves high-contrast editorial aesthetics, interactive 2D blueprint layouts, a real-time procedural **3D Volumetric Massing & Solar Path Simulator**, a transparent financial annuity engine, and **SORAI (SORA Architectural Intelligence)**.
+**SORA Property** is a digital architectural atelier and boutique property portfolio engineered to bridge discerning design connoisseurs with architecturally uncompromising residences. It integrates high-contrast editorial aesthetics, interactive 2D blueprint layouts, a real-time procedural **3D Volumetric Massing & Solar Path Simulator**, a transparent financial annuity engine, and **SORAI (SORA Architectural Intelligence)**.
 
 Guided by the principles of **Material Honesty** and **Anti-Generic Design**, SORA eliminates artificial decoration, cheap gradients, and sensory clutter in favor of raw materials, bold cantilevers, and authentic structural expression.
 
 ---
 
-## 🎨 Architectural Principles & Design System
+## Architectural Principles & Design System
 
 * **Material Color Palette:**
   * **Belgian Basalt (`#0A0B0E`)** — Deep, obsidian foundation evoking textured black slate and quiet shadow.
   * **Raw Limestone (`#F5F2EB`)** — Natural travertine and limestone white with superior contrast and editorial clarity.
-  * **Aged Brass (`#CBB38B`)** — Muted, brushed architectural brass accents providing warmth without neon excess.
+  * **Aged Brass (`#CBB38B`)** — Muted, brushed architectural brass accents providing warmth without excessive sheen.
 * **Typographic Hierarchy:**
-  * **Headings:** *Cinzel* — Monumental modern classical serif commanding respect and timeless presence.
+  * **Headings:** *Cinzel* — Monumental modern classical serif commanding respect and architectural permanence.
   * **Body Copy:** *Plus Jakarta Sans* — Neutral, ergonomic, and highly legible contemporary grotesque.
   * **Numerals & Metrics:** *Space Grotesk* configured with tabular numerals (`font-feature-settings: 'tnum' on, 'zero' on`) to ensure zero character-width drift across prices, land areas, and coordinates.
 * **Kinetic & Spatial Depth:**
   * **Dynamic Cursor Spotlight:** Ambient radial glow tracking pointer coordinates across cards and glass panels.
-  * **CSS 3D Dynamic Perspective Tilt:** Subtle 3D card elevation and tilt (`perspective: 1000px`, $\pm 5.5^\circ$) with specular light reflection on desktop viewports.
+  * **CSS 3D Dynamic Perspective Tilt:** Subtle 3D card elevation and tilt (`perspective: 1000px`, ±5.5°) with specular light reflection on desktop viewports.
   * **Architectural Blueprint Scanner:** Laser sweep animation across CAD floor plans for technical precision feedback.
   * **SORAI Response Empathy:** Realistic typing bounce indicators simulating neural architectural deliberations.
 
 ---
 
-## 💎 Curated Masterpiece Portfolio
+## Curated Masterpiece Portfolio
 
 Each residence in the SORA collection represents a distinct architectural typology, calibrated to preserve natural daylighting, cross-ventilation, and structural integrity.
 
@@ -72,13 +67,13 @@ Each residence in the SORA collection represents a distinct architectural typolo
 
 ---
 
-## ⚡ Core Feature Modules
+## Core Feature Modules
 
 ### 1. Interactive 3D Architectural Massing & Solar Path Simulator
 Powered by a lightweight procedural Three.js WebGL engine embedded directly within the unit inspection modal:
 * **360° Free Orbit & Smooth Damping:** Intuitive mouse/touch orbit controls, pan, and zoom without downloading heavy multi-megabyte 3D files.
 * **Real-time Solar Path & Shadow Engine:**
-  * Continuous sun-time slider from **07:00 (Morning Light)** $\rightarrow$ **12:00 (Zenith Noon)** $\rightarrow$ **17:30 (Golden Hour Sunset)**.
+  * Continuous sun-time slider from **07:00 (Morning Light)** to **12:00 (Zenith Noon)** to **17:30 (Golden Hour Sunset)**.
   * Real-time calculation of sun trajectory, directional shadow casting, and Kelvin color temperature shifts to verify daylighting performance.
 * **3 Architectural Shading Modes:**
   * **Solid Concrete:** Matte charcoal brutalist concrete with brushed brass framing and biophilic foliage.
@@ -100,16 +95,16 @@ Powered by a lightweight procedural Three.js WebGL engine embedded directly with
 * Interactive mortgage sliders for property valuation, down payment (10% to 50%), loan tenure (up to 30 years), and annual interest rates.
 * Instant banking-standard annuity calculations calculating exact monthly installments and principal-to-interest breakdowns.
 * Recommended minimum gross monthly household income benchmark to protect client financial resilience.
-* One-click direct export to SORAI memory or formatted WhatsApp advisor consultation dispatch.
+* Direct export to SORAI memory or formatted WhatsApp advisor consultation dispatch.
 
 ### 5. SORAI (SORA Architectural Intelligence) Concierge
-* **Curated Matcher:** Intelligent heuristic scoring matching family size, design ethos (Brutalist, Japandi, Minimalist), and budget envelope.
+* **Curated Matcher:** Heuristic scoring matching family size, design ethos (Brutalist, Japandi, Minimalist), and budget envelope.
 * **Spatial Contrast Engine:** Side-by-side analytical dissection of any two units across daylighting orientation, facade maintenance complexity, privacy grading, and spatial investment recommendations.
 * **Private Tour Handoff:** Pre-populated consultation request directly dispatched to dedicated architectural consultants.
 
 ---
 
-## 📂 Repository Structure
+## Repository Structure
 
 ```
 sora-property/
@@ -138,7 +133,7 @@ sora-property/
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Local Browser Preview
 Running the SORA Property platform requires **zero build steps or local server dependencies**:
@@ -160,7 +155,7 @@ npm start
 
 ---
 
-## 🌐 Deployment to Vercel
+## Deployment to Vercel
 
 SORA Property is optimized for seamless deployment on Vercel:
 1. Connect your GitHub account to the [Vercel Dashboard](https://vercel.com).
@@ -170,7 +165,7 @@ SORA Property is optimized for seamless deployment on Vercel:
 
 ---
 
-## 📜 Brand Philosophy
+## Brand Philosophy
 
 * **SORA (空):** The sky, spaciousness, and the conscious celebration of emptiness (*Ma*).
 * **SORAI:** SORA Architectural Intelligence — an empathetic analytical companion helping people discover spaces that nurture the spirit.
