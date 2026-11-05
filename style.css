@@ -1,9 +1,10 @@
 /* ========================================================
    SORA PROPERTY — ARCHITECTURAL ATELIER STYLESHEET
-   Anti-Slop Craftsmanship Standard:
+   UI/UX Pro Max Architectural Benchmark & Anti-Slop System
    - Palette: Belgian Basalt, Warm Limestone, Muted Aged Brass
    - Numerals: Space Grotesk Tabular Figures (Ultra-Sharp Contrast)
-   - Restrained Luxury: No generic AI rainbow glow or neon borders
+   - Glassmorphism: Multi-layer depth with specular inner reflection
+   - Accessibility: 4.5:1 text contrast, WCAG focus-visible, prefers-reduced-motion
    ======================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
@@ -17,13 +18,41 @@
   --text-muted: #8E929B;
   --accent-brass: #CBB38B;
   --accent-brass-hover: #D8C39E;
+  --accent-brass-glow: rgba(203, 179, 139, 0.25);
   --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-brass: rgba(203, 179, 139, 0.3);
+  --border-brass: rgba(203, 179, 139, 0.35);
+}
+
+/* Global Reset & Smooth Behavior */
+html {
+  color-scheme: dark;
+  touch-action: manipulation;
+}
+
+body {
+  background-color: var(--bg-obsidian);
+  color: var(--text-sand);
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Accessible Focus State (WCAG 2.2 Standard) */
+:focus-visible {
+  outline: 2px solid var(--accent-brass);
+  outline-offset: 3px;
+}
+button:focus-visible, 
+a:focus-visible, 
+input:focus-visible, 
+select:focus-visible {
+  outline: 2px solid var(--accent-brass);
+  outline-offset: 2px;
 }
 
 /* Typography Foundations */
 .font-editorial {
-  font-family: 'Cinzel', serif;
+  font-family: 'Cinzel', Georgia, serif;
   letter-spacing: 0.02em;
 }
 
@@ -33,7 +62,7 @@
 
 /* Tabular & Ultra-Legible Architectural Numeral Font */
 .font-numeral {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Space Grotesk', -apple-system, sans-serif;
   font-feature-settings: 'tnum' on, 'zero' on;
   letter-spacing: -0.02em;
 }
@@ -41,29 +70,32 @@
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 7px;
+  height: 7px;
 }
 ::-webkit-scrollbar-track {
   background: var(--bg-obsidian);
 }
 ::-webkit-scrollbar-thumb {
   background: #232731;
-  border-radius: 3px;
+  border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--accent-brass);
 }
 
-/* Restrained Architectural Glass Panel (Matte, tactile, anti-neon) */
+/* Restrained Architectural Glass Panel (Multi-layer depth with specular highlight) */
 .glass-panel {
-  background: rgba(18, 20, 24, 0.82);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(18, 20, 26, 0.84);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--border-subtle);
+  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .glass-brass {
-  background: rgba(203, 179, 139, 0.06);
+  background: rgba(203, 179, 139, 0.08);
   border: 1px solid var(--border-brass);
+  box-shadow: inset 0 1px 0 rgba(203, 179, 139, 0.2);
 }
 
 /* Text Gradients (Muted Aged Brass to Warm Bone — no harsh yellow neon) */
@@ -77,10 +109,10 @@
 #cursorGlow {
   pointer-events: none;
   position: fixed;
-  width: 420px;
-  height: 420px;
+  width: 440px;
+  height: 440px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(203, 179, 139, 0.06) 0%, rgba(203, 179, 139, 0.015) 45%, transparent 70%);
+  background: radial-gradient(circle, rgba(203, 179, 139, 0.07) 0%, rgba(203, 179, 139, 0.015) 50%, transparent 70%);
   transform: translate(-50%, -50%);
   transition: opacity 0.3s ease;
   z-index: 1;
@@ -156,14 +188,23 @@
 .delay-300 { transition-delay: 300ms; }
 .delay-400 { transition-delay: 400ms; }
 
-/* Tactile Card Elevation */
+/* Tactile Card Elevation with Zero Layout Shift */
 .card-lift {
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.28s ease;
+  will-change: transform, box-shadow;
 }
 .card-lift:hover {
   transform: translateY(-5px);
-  box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 20px 42px -12px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(203, 179, 139, 0.35);
   border-color: var(--border-brass);
+}
+
+/* Interactive Touch Targets (Min 44px for primary mobile actions) */
+.min-touch-target {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Range Sliders Architectural Styling */
@@ -171,6 +212,58 @@ input[type="range"] {
   accent-color: var(--accent-brass);
 }
 input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
   background: var(--accent-brass);
-  box-shadow: 0 0 10px rgba(203, 179, 139, 0.5);
+  border: 2px solid var(--bg-obsidian);
+  box-shadow: 0 0 12px rgba(203, 179, 139, 0.6);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+input[type="range"]:active::-webkit-slider-thumb {
+  transform: scale(1.2);
+  box-shadow: 0 0 20px rgba(203, 179, 139, 0.9);
+}
+input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--accent-brass);
+  border: 2px solid var(--bg-obsidian);
+  box-shadow: 0 0 12px rgba(203, 179, 139, 0.6);
+  cursor: pointer;
+}
+
+/* Mobile Nav Dropdown Transition */
+#mobileNavDropdown {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Accessibility: WCAG Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  #loadingScreen {
+    display: none !important;
+  }
+  .animate-hero-zoom, 
+  .animate-marquee, 
+  .animate-float-badge, 
+  .animate-pulse-subtle {
+    animation: none !important;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .card-lift:hover {
+    transform: none !important;
+  }
 }

@@ -460,12 +460,18 @@ function openArchitecturalModal(unitKey) {
   renderArchMaterials(unit);
 
   const modal = document.getElementById('architecturalModal');
-  if (modal) modal.classList.remove('hidden');
+  if (modal) {
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
 }
 
 function closeArchitecturalModal() {
   const modal = document.getElementById('architecturalModal');
-  if (modal) modal.classList.add('hidden');
+  if (modal) {
+    modal.classList.add('hidden');
+    document.body.style.overflow = '';
+  }
 }
 
 function switchArchTab(tab) {
@@ -652,6 +658,7 @@ function openSoraiModal(mode) {
   const modal = document.getElementById('soraiModal');
   if (!modal) return;
   modal.classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
   if (mode === 'compare') {
     switchSoraiTab('compare');
   } else {
@@ -661,7 +668,10 @@ function openSoraiModal(mode) {
 
 function closeSoraiModal() {
   const modal = document.getElementById('soraiModal');
-  if (modal) modal.classList.add('hidden');
+  if (modal) {
+    modal.classList.add('hidden');
+    document.body.style.overflow = '';
+  }
 }
 
 function switchSoraiTab(tab) {
@@ -831,13 +841,17 @@ function openTrailerModal() {
   const modal = document.getElementById('trailerModal');
   if (modal) {
     modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
     startTrailerPlayback();
   }
 }
 
 function closeTrailerModal() {
   const modal = document.getElementById('trailerModal');
-  if (modal) modal.classList.add('hidden');
+  if (modal) {
+    modal.classList.add('hidden');
+    document.body.style.overflow = '';
+  }
   stopTrailerPlayback();
 }
 
@@ -1019,6 +1033,48 @@ function initScrollReveal() {
 
   reveals.forEach(el => observer.observe(el));
 }
+
+// Mobile Navigation Toggle
+function toggleMobileMenu() {
+  const menu = document.getElementById('mobileNavDropdown');
+  const btn = document.getElementById('mobileMenuBtn');
+  const iconBars = document.getElementById('menuIconBars');
+  const iconClose = document.getElementById('menuIconClose');
+  if (!menu) return;
+
+  const isHidden = menu.classList.contains('hidden');
+  if (isHidden) {
+    menu.classList.remove('hidden');
+    if (btn) btn.setAttribute('aria-expanded', 'true');
+    if (iconBars) iconBars.classList.add('hidden');
+    if (iconClose) iconClose.classList.remove('hidden');
+  } else {
+    closeMobileMenu();
+  }
+}
+
+function closeMobileMenu() {
+  const menu = document.getElementById('mobileNavDropdown');
+  const btn = document.getElementById('mobileMenuBtn');
+  const iconBars = document.getElementById('menuIconBars');
+  const iconClose = document.getElementById('menuIconClose');
+  if (!menu) return;
+
+  menu.classList.add('hidden');
+  if (btn) btn.setAttribute('aria-expanded', 'false');
+  if (iconBars) iconBars.classList.remove('hidden');
+  if (iconClose) iconClose.classList.add('hidden');
+}
+
+// Global Keyboard Accessibility (Escape dismisses modals & mobile menu)
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeArchitecturalModal();
+    closeSoraiModal();
+    closeTrailerModal();
+    closeMobileMenu();
+  }
+});
 
 // Inisialisasi awal saat DOM siap
 document.addEventListener('DOMContentLoaded', () => {
