@@ -310,7 +310,7 @@ const SORA_CATALOG = {
 // State Global Aplikasi
 let currentPrice = 8800000000;
 let currentDpPercent = 20;
-let currentTenorYears = 15;
+let currentTenorYears = 20;
 let currentRate = 5.5;
 let currentVibe = 'Tropical Brutalist';
 let currentTargetUnitName = 'The Skylight Pavilion';

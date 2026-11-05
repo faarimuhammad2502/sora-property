@@ -37,11 +37,23 @@ Dibangun dengan prinsip *Material Honesty* dan *Anti-Generic Design*: tanpa elem
 ## Core Experiences
 
 ### 1. Curated Masterpiece Portfolio
-Menampilkan 4 karya hunian dengan pendekatan spasial yang berbeda:
-* **The Skylight Pavilion** — *Modern Glass Pavilion* (BSD City | Rp 18,5 M). Penetrasi cahaya vertikal dengan atrium setinggi 8,2 meter.
-* **Mori Zen Sanctuary** — *Japandi Courtyard* (Sentul Highlands | Rp 12,8 M). Halaman tengah bernuansa lumut dan kayu cedar hitam (*Shou Sugi Ban*).
-* **Komorebi Courtyard** — *Biophilic Residence* (Pondok Indah | Rp 24,0 M). Dinding kisi kayu yang menyaring cahaya matahari menjadi bayangan artistik.
-* **The Aether Glass Villa** — *Brutalist Minimalist* (Uluwatu, Bali | Rp 31,5 M). Kantilever beton ekspos yang membentang dramatis menghadap cakrawala samudra.
+Menampilkan 4 karya hunian dengan pendekatan spasial yang berbeda (bersumber konsisten dari katalog resmi `app.js`):
+* **The Skylight Pavilion** — *Tropical Brutalist* (BSD City, Tangerang Selatan | Rp 8,8 Miliar).
+  * **Finansial:** Cicilan est. Rp 48,2 Jt/bln (DP 20%, Tenor 20 Tahun).
+  * **Spesifikasi:** Luas 420 m² | 4 BR + 1 Studio | Arsitek: Studio Andramatin Partner.
+  * **Karakter Arsitektural:** Double-height void 6,5 meter dengan penetrasi cahaya alami utara-selatan, inner courtyard dengan kolam refleksi air alami, struktur beton ekspos *non-porous*, dan kaca insulasi Low-E ganda 16mm.
+* **Mori Zen Sanctuary** — *Japandi Warm* (Cipete, Jakarta Selatan | Rp 6,9 Miliar).
+  * **Finansial:** Cicilan est. Rp 37,8 Jt/bln (DP 20%, Tenor 20 Tahun).
+  * **Spesifikasi:** Luas 310 m² | 3 BR Ensuite | Arsitek: Atelier SORA.
+  * **Karakter Arsitektural:** Keseimbangan kayu jati solid bersertifikat FSC, dinding plester kapur alami (*lime plaster*) bernafas anti-lembab, bak mandi onsen teraso batu hitam alami, dan taman bebatuan kering *Karesansui*.
+* **Komorebi Courtyard** — *Modern Courtyard* (Bintaro Sektor 9, Tangerang Selatan | Rp 5,2 Miliar).
+  * **Finansial:** Cicilan est. Rp 28,5 Jt/bln (DP 20%, Tenor 20 Tahun).
+  * **Spesifikasi:** Luas 280 m² | 3 BR + Creative Studio | Arsitek: Kalandra Studio.
+  * **Karakter Arsitektural:** Bata terakota lokal presisi tinggi, kisi-kisi kayu vertikal penyaring sinar matahari sore, halaman tengah berumput bebas kendaraan ramah anak, dan ventilasi cerobong vertikal (*stack effect*).
+* **The Aether Glass Villa** — *Highland Villa / Cantilever Luxury* (Sentul Highlands, Bogor | Rp 14,5 Miliar).
+  * **Finansial:** Cicilan est. Rp 79,4 Jt/bln (DP 20%, Tenor 20 Tahun).
+  * **Spesifikasi:** Luas 580 m² | 5 BR + Infinity Pool | Arsitek: Linier Atelier.
+  * **Karakter Arsitektural:** Struktur kantilever baja I-beam hitam melayang di atas tebing kontur perbukitan, marmer travertine Roman asli, kolam renang infinity air hangat, dan panorama 360° bukit & cakrawala langit pegunungan.
 
 ### 2. Architectural Spotlight & Floor Plan Modal
 Setiap unit dilengkapi dengan sistem inspeksi mendalam:
